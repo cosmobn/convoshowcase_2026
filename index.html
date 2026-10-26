@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1E2859">
+  <meta name="description" content="What do you want to be? Choose a field, meet your future career character and start a pathway through the skills, qualifications and experience you need.">
+  <title>COSMO Career Pathways — What do you want to be?</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="motion.css">
+  <link rel="stylesheet" href="career-flow.css">
+  <link rel="stylesheet" href="space-theme.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" id="skip-link" href="#career-flow">Skip to career selection</a>
+  <svg class="sprite-defs" width="0" height="0" aria-hidden="true" focusable="false">
+    <defs>
+      <radialGradient id="planet-body" cx="36%" cy="30%" r="78%"><stop offset="0" stop-color="#6575BD"/><stop offset=".5" stop-color="#2D3A78"/><stop offset="1" stop-color="#111944"/></radialGradient>
+      <radialGradient id="planet-glow"><stop offset=".55" stop-color="#FCD00F" stop-opacity=".2"/><stop offset="1" stop-color="#FCD00F" stop-opacity="0"/></radialGradient>
+      <linearGradient id="planet-ring" x1="0" x2="1"><stop offset="0" stop-color="#FCD00F" stop-opacity=".2"/><stop offset=".5" stop-color="#FFE36B"/><stop offset="1" stop-color="#FCD00F" stop-opacity=".2"/></linearGradient>
+      <clipPath id="planet-clip"><circle cx="120" cy="120" r="68"/></clipPath>
+      <path id="planet-arc" d="M62 124q58 18 116 0"/>
+    </defs>
+    <symbol id="planet-cosmo" viewBox="0 0 240 240">
+      <circle cx="120" cy="120" r="108" fill="url(#planet-glow)"/>
+      <path d="M18 120a102 26 0 0 1 204 0" transform="rotate(-16 120 120)" fill="none" stroke="url(#planet-ring)" stroke-width="5" opacity=".5"/>
+      <circle cx="120" cy="120" r="68" fill="url(#planet-body)"/>
+      <g clip-path="url(#planet-clip)" fill="none" stroke="#9AA8E6" stroke-opacity=".16" stroke-width="8"><path d="M40 92c30 12 120-6 160 6"/><path d="M44 156c40 8 100-4 156-16"/></g>
+      <circle cx="94" cy="96" r="8" fill="#FFFFFF" opacity=".07"/><circle cx="150" cy="160" r="5" fill="#FFFFFF" opacity=".06"/>
+      <text transform="rotate(-16 120 120)" fill="#FCD00F" font-family="Segoe UI, system-ui, sans-serif" font-size="19" font-weight="800" letter-spacing="3.5"><textPath href="#planet-arc" startOffset="50%" text-anchor="middle">COSMO</textPath></text>
+      <circle cx="120" cy="120" r="68" fill="none" stroke="#FFFFFF" stroke-opacity=".14"/>
+      <path d="M68 82a68 68 0 0 1 82-30" fill="none" stroke="#FFFFFF" stroke-opacity=".35" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M18 120a102 26 0 0 0 204 0" transform="rotate(-16 120 120)" fill="none" stroke="url(#planet-ring)" stroke-width="5"/>
+      <circle cx="210" cy="62" r="6" fill="#FCD00F"/>
+    </symbol>
+  </svg>
+  <main class="career-flow" id="career-flow" tabindex="-1" aria-label="Choose your future career">
+    <nav class="flow-progress-nav" aria-label="Career selection progress"><ol id="flow-progress"></ol></nav>
+    <div id="flow-content"><section class="flow-screen flow-loading" role="status"><p class="flow-kicker">YOUR NEXT CHAPTER</p><h1 id="flow-title" tabindex="-1">What do you want to be?</h1><p>Preparing your career choices…</p></section></div>
+  </main>
+  <div id="career-experience" hidden>
+  <section class="hero" id="hero" aria-labelledby="page-title">
+    <svg class="flow-planet" viewBox="0 0 240 240" aria-hidden="true"><use href="#planet-cosmo"/></svg>
+    <div class="container flow-top journey-top" id="journey-top"><button class="text-button flow-top-lead" id="change-career"><span data-icon="arrow-left"></span> Change career</button><button type="button" class="flow-fullscreen"></button></div>
+    <div class="container hero-inner">
+      <div class="hero-layout">
+        <div class="hero-copy"><p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> MISSION ACTIVE · YOUR CAMPAIGN</p><h1 id="page-title" tabindex="-1">Your future.<br><span>One level at a time.</span></h1><p>See who you could become. Start with your qualifications, choose your destination, and discover the skills and experience that connect the two.</p><a class="hero-cta" href="#journey-panel">Discover your journey <span data-icon="arrow-right"></span></a><p class="hero-note">Your ambition. Your starting point. Your pathway.</p></div>
+        <aside class="future-preview" aria-label="Illustrated preview of your career goal" hidden><div class="preview-topline"><span>MISSION TARGET</span><span class="live-indicator">LOCKED IN</span></div><div class="future-character-stage"><span class="preview-orbit" aria-hidden="true"></span><span class="preview-orbit orbit-two" aria-hidden="true"></span><span class="character-sprite" id="future-character" data-character-level="5" style="--character-frame:5" aria-hidden="true"></span></div><div class="preview-caption"><small>Imagine your next chapter as a</small><strong id="future-title">Cyber Security Leader</strong><span class="preview-level-badge" id="future-stage">LEADERSHIP</span></div></aside>
+      </div>
+      <div class="profile-panel">
+        <div class="starting-group"><h2 class="control-label" id="starting-label">LOADOUT 01 · WHERE ARE YOU STARTING?</h2><div class="qualification-options" id="qualification-options" role="group" aria-labelledby="starting-label">
+          <button class="qualification-pill active" data-qualification="olevel" aria-pressed="true">O'Level <span class="pill-level">BDQF 3</span></button>
+          <button class="qualification-pill" data-qualification="btec2" aria-pressed="false">BTEC Level 2 <span class="pill-level">BDQF 3*</span></button>
+          <button class="qualification-pill" data-qualification="btec3" aria-pressed="false">BTEC Level 3 <span class="pill-level">BDQF 4*</span></button>
+          <button class="qualification-pill" data-qualification="alevel" aria-pressed="false">A Level / HNTec <span class="pill-level">BDQF 4</span></button>
+          <button class="qualification-pill" data-qualification="hnd" aria-pressed="false">HND / Diploma <span class="pill-level">BDQF 5</span></button>
+          <button class="qualification-pill" data-qualification="degree" aria-pressed="false">Degree <span class="pill-level">BDQF 6</span></button>
+        </div><p class="qualification-note" id="qualification-note" hidden>*Estimated BDQF equivalence. Confirm your specific qualification with COSMO.</p></div>
+        <div class="experience-group"><label class="control-label" for="experience-slider">LOADOUT 02 · YEARS OF WORK EXPERIENCE</label><div class="experience-slider"><input type="range" id="experience-slider" min="0" max="50" step="1" value="0" aria-label="Years of relevant work experience"><output class="experience-output" id="experience-output" for="experience-slider">0</output></div></div>
+      </div>
+    </div>
+  </section>
+  <nav class="sector-bar" aria-label="Career sectors"><div class="container sector-bar-inner"><div class="sector-tabs" id="sector-tabs">
+    <button class="sector-tab" data-sector="apps-solutions" aria-pressed="false">Software &amp; Applications</button>
+    <button class="sector-tab active" data-sector="ict-security" aria-pressed="true">Cyber Security</button>
+    <button class="sector-tab" data-sector="telecom-network" aria-pressed="false">Network &amp; Infrastructure</button>
+    <button class="sector-tab" data-sector="data-ai" aria-pressed="false">Data &amp; Artificial Intelligence</button>
+  </div><label class="sr-only" for="more-sectors">More sectors</label><select class="more-sectors" id="more-sectors"><option value="">More sectors</option><option value="it-services">IT Services</option><option value="digital-media">Digital Media</option></select></div></nav>
+  <main class="container pathway-main" id="main-content" tabindex="-1">
+    <section class="pathway-section" aria-labelledby="pathway-title">
+      <div class="pathway-heading"><div><h2 id="pathway-title">Cyber Security pathway</h2><p id="sector-description">Protect the systems, information and people we rely on.</p></div><div class="status-legend" aria-label="Pathway status key"><span><i class="legend-dot ready"></i>Ready now</span><span><i class="legend-dot experience"></i>Experience needed</span><span><i class="legend-dot study"></i>Study needed</span></div></div>
+      <div class="pathway-tools"><div class="goal-control" id="goal-control"><label for="goal-select">YOUR GOAL</label><select id="goal-select" aria-label="Choose your career goal" disabled><option>Loading careers…</option></select></div><div class="route-switch" id="route-switch" hidden></div><div class="pathway-actions"><button class="icon-button" id="saved-button" aria-label="View saved careers" title="Saved careers"><span data-icon="bookmark"></span><span id="saved-count">0</span></button><button class="text-button" id="share-button"><span data-icon="share"></span>Share pathway</button></div></div>
+      <section class="journey-panel" id="journey-panel" aria-labelledby="journey-heading" tabindex="-1" hidden>
+        <div class="journey-topline"><div><p class="eyebrow">MISSION MAP</p><h3 id="journey-heading">Level up, stage by stage.</h3><p id="journey-copy">Every stage is a new level, playing on a loop. Select a character to explore.</p></div><div class="journey-controls"><div class="journey-nav"><button class="icon-button" id="journey-prev" aria-label="Previous career stage"><span data-icon="arrow-left"></span></button><button class="icon-button" id="journey-next" aria-label="Next career stage"><span data-icon="arrow-right"></span></button></div></div></div>
+        <div class="route-overview" aria-label="Your pathway at a glance"><div class="route-metric"><strong id="route-steps">0</strong><span>career steps</span></div><div class="route-metric"><strong id="route-ready">0</strong><span>level &amp; years matched*</span></div><div class="route-metric"><strong id="route-focus">Explore</strong><span id="route-focus-label">your next move</span></div></div>
+        <div class="evolution-track" id="evolution-track" role="group" aria-label="Explore the stages of your career journey"></div>
+        <div class="journey-insight" id="journey-insight" aria-live="polite" aria-atomic="true"></div>
+        <p class="journey-footnote">An illustrated vision of your future. Visual stages represent career progression, not BDQF levels or guaranteed promotions.</p>
+      </section>
+      <div class="requirements-heading"><div><span class="section-kicker">OBJECTIVES</span><h3>Clear each stage to level up.</h3></div><p>Explore the requirements for each role <span data-icon="arrow-right"></span></p></div>
+      <div class="pathway-scroll" id="pathway-scroll" tabindex="0" role="region" aria-label="Career pathway steps. Scroll horizontally to explore all steps."><div class="loading-state" role="status">Loading your career pathway…</div></div>
+      <p class="pathway-hint"><strong>Click any step</strong> to open the full skills and certification list.</p><p class="skill-key">Skill levels — 1 Follow · 2 Assist · 3 Apply · 4 Ensure · 5 Strategise</p>
+      <p class="data-notice" id="data-notice" role="status"></p>
+    </section>
+  </main>
+  <footer class="container site-footer"><div><p>Route data based on the Brunei ICT Industry Competency Framework (BIICF) and COSMO course levels.</p><p>Unofficial student guide. Confirm qualification subjects, certifications and current requirements with the official sources.</p></div><div class="footer-links"><button class="text-button" id="courses-button">Explore COSMO courses <span data-icon="arrow-up-right"></span></button><button class="text-button" id="about-button">About this guide <span data-icon="info"></span></button></div></footer>
+  </div>
+  <dialog class="detail-dialog" id="detail-dialog" aria-labelledby="detail-title"><button class="icon-button dialog-close" id="close-detail" aria-label="Close details"><span data-icon="x"></span></button><div id="detail-content"></div></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

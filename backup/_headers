@@ -1,0 +1,18 @@
+# Netlify cache headers (ignored by other hosts)
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+/assets/*
+  Cache-Control: public, max-age=604800
+/css/*
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+/js/*
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+/data/*
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+# Let other websites read the open data and API description from the browser (CORS)
+/data/*
+  Access-Control-Allow-Origin: *
+/openapi.json
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=3600

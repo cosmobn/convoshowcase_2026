@@ -1,0 +1,253 @@
+[
+  {
+    "id": "hnd-computing",
+    "title": "Pearson BTEC HND in Computing",
+    "provider": "COSMO",
+    "type": "qualification",
+    "area": "information-technology",
+    "awardingBody": "Pearson BTEC",
+    "level": 5,
+    "bdqf": 5,
+    "bdqfSource": "biicf-table",
+    "nextCourse": null,
+    "url": "https://cosmo.edu.bn/hnd-in-computing",
+    "careerLinks": [
+      {
+        "role": "it-technician",
+        "fit": "qualifies",
+        "years": 0,
+        "route": "Level 3 — BDQF 4 (or BDQF 3 + industry certification)"
+      },
+      {
+        "role": "it-administrator-manager",
+        "fit": "needs-experience-or-portfolio",
+        "years": null,
+        "route": "BDQF 5 + industry experience or a relevant portfolio"
+      },
+      {
+        "role": "project-coordinator",
+        "fit": "qualifies",
+        "years": 0,
+        "route": "BDQF 5"
+      },
+      {
+        "role": "systems-engineer",
+        "fit": "qualifies",
+        "years": 0,
+        "route": "BDQF 5 + relevant industry certification"
+      },
+      {
+        "role": "project-manager",
+        "fit": "needs-experience-or-portfolio",
+        "years": null,
+        "route": "BDQF 5 + project management certification and a few years' experience"
+      },
+      {
+        "role": "it-operations-manager",
+        "fit": "with-experience",
+        "years": 8,
+        "route": "BDQF 5 + certification or portfolio"
+      },
+      {
+        "role": "cio",
+        "fit": "with-experience",
+        "years": 12,
+        "route": "BDQF 5 + certification, 12 years at senior level"
+      },
+      {
+        "role": "network-technician",
+        "fit": "qualifies",
+        "years": 0,
+        "route": "BDQF 4 in IT or Telecommunications"
+      },
+      {
+        "role": "network-team-lead",
+        "fit": "needs-experience-or-portfolio",
+        "years": null,
+        "route": "BDQF 5 + industry experience or portfolio"
+      },
+      {
+        "role": "network-engineer",
+        "fit": "qualifies",
+        "years": 0,
+        "route": "Specialist — BDQF 5 in IT or Telecommunications"
+      },
+      {
+        "role": "infrastructure-engineer",
+        "fit": "with-experience",
+        "years": 8,
+        "route": "BDQF 5 + certification or portfolio"
+      },
+      {
+        "role": "infrastructure-manager",
+        "fit": "with-experience",
+        "years": 8,
+        "route": "BDQF 5 + certification or portfolio"
+      },
+      {
+        "role": "cto-telecom",
+        "fit": "with-experience",
+        "years": 12,
+        "route": "BDQF 5 + certification, 12 years at senior level"
+      },
+      {
+        "role": "junior-programmer",
+        "fit": "qualifies",
+        "years": 0,
+        "route": "BDQF 5 + industry certification or a portfolio"
+      },
+      {
+        "role": "applications-developer",
+        "fit": "with-experience",
+        "years": 5,
+        "route": "BDQF 5 + industry experience, or a relevant portfolio"
+      },
+      {
+        "role": "solutions-architect",
+        "fit": "with-experience",
+        "years": 6,
+        "route": "BDQF 5 + 6 years' relevant experience"
+      },
+      {
+        "role": "application-system-engineer",
+        "fit": "with-experience",
+        "years": 8,
+        "route": "BDQF 5 + certification or portfolio"
+      },
+      {
+        "role": "software-architect",
+        "fit": "with-experience",
+        "years": 8,
+        "route": "BDQF 5 + certification or portfolio"
+      },
+      {
+        "role": "software-development-manager",
+        "fit": "with-experience",
+        "years": 8,
+        "route": "BDQF 5 + certification or portfolio"
+      },
+      {
+        "role": "cto-apps",
+        "fit": "with-experience",
+        "years": 12,
+        "route": "BDQF 5 + certification, 12 years at senior level"
+      },
+      {
+        "role": "associate-security-analyst",
+        "fit": "qualifies",
+        "years": 0,
+        "route": "BDQF 5 in IS or Computer Science"
+      },
+      {
+        "role": "cyber-risk-analyst",
+        "fit": "with-experience",
+        "years": 4,
+        "route": "BDQF 5 + 4 years in relevant roles"
+      },
+      {
+        "role": "security-engineer",
+        "fit": "with-experience",
+        "years": 4,
+        "route": "BDQF 5 + 4–6 years' experience"
+      },
+      {
+        "role": "cyber-risk-manager",
+        "fit": "with-experience",
+        "years": 8,
+        "route": "BDQF 5 + certification or portfolio"
+      },
+      {
+        "role": "ciso",
+        "fit": "with-experience",
+        "years": 12,
+        "route": "BDQF 5 + certification, 12 years at senior level"
+      },
+      {
+        "role": "data-entry",
+        "fit": "qualifies",
+        "years": 0,
+        "route": "BDQF 4 in Data Analytics, IT or IS"
+      },
+      {
+        "role": "data-analyst",
+        "fit": "needs-experience-or-portfolio",
+        "years": null,
+        "route": "BDQF 5 + industry experience, or a relevant portfolio"
+      },
+      {
+        "role": "data-engineer",
+        "fit": "with-experience",
+        "years": 5,
+        "route": "BDQF 5 + certification"
+      },
+      {
+        "role": "ai-engineer",
+        "fit": "with-experience",
+        "years": 8,
+        "route": "BDQF 5 in AI, CS or IS + certification or portfolio"
+      },
+      {
+        "role": "data-manager",
+        "fit": "with-experience",
+        "years": 3,
+        "route": "BDQF 5 in the same fields + industry experience or portfolio — 3 years as a Data Analyst or similar"
+      },
+      {
+        "role": "bi-director",
+        "fit": "with-experience",
+        "years": 12,
+        "route": "BDQF 5 + certification, 12 years at senior level"
+      },
+      {
+        "role": "data-scientist",
+        "fit": "with-experience",
+        "years": 10,
+        "route": "BDQF 5 + certification, 10 years in data science"
+      }
+    ]
+  },
+  {
+    "id": "ccp-cybersecurity",
+    "title": "CCP Cybersecurity",
+    "provider": "COSMO",
+    "type": "short-course",
+    "area": "information-technology",
+    "awardingBody": "COSMO",
+    "level": null,
+    "bdqf": null,
+    "bdqfSource": null,
+    "nextCourse": null,
+    "url": "https://cosmo.edu.bn/ccp-cybersecurity/",
+    "careerLinks": [
+      {
+        "role": "associate-security-analyst",
+        "fit": "builds-skills",
+        "years": null,
+        "route": null,
+        "why": "Builds Network Security, Security Administration and incident skills; prepares for CompTIA Security+."
+      },
+      {
+        "role": "it-technician",
+        "fit": "builds-skills",
+        "years": null,
+        "route": null,
+        "why": "Builds Information Security Management; CompTIA Security+ is listed for this role."
+      }
+    ]
+  },
+  {
+    "id": "btec-l2-creative-media",
+    "title": "Pearson BTEC Certificate in Creative Media",
+    "provider": "COSMO",
+    "type": "qualification",
+    "area": "creative-media",
+    "awardingBody": "Pearson BTEC",
+    "level": 2,
+    "bdqf": 3,
+    "bdqfSource": "estimated",
+    "nextCourse": "btec-l3-creative-media",
+    "url": "https://cosmo.edu.bn/international-certificate-in-creative-media-production",
+    "careerLinks": [],
+    "note": "No BIICF ICT role accepts this qualification on its own. It is a stepping stone: see nextCourse."
+  }
+]

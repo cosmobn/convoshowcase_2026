@@ -1,0 +1,154 @@
+@charset "UTF-8";
+
+/* One space theme from the welcome to the end of the journey. space3d.js paints the sky behind the
+   whole page; without WebGL the fixed CSS starfield below stands in for it. Surfaces are glass. */
+:root {
+  color-scheme: dark;
+  --ink: #F3F5FF;
+  --muted: #AEB9DA;
+  --border: #FFFFFF24;
+  --glass: #FFFFFF0D;
+  --glass-strong: #FFFFFF17;
+  --glass-border: #FFFFFF21;
+  --glass-hover: #FFFFFF45;
+  --panel: #222D63;
+  background-color: #1E2859;
+  background-image: var(--space-stars), var(--space-sky);
+  background-size: 420px 300px, auto, auto;
+  background-attachment: fixed;
+  scrollbar-color: #FFFFFF40 #1B2453;
+}
+.space-backdrop { position: fixed; z-index: -1; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+html.has-space3d .flow-planet { visibility: hidden; }
+:focus-visible { outline-color: var(--brand-yellow); }
+option { background: var(--brand-blue); color: white; }
+
+/* Sections are transparent so the one sky runs from top to bottom. */
+.flow-welcome, .flow-band, .hero { background: transparent; }
+.hero::before { display: none; }
+#career-flow { --flow-muted: #B9C4E4; }
+
+/* Career selection */
+.flow-kicker { color: #CFD7F1; }
+.flow-kicker::before { background: var(--brand-yellow); box-shadow: 0 0 0 4px #FCD00F14; }
+.flow-title, .flow-heading h1 { color: white; }
+.flow-data-note, .flow-caption { color: var(--muted); }
+.flow-secondary { border-color: #FFFFFF39; background: #FFFFFF08; color: #F0F3FF; }
+.flow-secondary:hover { border-color: #FFFFFF66; background: #FFFFFF14; }
+.flow-field-card, .flow-career-card, .flow-empty, .flow-profile-next, .flow-search-wrap { border-color: var(--glass-border); background: var(--glass); color: white; box-shadow: 0 14px 34px #0710301F; }
+.flow-field-card:hover, .flow-career-card:hover { border-color: var(--glass-hover); box-shadow: 0 18px 40px #07103033; }
+.flow-field-footer, .flow-career-sector { color: var(--muted); }
+.flow-career-portrait { background: radial-gradient(ellipse at 50% 80%, #FCD00F1A, transparent 59%), #FFFFFF08; }
+.flow-career-link { border-top-color: #FFFFFF1A; color: #E2E7FA; }
+.flow-stage { border-color: #FFFFFF2E; background: #FFFFFF0D; color: #CFD7F1; }
+.flow-search-label { color: #CFD7F1; }
+.flow-search-wrap { color: var(--muted); }
+.flow-search-wrap:focus-within { border-color: #FCD00F80; outline-color: #FCD00F33; }
+.flow-search-wrap > input { color: white; }
+.flow-search-wrap > input::placeholder { color: var(--muted); }
+.flow-search-empty { border-color: #FFFFFF33; color: var(--muted); }
+.flow-empty { background: radial-gradient(ellipse at 100% 0, #FCD00F14, transparent 48%), var(--glass); }
+.flow-profile-scene { border-color: var(--glass-border); background: radial-gradient(ellipse at 50% 55%, #FCD00F17, transparent 59%), var(--glass); }
+.flow-profile-skills h2, .flow-profile-next strong { color: white; }
+.flow-profile-next p { color: #B9C4E4; }
+.flow-skill-tags > span, .flow-skill-tags > li { border-color: #FFFFFF24; background: #FFFFFF0F; color: #DCE3FA; }
+
+/* Journey */
+.sector-bar { border-bottom-color: #FFFFFF1A; background: #1B2453E6; box-shadow: 0 6px 22px #0710302E; }
+.sector-tab { color: var(--muted); }
+.sector-tab:hover { background: #FFFFFF0D; color: white; }
+.sector-tab.active, .sector-tab[aria-selected="true"], .sector-tab[aria-pressed="true"] { color: white; }
+.more-sectors, .goal-control select, .route-switch, .status-legend > span, .legend-item, .journey-nav button, .icon-button:not(.dialog-close), .button-secondary, .catalog-search, .share-url { border-color: var(--glass-border); background: var(--glass); color: var(--ink); box-shadow: none; }
+.icon-button:not(.dialog-close):hover, .journey-nav button:hover:not(:disabled), .button-secondary:hover { border-color: var(--glass-hover); background: var(--glass-strong); }
+.icon-button.saved, .card-save.saved, [data-save][aria-pressed="true"] { background: #FCD00F24; color: var(--brand-yellow); }
+.route-button.active, .route-button[aria-pressed="true"], .button-primary { background: var(--brand-yellow); color: var(--brand-blue); }
+.button-primary:hover { background: #FFDA36; }
+.text-button, .site-footer a, .footer-links button, .next-role, .inline-link { color: #E2E7FA; }
+.flow-top-lead { color: #D5DDF3; }
+.flow-top-lead:hover { color: var(--brand-yellow); }
+.pathway-heading h2, .journey-topline h3, .requirements-heading h3, .route-metric strong, .insight-copy > strong, .evolution-step.is-current .evolution-role, .course-link strong { color: white; }
+.pathway-scroll { scrollbar-color: #FFFFFF40 #FFFFFF0F; }
+.pathway-scroll::-webkit-scrollbar-track { background: #FFFFFF0F; }
+.pathway-scroll::-webkit-scrollbar-thumb { background: #FFFFFF40; }
+.path-node:not(:last-child)::after, :is(.study-card,.starting-card)::before { border-top-color: #FFFFFF40; }
+.path-node:not(:last-child)::before { border-color: #FFFFFF55; }
+.pathway-card, .empty-state, .course-card, .course-link, .saved-role, .entry-route { border-color: var(--glass-border); background: var(--glass); }
+.pathway-card:hover, .course-link:hover { border-color: var(--glass-hover); background: var(--glass-strong); box-shadow: 0 10px 26px #0710302E; }
+.card-header { background: linear-gradient(135deg, #2B3878, #3C4C92); }
+.pathway-card.is-goal .card-header { background: linear-gradient(135deg, #36437F, #545E86); }
+:is(.study-card,.starting-card) { border-color: #FCD00F40; background: linear-gradient(145deg, #2B3878E6, #3C4C92CC); }
+.status-study { background: #FCD00F24; color: var(--brand-yellow); }
+.status-experience, .status-exp { background: #7B86E133; color: #C9CFFF; }
+.status-ready, .status-ok { background: #16835D38; color: #86E3B9; }
+.status-info { background: #FFFFFF14; color: var(--muted); }
+.requirements { border-color: var(--glass-border); background: #FFFFFF08; }
+.skill-name { color: #DCE3FA; }
+.skill-track { background: #FFFFFF1F; }
+.skill-fill { background: #9AA8E6; }
+.journey-panel { border-color: var(--glass-border); background: radial-gradient(ellipse at 94% 0%, #FCD00F14 0, transparent 45%), var(--glass); box-shadow: 0 14px 34px #0710301F; }
+.journey-panel::before { background-image: radial-gradient(#FFFFFF14 .7px, transparent .7px); }
+.journey-topline .eyebrow, .evolution-step.is-current .evolution-level, .about-content .detail-kicker { color: var(--brand-yellow); }
+.journey-autoplay { border-color: #FFFFFF39; background: #FFFFFF0F; color: white; box-shadow: none; }
+.journey-autoplay:hover { border-color: #FFFFFF66; background: #FFFFFF1A; }
+.route-metric + .route-metric::before { border-left-color: #FFFFFF2E; }
+.evolution-track { scrollbar-color: #FFFFFF33 transparent; }
+.evolution-step:not(:last-child)::before { border-top-color: #FFFFFF33; }
+.evolution-portrait::before { background: #FFFFFF0D; }
+.evolution-node { border-color: #FFFFFF40; background: var(--brand-blue); }
+.evolution-node::after { background: #8C9BD6; }
+.evolution-role { color: #CFD7F1; }
+.evolution-step:hover { border-color: var(--glass-border); background: var(--glass); }
+.evolution-step.is-passed .evolution-node { border-color: #E9CC49; background: #FCD00F33; }
+.evolution-step.is-current { border-color: #FCD00F80; background: var(--glass-strong); box-shadow: 0 8px 22px #0710302E; }
+.journey-insight { border-color: var(--glass-border); background: var(--glass); }
+.site-footer { border-top-color: #FFFFFF1F; }
+
+/* Dialogs keep the same palette as the page behind them. */
+.detail-dialog { border-color: #FFFFFF2E; background: var(--panel); color: var(--ink); box-shadow: 0 24px 90px #050A2480; }
+.detail-header { background: #18214D; }
+.tag { border-color: #FFFFFF2E; background: #FFFFFF0F; color: #DCE3FA; }
+.skill-list { border-color: var(--glass-border); }
+.skill-list > div, .skill-list .skill-row { background: #29346E; }
+.course-type, .course-card .sector-name { color: var(--muted); }
+
+/* Mission theme for the journey: HUD panels with corner brackets, condensed display type and square chips. */
+.hero h1 { font-family: var(--cs-display); font-size: clamp(46px, 5.4vw, 76px); font-stretch: 75%; font-weight: 800; line-height: .94; letter-spacing: -.5px; text-transform: uppercase; }
+.hero-cta, .journey-autoplay, .control-label, .profile-panel legend { letter-spacing: .9px; text-transform: uppercase; }
+.hero-cta { border-radius: 6px; font-family: var(--cs-display); font-size: 17px; font-stretch: 75%; font-weight: 800; }
+.future-preview { border-radius: 6px; background: var(--hud-corners), linear-gradient(150deg, #FFFFFF0D, #FFFFFF03); }
+.profile-panel { border-radius: 6px; background: var(--hud-corners), #FFFFFF0A; }
+.journey-panel { border-radius: 6px; background: var(--hud-corners), radial-gradient(ellipse at 94% 0%, #FCD00F14 0, transparent 45%), var(--glass); }
+.qualification-pill, .status-legend > span, .legend-item, .goal-control select, .more-sectors, .icon-button:not(.dialog-close), .button, .journey-insight, .status-badge, .tag { border-radius: 5px; }
+.experience-output { border-radius: 4px; font-family: var(--cs-display); font-size: 17px; font-stretch: 75%; }
+.preview-caption strong { font-family: var(--cs-display); font-size: 18px; font-stretch: 75%; font-weight: 700; letter-spacing: .3px; text-transform: uppercase; }
+.sector-tab { font-family: var(--cs-display); font-size: 15px; font-stretch: 75%; letter-spacing: .6px; text-transform: uppercase; }
+.pathway-heading h2, .journey-topline h3, .requirements-heading h3 { font-family: var(--cs-display); font-stretch: 75%; font-weight: 800; letter-spacing: .2px; text-transform: uppercase; }
+.pathway-heading h2 { font-size: 34px; }
+.journey-topline h3 { font-size: 32px; }
+.requirements-heading h3 { font-size: 26px; }
+.route-metric strong { font-family: var(--cs-display); font-size: 28px; font-stretch: 75%; }
+.evolution-level { color: var(--cs-yellow); font-family: var(--cs-display); font-size: 14px; letter-spacing: 2px; }
+.evolution-step, .evolution-step.is-current { border-radius: 6px; }
+.evolution-role { font-family: var(--cs-display); font-size: 14px; font-stretch: 75%; letter-spacing: .3px; text-transform: uppercase; }
+.pathway-card, :is(.study-card,.starting-card) { border-radius: 6px; }
+.card-title { font-family: var(--cs-display); font-size: 18px; font-stretch: 75%; font-weight: 700; letter-spacing: .3px; text-transform: uppercase; }
+.step-marker { border-radius: 4px; font-family: var(--cs-display); font-size: 13px; }
+.status-badge { font-size: 9px; letter-spacing: .7px; text-transform: uppercase; }
+:is(.study-card,.starting-card) h3 { font-family: var(--cs-display); font-size: 21px; font-stretch: 75%; letter-spacing: .3px; text-transform: uppercase; }
+.skill-level { border-radius: 3px; }
+@media (max-width: 700px) {
+  .hero h1 { font-size: 46px; }
+  .pathway-heading h2 { font-size: 28px; }
+  .journey-topline h3 { font-size: 26px; }
+  .requirements-heading h3 { font-size: 22px; }
+}
+
+/* The highlighted stage's character grows and glows while the others dim, so the eye follows the
+   journey as it plays. The track gets headroom so the larger figure is never clipped. */
+.evolution-track { padding-top: 46px; }
+.evolution-step.is-current { z-index: 2; }
+.evolution-portrait > .character-sprite { transform-origin: 50% 100%; transition: transform 420ms cubic-bezier(.2,.75,.25,1.2), filter 420ms ease, opacity 300ms ease; }
+.evolution-step.is-current .evolution-portrait > .character-sprite { transform: scale(1.45); filter: drop-shadow(0 0 14px #FDD00D73) drop-shadow(0 8px 10px #05091F80); }
+.evolution-track:has(.is-current) .evolution-step:not(.is-current) .character-sprite { opacity: .55; }
+.evolution-step:not(.is-current):hover .character-sprite { opacity: .9; }
+html.motion-paused .evolution-portrait > .character-sprite { transition: none; }

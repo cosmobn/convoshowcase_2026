@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>PathFinder ICT · Find your road to an ICT career in Brunei</title>
+  <meta name="description" content="Pick a dream ICT job, say where you are now, and see the step-by-step road to get there. An unofficial student guide based on the Brunei ICT Industry Competency Framework (BIICF).">
+  <meta name="theme-color" content="#202959">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23202959'/%3E%3Cpath d='M16 48 C 24 40, 18 30, 30 28 S 44 18, 48 14' stroke='%23fdd00d' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='48' r='5' fill='%23fff'/%3E%3Ccircle cx='48' cy='14' r='5' fill='%23fdd00d'/%3E%3C/svg%3E">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PathFinder ICT">
+  <meta property="og:title" content="PathFinder ICT · Tell us your dream ICT job. We'll show you the road.">
+  <meta property="og:description" content="Pick a dream job. See the steps. Share your path. Unofficial student guide based on BIICF.">
+  <meta property="og:image" content="assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PathFinder ICT">
+  <meta name="twitter:description" content="Tell us your dream ICT job. We'll show you the road.">
+  <meta name="twitter:image" content="assets/og-image.png">
+
+  <link rel="preload" href="assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preload" href="data/roles.json" as="fetch" crossorigin>
+  <link rel="preload" href="data/sectors.json" as="fetch" crossorigin>
+  <link rel="modulepreload" href="js/path.js">
+  <link rel="modulepreload" href="js/quiz.js">
+  <link rel="modulepreload" href="js/share.js">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="topbar" id="topbar">
+    <a class="brand" href="./" data-nav="home" aria-label="PathFinder ICT home">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="currentColor" opacity=".14"/><path d="M16 48 C 24 40, 18 30, 30 28 S 44 18, 48 14" stroke="#fdd00d" stroke-width="6" fill="none" stroke-linecap="round"/><circle cx="16" cy="48" r="5" fill="#fff"/><circle cx="48" cy="14" r="5" fill="#fdd00d"/></svg>
+      <span>PathFinder <b>ICT</b></span>
+    </a>
+    <nav class="topnav" aria-label="Main">
+      <a href="?view=explore" data-nav="explore">Explore</a>
+      <a href="?view=quiz" data-nav="quiz">Quiz</a>
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1">
+
+    <!-- 3.1 Landing -->
+    <section id="view-landing" class="view" aria-labelledby="landing-title">
+      <div class="hero">
+        <div class="hero-inner">
+          <p class="eyebrow">Unofficial student guide · based on BIICF</p>
+          <h1 id="landing-title">What do you want to become?</h1>
+          <p class="hero-sub">Pick a dream job. See the steps. Share your path.</p>
+
+          <div class="search" id="search">
+            <label for="search-input" class="sr-only">Search ICT careers</label>
+            <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="m20 20-3.6-3.6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+            <input id="search-input" type="text" autocomplete="off" spellcheck="false" enterkeyhint="go"
+              role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="search-list"
+              placeholder="Data Scientist…">
+            <ul id="search-list" class="search-list" role="listbox" aria-label="Matching careers" hidden></ul>
+            <p id="search-status" class="sr-only" role="status" aria-live="polite"></p>
+          </div>
+
+          <div class="chip-row" role="group" aria-label="Browse by sector" id="sector-chips"></div>
+
+          <button type="button" class="link-btn" id="quiz-cta">Not sure? Take the 30-second quiz →</button>
+        </div>
+      </div>
+
+      <div class="container">
+        <h2 class="section-title">Trending careers</h2>
+        <div class="card-row" id="trending"></div>
+      </div>
+    </section>
+
+    <!-- 3.2 Where are you now? -->
+    <section id="view-where" class="view" aria-labelledby="where-title" hidden>
+      <div class="container narrow">
+        <div class="step-head">
+          <button type="button" class="icon-btn back" data-back aria-label="Back"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <span class="goal-pill" id="where-goal"></span>
+        </div>
+        <h1 id="where-title" class="page-title">Where are you right now?</h1>
+        <p class="page-sub">Pick your highest qualification so far.</p>
+        <div class="choice-grid" id="where-choices"></div>
+
+        <div class="working-panel" id="working-panel" hidden>
+          <h2 class="h3">What's your highest qualification?</h2>
+          <div class="seg" id="working-quals" role="radiogroup" aria-label="Highest qualification"></div>
+          <label class="h3" for="exp-slider">Years of experience: <output id="exp-out" for="exp-slider">0</output></label>
+          <input type="range" id="exp-slider" min="0" max="15" step="1" value="0">
+          <div class="range-scale" aria-hidden="true"><span>0</span><span>5</span><span>10</span><span>15+</span></div>
+          <button type="button" class="btn btn-primary btn-block" id="working-go">Show my road →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3.3 Roadmap -->
+    <section id="view-roadmap" class="view" aria-labelledby="rm-title" hidden>
+      <div class="rm-hero">
+        <div class="container">
+          <div class="step-head on-dark">
+            <button type="button" class="icon-btn back" data-back aria-label="Change where you are now"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <span class="goal-pill" id="rm-from"></span>
+          </div>
+          <h1 id="rm-title" class="rm-title"></h1>
+          <div class="stat-row" id="rm-stats"></div>
+          <p class="fast-track" id="rm-fast" hidden></p>
+        </div>
+      </div>
+      <div class="container rm-body">
+        <div class="sector-map" id="rm-map" aria-hidden="true"></div>
+        <p class="scroll-hint" id="scroll-hint" hidden>Scroll sideways to see the whole road →</p>
+        <div class="roadmap" id="roadmap"><div class="road-track">
+          <svg class="road-line" aria-hidden="true"><line class="road-bg" x1="5" y1="0" x2="5" y2="100%"/><line class="road-fg" x1="5" y1="0" x2="5" y2="100%" pathLength="1"/></svg>
+          <svg class="road-line-h" aria-hidden="true"><line class="road-bg" x1="0" y1="5" x2="100%" y2="5"/><line class="road-fg" x1="0" y1="5" x2="100%" y2="5" pathLength="1"/></svg>
+          <ol class="road-list" id="road-list" aria-label="Your roadmap, step by step"></ol>
+        </div></div>
+        <div class="rm-after">
+          <p class="challenge" id="rm-challenge"></p>
+          <div class="rm-actions">
+            <button type="button" class="btn btn-primary" data-share>Share my path</button>
+            <a class="btn btn-outline" id="rm-compare" href="?view=explore">Compare with another career</a>
+            <a class="btn btn-ghost" href="?view=explore">Browse all careers</a>
+          </div>
+        </div>
+      </div>
+      <div class="sticky-bar" id="sticky-bar">
+        <button type="button" class="btn btn-primary" data-share>Share my path</button>
+        <button type="button" class="btn btn-outline" data-nav-home>Try another job</button>
+      </div>
+    </section>
+
+    <!-- 3.5 Quiz -->
+    <section id="view-quiz" class="view" aria-labelledby="quiz-title" hidden>
+      <div class="container narrow" id="quiz-root"></div>
+    </section>
+
+    <!-- 3.6 Explore -->
+    <section id="view-explore" class="view" aria-labelledby="explore-title" hidden>
+      <div class="container">
+        <h1 id="explore-title" class="page-title">Explore all careers</h1>
+        <p class="page-sub">39 ICT roles across 6 sectors in Brunei's competency framework.</p>
+        <div class="filters">
+          <div class="chip-row wrap" id="explore-sectors" role="group" aria-label="Filter by sector"></div>
+          <div class="chip-row wrap" id="explore-stages" role="group" aria-label="Filter by stage"></div>
+          <label class="toggle">
+            <input type="checkbox" id="compare-toggle">
+            <span class="toggle-track" aria-hidden="true"></span>
+            <span>Compare 2 careers</span>
+          </label>
+        </div>
+        <div class="compare-wrap" id="compare-wrap" hidden></div>
+        <p class="sr-only" id="explore-count" role="status" aria-live="polite"></p>
+        <div class="role-grid" id="explore-grid"></div>
+      </div>
+    </section>
+
+    <section id="view-error" class="view" hidden>
+      <div class="container narrow">
+        <h1 class="page-title">Hmm, something went wrong.</h1>
+        <p class="page-sub" id="error-msg"></p>
+        <a class="btn btn-primary" href="./">Start again</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Unofficial student guide based on the Brunei ICT Industry Competency Framework (<a href="https://www.biicf.bn" target="_blank" rel="noopener">biicf.bn</a>). Always check the official site for the latest requirements.</p>
+      <p class="footer-small">No login, no cookies, no tracking. Not affiliated with AITI, MISC or BIICF.</p>
+    </div>
+  </footer>
+
+  <!-- Sector picker -->
+  <dialog class="sheet" id="sector-sheet" aria-labelledby="sector-sheet-title">
+    <div class="sheet-inner">
+      <div class="sheet-head">
+        <h2 id="sector-sheet-title" class="h2"></h2>
+        <button type="button" class="icon-btn" data-close aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button>
+      </div>
+      <p class="sheet-sub">Pick a role to see your road.</p>
+      <ul class="pick-list" id="sector-sheet-list"></ul>
+    </div>
+  </dialog>
+
+  <!-- 3.4 Share -->
+  <dialog class="sheet" id="share-sheet" aria-labelledby="share-title">
+    <div class="sheet-inner">
+      <div class="sheet-head">
+        <h2 id="share-title" class="h2">Share my path</h2>
+        <button type="button" class="icon-btn" data-close aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button>
+      </div>
+      <div class="share-preview" id="share-preview"><div class="spinner" aria-label="Making your card"></div></div>
+      <div class="share-actions">
+        <button type="button" class="btn btn-primary" id="share-native">Share image</button>
+        <button type="button" class="btn btn-outline" id="share-copy">Copy link</button>
+        <a class="btn btn-outline" id="share-wa" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

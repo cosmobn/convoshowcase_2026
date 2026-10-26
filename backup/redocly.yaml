@@ -1,0 +1,14 @@
+# Lint config for openapi.json (npx @redocly/cli lint openapi.json)
+extends:
+  - recommended
+rules:
+  # Share links really are directory URLs like /r/ict-security/?goal=ciso&from=hnd
+  no-path-trailing-slash: off
+  # Roadmap and StepStatus document the shape computed in the browser by js/path.js; no endpoint returns them
+  no-unused-components: off
+  # Local dev server is listed on purpose for contributors
+  no-server-example.com: off
+  # "/" always exists on any host, so it has no 404
+  operation-4xx-response: off
+  # The project has not chosen a license yet; add info.license once it does
+  info-license: off

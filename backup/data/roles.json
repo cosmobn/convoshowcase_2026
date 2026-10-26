@@ -1,0 +1,2264 @@
+[
+  {
+    "id": "it-technician",
+    "title": "IT Technician",
+    "sector": "it-services",
+    "stage": "entry",
+    "aka": [
+      "IT Support",
+      "Help Desk Specialist",
+      "IT Support Engineer",
+      "Technical Support",
+      "IT Generalist"
+    ],
+    "summary": "Sets up equipment, fixes PCs and networks, and runs help-desk support.",
+    "next": [
+      "it-administrator-manager",
+      "project-coordinator"
+    ],
+    "routes": [
+      {
+        "bdqf": 2,
+        "years": null,
+        "note": "Level 1 — BDQF 2 in IT plus industry experience"
+      },
+      {
+        "bdqf": 3,
+        "years": 0,
+        "note": "Level 2 — BDQF 3 in IT or related field"
+      },
+      {
+        "bdqf": 4,
+        "years": 0,
+        "note": "Level 3 — BDQF 4 (or BDQF 3 + industry certification)"
+      }
+    ],
+    "skills": [
+      [
+        "Information Security Management",
+        "2–3"
+      ],
+      [
+        "Software Testing",
+        "2–3"
+      ],
+      [
+        "Infrastructure Management",
+        "1–2"
+      ],
+      [
+        "Database Management",
+        "1–2"
+      ],
+      [
+        "Telecom Network Management",
+        "1–2"
+      ]
+    ],
+    "soft": "Basic → Intermediate",
+    "certs": [
+      "CompTIA A+",
+      "CompTIA Network+",
+      "CompTIA Security+",
+      "Cisco CCT",
+      "Cisco CCNA",
+      "Microsoft 365 Fundamentals"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/it-services/job-roles/it-technician/"
+  },
+  {
+    "id": "it-administrator-manager",
+    "title": "IT Administrator / Manager",
+    "sector": "it-services",
+    "stage": "mid",
+    "aka": [
+      "System Administrator",
+      "Sysadmin",
+      "Server Administrator",
+      "MIS Manager"
+    ],
+    "summary": "Runs day-to-day IT operations, assets, budget and the IT team.",
+    "next": [
+      "systems-engineer"
+    ],
+    "routes": [
+      {
+        "bdqf": 6,
+        "years": 0,
+        "note": "BDQF 6 in IT, IS or Computer Science"
+      },
+      {
+        "bdqf": 5,
+        "years": null,
+        "note": "BDQF 5 + industry experience or a relevant portfolio"
+      }
+    ],
+    "skills": [
+      [
+        "Business Analysis",
+        "3→4"
+      ],
+      [
+        "Budgeting",
+        "2→4"
+      ],
+      [
+        "Service Level Management",
+        "3→4"
+      ],
+      [
+        "Procurement",
+        "3→4"
+      ],
+      [
+        "IT Project Management",
+        "3→4"
+      ]
+    ],
+    "soft": "Intermediate → Advanced",
+    "certs": [
+      "ITIL",
+      "CompTIA Network+",
+      "CompTIA Project+",
+      "Linux / Red Hat Sysadmin",
+      "COBIT 5 Foundation"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/it-services/job-roles/it-administrator-manager/"
+  },
+  {
+    "id": "project-coordinator",
+    "title": "Project Coordinator",
+    "sector": "it-services",
+    "stage": "entry",
+    "aka": [
+      "Project Assistant",
+      "Project Administrator",
+      "Project Planner",
+      "Project Scheduler"
+    ],
+    "summary": "Supports the project manager with plans, resources and schedules.",
+    "next": [
+      "systems-engineer"
+    ],
+    "routes": [
+      {
+        "bdqf": 5,
+        "years": 0,
+        "note": "BDQF 5"
+      },
+      {
+        "bdqf": 0,
+        "years": null,
+        "note": "Any qualification + a project management certification and experience"
+      }
+    ],
+    "skills": [
+      [
+        "IT Project Management",
+        "3"
+      ],
+      [
+        "Business Analysis",
+        "3"
+      ],
+      [
+        "Business Risk Management",
+        "3"
+      ],
+      [
+        "Vendor Management",
+        "3"
+      ],
+      [
+        "Contract Management",
+        "3"
+      ]
+    ],
+    "soft": "Intermediate (Advanced in Communication & Team Work)",
+    "certs": [
+      "CAPM",
+      "CompTIA Project+",
+      "PRINCE2 Foundation",
+      "APM PFQ",
+      "Microsoft Project"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/it-services/job-roles/project-coordinator/"
+  },
+  {
+    "id": "systems-engineer",
+    "title": "Systems Engineer",
+    "sector": "it-services",
+    "stage": "mid",
+    "aka": [
+      "IT Engineer",
+      "Infrastructure Engineer",
+      "Hardware Engineer",
+      "Technical Engineer"
+    ],
+    "summary": "Deploys and maintains servers, systems, cloud and vendor solutions.",
+    "next": [
+      "project-manager"
+    ],
+    "routes": [
+      {
+        "bdqf": 6,
+        "years": 0,
+        "note": "BDQF 6 in IT, CS or Software Engineering"
+      },
+      {
+        "bdqf": 5,
+        "years": 0,
+        "note": "BDQF 5 + relevant industry certification"
+      }
+    ],
+    "skills": [
+      [
+        "System Integration",
+        "4"
+      ],
+      [
+        "Vendor Management",
+        "4"
+      ],
+      [
+        "Cloud Computing",
+        "3"
+      ],
+      [
+        "IT Architecture",
+        "3"
+      ],
+      [
+        "Information Security Management",
+        "3"
+      ]
+    ],
+    "soft": "Advanced",
+    "certs": [
+      "Cisco CCNA",
+      "CompTIA Server+",
+      "ITIL 4 Foundation",
+      "Microsoft Azure Fundamentals",
+      "VMware VCP",
+      "Red Hat System Administrator"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/it-services/job-roles/systems-engineer/"
+  },
+  {
+    "id": "project-manager",
+    "title": "Project Manager",
+    "sector": "it-services",
+    "stage": "senior",
+    "aka": [
+      "IT Project Manager",
+      "Project Management Specialist"
+    ],
+    "summary": "Delivers IT projects on time, on budget and to specification.",
+    "next": [
+      "it-operations-manager"
+    ],
+    "routes": [
+      {
+        "bdqf": 6,
+        "years": 0,
+        "note": "BDQF 6 in Business IT, IS or related field"
+      },
+      {
+        "bdqf": 5,
+        "years": null,
+        "note": "BDQF 5 + project management certification and a few years' experience"
+      }
+    ],
+    "skills": [
+      [
+        "IT Project Management",
+        "4"
+      ],
+      [
+        "Business Analysis",
+        "4"
+      ],
+      [
+        "Business Risk Management",
+        "4"
+      ],
+      [
+        "Contract Management",
+        "4"
+      ],
+      [
+        "Procurement",
+        "4"
+      ]
+    ],
+    "soft": "Advanced",
+    "certs": [
+      "PMP",
+      "PRINCE2",
+      "APM PMQ",
+      "Agile Project Management",
+      "PMI-RMP",
+      "PgMP"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/it-services/job-roles/project-manager/"
+  },
+  {
+    "id": "it-operations-manager",
+    "title": "IT Operations Manager",
+    "sector": "it-services",
+    "stage": "senior",
+    "aka": [
+      "Director of IT Operations",
+      "Senior IT Operations Manager",
+      "DevOps Manager"
+    ],
+    "summary": "Owns IT service delivery, SLAs, DevOps and disaster recovery.",
+    "next": [
+      "cio"
+    ],
+    "routes": [
+      {
+        "bdqf": 6,
+        "years": 5,
+        "note": "BDQF 6 + industry certification"
+      },
+      {
+        "bdqf": 5,
+        "years": 8,
+        "note": "BDQF 5 + certification or portfolio"
+      }
+    ],
+    "skills": [
+      [
+        "Business Continuity",
+        "4"
+      ],
+      [
+        "Disaster Recovery Management",
+        "4"
+      ],
+      [
+        "Database Administration",
+        "4"
+      ],
+      [
+        "Service Level Management",
+        "4"
+      ],
+      [
+        "Application Integration",
+        "4"
+      ]
+    ],
+    "soft": "Advanced",
+    "certs": [
+      "ITIL Foundation",
+      "PMP",
+      "CISA",
+      "Certified ScrumMaster",
+      "AWS SysOps Administrator",
+      "Azure Administrator Associate"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/it-services/job-roles/it-operations-manager/"
+  },
+  {
+    "id": "cio",
+    "title": "Chief Information Officer (CIO)",
+    "sector": "it-services",
+    "stage": "top",
+    "aka": [
+      "CIO",
+      "Head of IT",
+      "Director of IT",
+      "VP of IT"
+    ],
+    "summary": "Sets and drives the organisation's IT and digital strategy.",
+    "next": [],
+    "routes": [
+      {
+        "bdqf": 6,
+        "years": 10,
+        "note": "BDQF 6 + certification, 10 years at senior level"
+      },
+      {
+        "bdqf": 5,
+        "years": 12,
+        "note": "BDQF 5 + certification, 12 years at senior level"
+      }
+    ],
+    "skills": [
+      [
+        "IT Strategy",
+        "5"
+      ],
+      [
+        "IT Governance",
+        "5"
+      ],
+      [
+        "Enterprise Architecture",
+        "5"
+      ],
+      [
+        "Cyber Risk Management",
+        "5"
+      ],
+      [
+        "Stakeholder Management",
+        "5"
+      ]
+    ],
+    "soft": "Advanced",
+    "certs": [
+      "Certified CIO Programme",
+      "CGEIT",
+      "CRISC",
+      "CISM",
+      "CISSP"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/it-services/job-roles/chief-information-officer/"
+  },
+  {
+    "id": "network-technician",
+    "title": "Network Technician",
+    "sector": "telecom-network",
+    "stage": "entry",
+    "aka": [
+      "Telecommunication Technician",
+      "Communication Technician",
+      "Cabling Technician"
+    ],
+    "summary": "Installs, cables, configures and troubleshoots voice and data networks.",
+    "next": [
+      "network-team-lead"
+    ],
+    "routes": [
+      {
+        "bdqf": 4,
+        "years": 0,
+        "note": "BDQF 4 in IT or Telecommunications"
+      },
+      {
+        "bdqf": 3,
+        "years": 0,
+        "note": "BDQF 3 + relevant industry certification"
+      }
+    ],
+    "skills": [
+      [
+        "Network Administration & Maintenance",
+        "3"
+      ],
+      [
+        "Networks Configurations",
+        "3"
+      ],
+      [
+        "Infrastructure Support",
+        "3"
+      ],
+      [
+        "Telecom Network Management",
+        "3"
+      ],
+      [
+        "Fault Management",
+        "2"
+      ]
+    ],
+    "soft": "Intermediate",
+    "certs": [
+      "Cisco CCNA",
+      "Cisco CCENT",
+      "BICSI Technician",
+      "Data Cabling Installer",
+      "Cisco Optical Specialist"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/telecommunications-and-network/job-roles/network-technician/"
+  },
+  {
+    "id": "network-team-lead",
+    "title": "Network Team Lead",
+    "sector": "telecom-network",
+    "stage": "mid",
+    "aka": [
+      "Network Coordinator",
+      "Network Controller",
+      "Network Consultant"
+    ],
+    "summary": "Leads the network operations team, restores faults and runs 24/7 support.",
+    "next": [
+      "network-engineer",
+      "infrastructure-engineer"
+    ],
+    "routes": [
+      {
+        "bdqf": 6,
+        "years": 0,
+        "note": "BDQF 6 in IS or Computer Science"
+      },
+      {
+        "bdqf": 5,
+        "years": null,
+        "note": "BDQF 5 + industry experience or portfolio"
+      }
+    ],
+    "skills": [
+      [
+        "Networks Configurations",
+        "4"
+      ],
+      [
+        "Fault Management",
+        "4"
+      ],
+      [
+        "Network Security Management",
+        "4"
+      ],
+      [
+        "Telecom Network Management",
+        "4"
+      ],
+      [
+        "Emerging Technology Synthesis",
+        "4"
+      ]
+    ],
+    "soft": "Advanced",
+    "certs": [
+      "Cisco CCNP",
+      "Cisco CCIE",
+      "Huawei HCNA / HCNE",
+      "Juniper JNCIE-ENT",
+      "Wireshark WCNA",
+      "Certified Fibre Optic Technician"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/telecommunications-and-network/job-roles/network-team-lead/"
+  },
+  {
+    "id": "network-engineer",
+    "title": "Network Engineer",
+    "sector": "telecom-network",
+    "stage": "mid",
+    "aka": [
+      "Network Administrator",
+      "Network Analyst",
+      "Wireless Network Engineer",
+      "Core Network Engineer"
+    ],
+    "summary": "Designs LAN/WAN/wireless networks, tunes performance and secures them.",
+    "next": [
+      "infrastructure-manager"
+    ],
+    "routes": [
+      {
+        "bdqf": 5,
+        "years": 0,
+        "note": "Specialist — BDQF 5 in IT or Telecommunications"
+      },
+      {
+        "bdqf": 5,
+        "years": 3,
+        "note": "Expert / Management — BDQF 5 + 3 years"
+      }
+    ],
+    "skills": [
+      [
+        "Infrastructure Management",
+        "4→5"
+      ],
+      [
+        "Telecom Network Management",
+        "4→5"
+      ],
+      [
+        "Network Security Management",
+        "4"
+      ],
+      [
+        "Business Analysis",
+        "3→5"
+      ],
+      [
+        "Business Risk Management",
+        "2→5"
+      ]
+    ],
+    "soft": "Advanced → Expert",
+    "certs": [
+      "Cisco CCNA → CCNP → CCIE",
+      "Juniper JNCIE-ENT",
+      "Huawei HCNA",
+      "ITIL",
+      "AWS Advanced Networking"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/telecommunications-and-network/job-roles/network-engineer/"
+  },
+  {
+    "id": "infrastructure-engineer",
+    "title": "Infrastructure Engineer",
+    "sector": "telecom-network",
+    "stage": "senior",
+    "aka": [
+      "Cloud Infrastructure Engineer",
+      "Site Engineer",
+      "Wireless Engineer",
+      "Access Networks Engineer"
+    ],
+    "summary": "Runs data centres and server, cloud and on-premises infrastructure.",
+    "next": [
+      "infrastructure-manager"
+    ],
+    "routes": [
+      {
+        "bdqf": 6,
+        "years": 5,
+        "note": "BDQF 6 + industry certification"
+      },
+      {
+        "bdqf": 5,
+        "years": 8,
+        "note": "BDQF 5 + certification or portfolio"
+      }
+    ],
+    "skills": [
+      [
+        "Cloud Computing",
+        "4"
+      ],
+      [
+        "Disaster Recovery Management",
+        "4"
+      ],
+      [
+        "Enterprise Architecture",
+        "4"
+      ],
+      [
+        "Infrastructure Strategy",
+        "4"
+      ],
+      [
+        "Service Level Management",
+        "4"
+      ]
+    ],
+    "soft": "Intermediate → Advanced",
+    "certs": [
+      "Huawei HCIA (Datacom, WLAN, 5G)",
+      "CWNP",
+      "AWS Solutions Architect – Professional",
+      "Azure Administrator Associate",
+      "VMware VCP-DCV"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/telecommunications-and-network/job-roles/infrastructure-engineer/"
+  },
+  {
+    "id": "infrastructure-manager",
+    "title": "Infrastructure Manager",
+    "sector": "telecom-network",
+    "stage": "senior",
+    "aka": [
+      "IT Infrastructure Manager",
+      "Information Systems Manager",
+      "Field Manager"
+    ],
+    "summary": "Sets infrastructure strategy, governance, vendors and team direction.",
+    "next": [
+      "cto-telecom"
+    ],
+    "routes": [
+      {
+        "bdqf": 6,
+        "years": 5,
+        "note": "BDQF 6 + industry certification"
+      },
+      {
+        "bdqf": 5,
+        "years": 8,
+        "note": "BDQF 5 + certification or portfolio"
+      }
+    ],
+    "skills": [
+      [
+        "Infrastructure Strategy",
+        "5"
+      ],
+      [
+        "Enterprise Architecture",
+        "5"
+      ],
+      [
+        "IT Governance",
+        "5"
+      ],
+      [
+        "Cloud Computing",
+        "5"
+      ],
+      [
+        "Security Architecture",
+        "5"
+      ]
+    ],
+    "soft": "Advanced",
+    "certs": [
+      "PMP",
+      "Telecommunications Management Professional (TMP)",
+      "Certified Telecommunications Analyst (CTA)",
+      "AWS Solutions Architect – Professional",
+      "Huawei HCIA"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/telecommunications-and-network/job-roles/infrastructure-manager/"
+  },
+  {
+    "id": "cto-telecom",
+    "title": "Chief Technology Officer (Network)",
+    "sector": "telecom-network",
+    "stage": "top",
+    "aka": [
+      "CTO",
+      "Director of Technology",
+      "VP of Technology",
+      "Chief Digital Officer"
+    ],
+    "summary": "Leads the organisation's technology and telecommunications strategy.",
+    "next": [],
+    "routes": [
+      {
+        "bdqf": 6,
+        "years": 10,
+        "note": "BDQF 6 + certification, 10 years at managerial level"
+      },
+      {
+        "bdqf": 5,
+        "years": 12,
+        "note": "BDQF 5 + certification, 12 years at senior level"
+      }
+    ],
+    "skills": [
+      [
+        "IT Strategy",
+        "5"
+      ],
+      [
+        "Enterprise Architecture",
+        "5"
+      ],
+      [
+        "Solution Architecture",
+        "5"
+      ],
+      [
+        "Change Management",
+        "5"
+      ],
+      [
+        "Business Agility",
+        "5"
+      ]
+    ],
+    "soft": "Advanced",
+    "certs": [
+      "CTO Certification Programme",
+      "CITP",
+      "CGEIT",
+      "TOGAF 9",
+      "5G Infrastructure and Operations",
+      "ISO 22301"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/telecommunications-and-network/job-roles/chief-technology-officer/"
+  },
+  {
+    "id": "junior-programmer",
+    "title": "Junior Programmer",
+    "sector": "apps-solutions",
+    "stage": "entry",
+    "aka": [
+      "Software Developer",
+      "Software Engineer",
+      "Coder",
+      "Programmer Analyst",
+      "Web Developer"
+    ],
+    "summary": "Writes code to specification and supports senior developers.",
+    "next": [
+      "applications-developer",
+      "solutions-architect"
+    ],
+    "routes": [
+      {
+        "bdqf": 6,
+        "years": 0,
+        "note": "BDQF 6 in IS, CS or Software Engineering + certification"
+      },
+      {
+        "bdqf": 5,
+        "years": 0,
+        "note": "BDQF 5 + industry certification or a portfolio"
+      }
+    ],
+    "skills": [
+      [
+        "Application Development",
+        "3"
+      ],
+      [
+        "Agile Software Development",
+        "3"
+      ],
+      [
+        "Software Testing",
+        "3"
+      ],
+      [
+        "User Interface Design",
+        "3"
+      ],
+      [
+        "Data Design",
+        "3"
+      ]
+    ],
+    "soft": "Intermediate",
+    "certs": [
+      "HTML, CSS & JavaScript for Web Developers",
+      "Oracle Certified Associate, Java",
+      "AWS Certified Developer – Associate",
+      "Google Cloud Professional Developer",
+      "CompTIA Security+",
+      "Certified ScrumMaster"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/applications-and-solutions-development/job-roles/junior-programmer/"
+  },
+  {
+    "id": "applications-developer",
+    "title": "Applications Developer",
+    "sector": "apps-solutions",
+    "stage": "mid",
+    "aka": [
+      "App Developer",
+      "Mobile Developer",
+      "Web Developer",
+      "Software Programmer",
+      "Full Stack Developer"
+    ],
+    "summary": "Builds, tests and maintains web/mobile applications and databases.",
+    "next": [
+      "application-system-engineer"
+    ],
+    "routes": [
+      {
+        "bdqf": 6,
+        "years": 3,
+        "note": "BDQF 6 in IS or CS"
+      },
+      {
+        "bdqf": 5,
+        "years": 5,
+        "note": "BDQF 5 + industry experience, or a relevant portfolio"
+      }
+    ],
+    "skills": [
+      [
+        "Application Development",
+        "3→4"
+      ],
+      [
+        "User Interface Design",
+        "3→4"
+      ],
+      [
+        "Application Integration",
+        "3"
+      ],
+      [
+        "Software Design",
+        "3"
+      ],
+      [
+        "Security Architecture",
+        "2→3"
+      ]
+    ],
+    "soft": "Intermediate → Advanced",
+    "certs": [
+      "Associate Android Developer",
+      "Flutter Mobile App Development",
+      ".NET Core / ASP.NET Core MVC",
+      "Node.js",
+      "Scrum Developer",
+      "Languages: JavaScript, Python, Java, SQL, C#, PHP"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/applications-and-solutions-development/job-roles/applications-developer/"
+  },
+  {
+    "id": "solutions-architect",
+    "title": "Solutions Architect",
+    "sector": "apps-solutions",
+    "stage": "mid",
+    "aka": [
+      "Technical Architect",
+      "Application Architect",
+      "IT Architect",
+      "Cloud Architect"
+    ],
+    "summary": "Designs solution architecture and technology roadmaps.",
+    "next": [
+      "software-architect"
+    ],
+    "routes": [
+      {
+        "bdqf": 6,
+        "years": 0,
+        "note": "BDQF 6 in CS, IT or Software Engineering"
+      },
+      {
+        "bdqf": 5,
+        "years": 6,
+        "note": "BDQF 5 + 6 years' relevant experience"
+      }
+    ],
+    "skills": [
+      [
+        "Software Design",
+        "5"
+      ],
+      [
+        "Application Development",
+        "4"
+      ],
+      [
+        "IT Architecture",
+        "4"
+      ],
+      [
+        "Security Architecture",
+        "4"
+      ],
+      [
+        "Quality Standards",
+        "4"
+      ]
+    ],
+    "soft": "Advanced",
+    "certs": [
+      "AWS Solutions Architect – Associate / Professional",
+      "Azure Solutions Architect",
+      "Google Cloud Architect",
+      "TOGAF",
+      "CISSP"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/applications-and-solutions-development/job-roles/solutions-architect/"
+  },
+  {
+    "id": "application-system-engineer",
+    "title": "Application System Engineer",
+    "sector": "apps-solutions",
+    "stage": "senior",
+    "aka": [
+      "IT Systems Engineer",
+      "Enterprise Systems Engineer",
+      "Server Engineer",
+      "Information Systems Engineer"
+    ],
+    "summary": "Installs and maintains systems, automation, backups and disaster recovery.",
+    "next": [
+      "software-development-manager"
+    ],
+    "routes": [
+      {
+        "bdqf": 6,
+        "years": 5,
+        "note": "BDQF 6 + industry certification"
+      },
+      {
+        "bdqf": 5,
+        "years": 8,
+        "note": "BDQF 5 + certification or portfolio"
+      }
+    ],
+    "skills": [
+      [
+        "System Integration",
+        "4"
+      ],
+      [
+        "IT Project Management",
+        "4"
+      ],
+      [
+        "Vendor Management",
+        "4"
+      ],
+      [
+        "Service Management",
+        "4"
+      ],
+      [
+        "Cloud Computing",
+        "3"
+      ]
+    ],
+    "soft": "Intermediate",
+    "certs": [
+      "ITIL 4 Foundation",
+      "PMP",
+      "CSEP",
+      "CISSP",
+      "CompTIA Security+",
+      "Cisco CCNA"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/applications-and-solutions-development/job-roles/application-system-engineer/"
+  },
+  {
+    "id": "software-architect",
+    "title": "Software Architect",
+    "sector": "apps-solutions",
+    "stage": "senior",
+    "aka": [
+      "Cloud Architecture Specialist",
+      "Technical Architect",
+      "Application Architect"
+    ],
+    "summary": "Sets technical standards, makes high-level design decisions, mentors devs.",
+    "next": [
+      "software-development-manager"
+    ],
+    "routes": [
+      {
+        "bdqf": 6,
+        "years": 5,
+        "note": "BDQF 6 + industry certification"
+      },
+      {
+        "bdqf": 5,
+        "years": 8,
+        "note": "BDQF 5 + certification or portfolio"
+      }
+    ],
+    "skills": [
+      [
+        "Solution Architecture",
+        "4"
+      ],
+      [
+        "Data Design",
+        "4"
+      ],
+      [
+        "Infrastructure Design",
+        "4"
+      ],
+      [
+        "Security Architecture",
+        "4"
+      ],
+      [
+        "Embedded System Interface",
+        "4"
+      ]
+    ],
+    "soft": "Advanced",
+    "certs": [
+      "iSAQB CPSA",
+      "TOGAF",
+      "AWS Solutions Architect",
+      "Azure Solutions Architect Expert",
+      "Certified Kubernetes Application Developer (CKAD)"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/applications-and-solutions-development/job-roles/software-architect/"
+  },
+  {
+    "id": "software-development-manager",
+    "title": "Software Development Manager",
+    "sector": "apps-solutions",
+    "stage": "senior",
+    "aka": [
+      "Engineering Manager",
+      "Application Development Manager",
+      "Software Engineering Manager"
+    ],
+    "summary": "Leads the development team across the whole software lifecycle.",
+    "next": [
+      "cto-apps"
+    ],
+    "routes": [
+      {
+        "bdqf": 6,
+        "years": 5,
+        "note": "BDQF 6 + industry certification"
+      },
+      {
+        "bdqf": 5,
+        "years": 8,
+        "note": "BDQF 5 + certification or portfolio"
+      }
+    ],
+    "skills": [
+      [
+        "Application Development",
+        "4"
+      ],
+      [
+        "Software Design",
+        "4"
+      ],
+      [
+        "Software Testing",
+        "4"
+      ],
+      [
+        "Solution Architecture",
+        "4"
+      ],
+      [
+        "Project Management",
+        "4"
+      ]
+    ],
+    "soft": "Advanced",
+    "certs": [
+      "Certified ScrumMaster",
+      "Certified Scrum Product Owner",
+      "PMP",
+      "CSSLP",
+      "AWS DevOps Engineer – Professional"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/applications-and-solutions-development/job-roles/software-development-manager/"
+  },
+  {
+    "id": "cto-apps",
+    "title": "Chief Technology Officer (Software)",
+    "sector": "apps-solutions",
+    "stage": "top",
+    "aka": [
+      "CTO",
+      "VP of Technology",
+      "Chief Digital Officer",
+      "Chief Innovation Officer"
+    ],
+    "summary": "Leads technology strategy, DevSecOps, cloud and IT governance.",
+    "next": [],
+    "routes": [
+      {
+        "bdqf": 6,
+        "years": 10,
+        "note": "BDQF 6 + certification, 10 years at senior level"
+      },
+      {
+        "bdqf": 5,
+        "years": 12,
+        "note": "BDQF 5 + certification, 12 years at senior level"
+      }
+    ],
+    "skills": [
+      [
+        "IT Strategy",
+        "5"
+      ],
+      [
+        "Enterprise Architecture",
+        "5"
+      ],
+      [
+        "System Integration",
+        "5"
+      ],
+      [
+        "Partnership Management",
+        "5"
+      ],
+      [
+        "Quality Standards",
+        "5"
+      ]
+    ],
+    "soft": "Advanced",
+    "certs": [
+      "CITP",
+      "ITIL 4 Strategic Leader",
+      "AWS Solutions Architect – Professional",
+      "CGEIT",
+      "TOGAF 9",
+      "CISSP"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/applications-and-solutions-development/job-roles/chief-technology-officer/"
+  },
+  {
+    "id": "associate-security-analyst",
+    "title": "Associate Security Analyst",
+    "sector": "ict-security",
+    "stage": "entry",
+    "aka": [
+      "Security Analyst",
+      "SOC Analyst",
+      "Ethical Hacker",
+      "Hacker",
+      "Information Security Officer",
+      "Cyber Security"
+    ],
+    "summary": "Monitors security systems, responds to alerts and educates users.",
+    "next": [
+      "cyber-risk-analyst"
+    ],
+    "routes": [
+      {
+        "bdqf": 5,
+        "years": 0,
+        "note": "BDQF 5 in IS or Computer Science"
+      },
+      {
+        "bdqf": 4,
+        "years": 5,
+        "note": "BDQF 4 + 5 years' experience, or a relevant portfolio"
+      }
+    ],
+    "skills": [
+      [
+        "Cyber Risk Management",
+        "3"
+      ],
+      [
+        "Cyber & Data Breach Incident Management",
+        "3"
+      ],
+      [
+        "Network Security Management",
+        "3"
+      ],
+      [
+        "Security Administration",
+        "3"
+      ],
+      [
+        "Security Governance",
+        "3"
+      ]
+    ],
+    "soft": "Intermediate → Advanced",
+    "certs": [
+      "CompTIA Security+",
+      "Certified Ethical Hacker (CEH)",
+      "GIAC GSEC",
+      "SSCP",
+      "GIAC GCIH",
+      "OSCP"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/ict-security/job-roles/associate-security-analyst/"
+  },
+  {
+    "id": "cyber-risk-analyst",
+    "title": "Cyber Risk Analyst",
+    "sector": "ict-security",
+    "stage": "mid",
+    "aka": [
+      "IT Risk Analyst",
+      "Threat Analyst",
+      "Risk Assessment Analyst"
+    ],
+    "summary": "Assesses cyber risks and recommends controls to reduce them.",
+    "next": [
+      "security-engineer"
+    ],
+    "routes": [
+      {
+        "bdqf": 6,
+        "years": 0,
+        "note": "BDQF 6 in IS or Computer Science"
+      },
+      {
+        "bdqf": 5,
+        "years": 4,
+        "note": "BDQF 5 + 4 years in relevant roles"
+      }
+    ],
+    "skills": [
+      [
+        "Cyber Risk Management",
+        "4"
+      ],
+      [
+        "Security Architecture",
+        "4"
+      ],
+      [
+        "Security Governance",
+        "4"
+      ],
+      [
+        "Security Implementation",
+        "4"
+      ],
+      [
+        "Security Planning",
+        "4"
+      ]
+    ],
+    "soft": "Advanced",
+    "certs": [
+      "CompTIA CySA+",
+      "CompTIA CASP+",
+      "CISSP",
+      "CISA",
+      "CISM",
+      "ISO 27001"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/ict-security/job-roles/cyber-risk-analyst/"
+  },
+  {
+    "id": "security-engineer",
+    "title": "Security Engineer",
+    "sector": "ict-security",
+    "stage": "senior",
+    "aka": [
+      "Cyber Security Engineer",
+      "Information Security Engineer",
+      "IT Security Engineer"
+    ],
+    "summary": "Designs and implements secure system architectures.",
+    "next": [
+      "cyber-risk-manager"
+    ],
+    "routes": [
+      {
+        "bdqf": 6,
+        "years": 0,
+        "note": "BDQF 6 in Cyber Security, IT Security or CS"
+      },
+      {
+        "bdqf": 5,
+        "years": 4,
+        "note": "BDQF 5 + 4–6 years' experience"
+      },
+      {
+        "bdqf": 4,
+        "years": 6,
+        "note": "BDQF 4 + 6–8 years as a security analyst or similar"
+      }
+    ],
+    "skills": [
+      [
+        "Security Architecture",
+        "5"
+      ],
+      [
+        "Network Security Management",
+        "5"
+      ],
+      [
+        "Infrastructure Design",
+        "5"
+      ],
+      [
+        "Cyber Risk Management",
+        "4"
+      ],
+      [
+        "Security Programme Management",
+        "4"
+      ]
+    ],
+    "soft": "Advanced",
+    "certs": [
+      "CISSP",
+      "CEH",
+      "CISM",
+      "Cisco CCNP Security",
+      "OSCP",
+      "Cisco CyberOps"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/ict-security/job-roles/security-engineer/"
+  },
+  {
+    "id": "cyber-risk-manager",
+    "title": "Cyber Risk Manager",
+    "sector": "ict-security",
+    "stage": "senior",
+    "aka": [
+      "IT Security Manager",
+      "GRC Manager",
+      "Information Security Manager",
+      "Cyber Assurance Manager"
+    ],
+    "summary": "Owns security policy, governance, compliance and awareness programmes.",
+    "next": [
+      "ciso"
+    ],
+    "routes": [
+      {
+        "bdqf": 6,
+        "years": 5,
+        "note": "BDQF 6 in Cybersecurity or CS + certification"
+      },
+      {
+        "bdqf": 5,
+        "years": 8,
+        "note": "BDQF 5 + certification or portfolio"
+      }
+    ],
+    "skills": [
+      [
+        "Audit and Compliance",
+        "4"
+      ],
+      [
+        "Cyber Forensics",
+        "4"
+      ],
+      [
+        "IT Governance",
+        "4"
+      ],
+      [
+        "Security Education and Awareness",
+        "4"
+      ],
+      [
+        "Security Programme Management",
+        "4"
+      ]
+    ],
+    "soft": "Intermediate",
+    "certs": [
+      "CRISC",
+      "CISA",
+      "ISO 27005 Risk Manager",
+      "ISC2 CGRC",
+      "CompTIA CySA+",
+      "CGEIT"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/ict-security/job-roles/cyber-risk-manager/"
+  },
+  {
+    "id": "ciso",
+    "title": "Chief Information Security Officer (CISO)",
+    "sector": "ict-security",
+    "stage": "top",
+    "aka": [
+      "CISO",
+      "Head of IT Security",
+      "Chief Security Officer",
+      "Director of Cybersecurity"
+    ],
+    "summary": "Leads the organisation's whole information security strategy.",
+    "next": [],
+    "routes": [
+      {
+        "bdqf": 6,
+        "years": 10,
+        "note": "BDQF 6 + certification, 10 years at senior level"
+      },
+      {
+        "bdqf": 5,
+        "years": 12,
+        "note": "BDQF 5 + certification, 12 years at senior level"
+      }
+    ],
+    "skills": [
+      [
+        "Security Strategy",
+        "5"
+      ],
+      [
+        "Threat Analysis and Defence",
+        "5"
+      ],
+      [
+        "Threat Intelligence and Detection",
+        "5"
+      ],
+      [
+        "Cyber Forensics",
+        "5"
+      ],
+      [
+        "Business Continuity",
+        "5"
+      ]
+    ],
+    "soft": "Advanced",
+    "certs": [
+      "CCISO",
+      "CISSP",
+      "CISM",
+      "CRISC",
+      "GIAC GSTRT",
+      "NIST CSF 2.0 Lead Implementer"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/ict-security/job-roles/chief-information-security-officer-ciso/"
+  },
+  {
+    "id": "market-analyst",
+    "title": "Market Analyst",
+    "sector": "digital-media",
+    "stage": "entry",
+    "aka": [
+      "Marketing Assistant",
+      "Marketing Associate",
+      "Marketing Coordinator",
+      "Marketing Analyst"
+    ],
+    "summary": "Analyses campaign data, traffic, leads and conversions.",
+    "next": [
+      "digital-marketing-executive"
+    ],
+    "routes": [
+      {
+        "bdqf": 5,
+        "years": 5,
+        "note": "BDQF 5 in Marketing, Communications or Economics"
+      },
+      {
+        "bdqf": 4,
+        "years": 3,
+        "note": "BDQF 4 in Marketing, Communications or Economics"
+      }
+    ],
+    "skills": [
+      [
+        "Market Research",
+        "4"
+      ],
+      [
+        "Customer Behaviour Analysis",
+        "4"
+      ],
+      [
+        "Data and Trend Analytics",
+        "4"
+      ],
+      [
+        "Media & Platform Management",
+        "4"
+      ],
+      [
+        "Budgeting",
+        "4"
+      ]
+    ],
+    "soft": "Advanced",
+    "certs": [
+      "Google Analytics",
+      "Google Digital Garage",
+      "Meta Blueprint",
+      "HubSpot Inbound Marketing",
+      "SEMrush SEO Toolkit"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/digital-media/job-roles/market-analyst/"
+  },
+  {
+    "id": "digital-marketing-executive",
+    "title": "Digital Marketing Executive",
+    "sector": "digital-media",
+    "stage": "mid",
+    "aka": [
+      "Social Media Specialist",
+      "SEO Specialist",
+      "Digital Marketer",
+      "Content Creator",
+      "Influencer Marketing"
+    ],
+    "summary": "Runs digital campaigns, SEO/SEM, website content and social media.",
+    "next": [
+      "business-development-manager",
+      "customer-experience-manager"
+    ],
+    "routes": [
+      {
+        "bdqf": 5,
+        "years": 5,
+        "note": "BDQF 5 in Marketing, Communications or Economics"
+      }
+    ],
+    "skills": [
+      [
+        "Market Research",
+        "4"
+      ],
+      [
+        "Media & Platform Management",
+        "4"
+      ],
+      [
+        "Customer Intelligence Analysis",
+        "4"
+      ],
+      [
+        "Data and Trend Analytics",
+        "4"
+      ],
+      [
+        "Stakeholder Management",
+        "4"
+      ]
+    ],
+    "soft": "Advanced",
+    "certs": [
+      "Google Ads",
+      "Google Analytics IQ",
+      "Meta Certified Digital Marketing Associate",
+      "HubSpot Content Marketing",
+      "DMI Digital Marketing Pro"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/digital-media/job-roles/digital-marketing-executive/"
+  },
+  {
+    "id": "business-development-manager",
+    "title": "Business Development Manager",
+    "sector": "digital-media",
+    "stage": "senior",
+    "aka": [
+      "Sales Manager",
+      "Client Acquisition Manager",
+      "Business Acquisition Manager"
+    ],
+    "summary": "Finds new business, manages the CRM pipeline and closes deals.",
+    "next": [
+      "marketing-manager"
+    ],
+    "routes": [
+      {
+        "bdqf": 6,
+        "years": 5,
+        "note": "BDQF 6 in Marketing/Business/Creative Multimedia — or IS/CS + marketing certification or portfolio"
+      },
+      {
+        "bdqf": 5,
+        "years": 8,
+        "note": "BDQF 5 + certification or portfolio"
+      }
+    ],
+    "skills": [
+      [
+        "Business Development",
+        "4"
+      ],
+      [
+        "Sales Strategy",
+        "4"
+      ],
+      [
+        "Business Negotiation",
+        "4"
+      ],
+      [
+        "Partnership Management",
+        "4"
+      ],
+      [
+        "Customer Experience Management",
+        "4"
+      ]
+    ],
+    "soft": "Advanced",
+    "certs": [
+      "Certified Business Development Manager (CBDM)",
+      "Certified Digital Marketing Professional (CDMP)",
+      "Certified Sales Executive",
+      "Salesforce Sales Cloud Consultant",
+      "Zoho CRM Academy"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/digital-media/job-roles/business-development-manager/"
+  },
+  {
+    "id": "customer-experience-manager",
+    "title": "Customer Experience Manager",
+    "sector": "digital-media",
+    "stage": "senior",
+    "aka": [
+      "CX Manager",
+      "Head of Customer Success",
+      "Customer Experience Lead"
+    ],
+    "summary": "Designs the customer journey, onboarding and retention programmes.",
+    "next": [
+      "marketing-manager"
+    ],
+    "routes": [
+      {
+        "bdqf": 6,
+        "years": 5,
+        "note": "BDQF 6 in Marketing/Business/Creative Multimedia — or IS/CS + marketing certification or portfolio"
+      },
+      {
+        "bdqf": 5,
+        "years": 8,
+        "note": "BDQF 5 + certification or portfolio"
+      }
+    ],
+    "skills": [
+      [
+        "Customer Experience Management",
+        "4"
+      ],
+      [
+        "Account Management",
+        "4"
+      ],
+      [
+        "Product Management",
+        "4"
+      ],
+      [
+        "Data Analytics",
+        "4"
+      ],
+      [
+        "Business Performance Management",
+        "4"
+      ]
+    ],
+    "soft": "Advanced",
+    "certs": [
+      "CCXP",
+      "Certified Customer Success Manager",
+      "Salesforce Service Cloud",
+      "Adobe Experience Manager",
+      "Qualtrics"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/digital-media/job-roles/customer-experience-manager/"
+  },
+  {
+    "id": "marketing-manager",
+    "title": "Marketing Manager",
+    "sector": "digital-media",
+    "stage": "senior",
+    "aka": [
+      "Digital Marketing Manager",
+      "Brand Manager",
+      "Marketing Strategist",
+      "Advertising Manager"
+    ],
+    "summary": "Plans integrated marketing campaigns, including AI-powered tools.",
+    "next": [
+      "cmo"
+    ],
+    "routes": [
+      {
+        "bdqf": 6,
+        "years": 5,
+        "note": "BDQF 6 in Marketing/Business/Creative Multimedia — or IS/CS + marketing certification or portfolio"
+      },
+      {
+        "bdqf": 5,
+        "years": 8,
+        "note": "BDQF 5 + certification or portfolio"
+      }
+    ],
+    "skills": [
+      [
+        "Marketing Strategy",
+        "3"
+      ],
+      [
+        "Integrated Marketing",
+        "3"
+      ],
+      [
+        "Marketing Campaign Management",
+        "3"
+      ],
+      [
+        "Brand Management",
+        "3"
+      ],
+      [
+        "Digital Advertising Platforms",
+        "3"
+      ]
+    ],
+    "soft": "Advanced",
+    "certs": [
+      "AMA Professional Certified Marketer",
+      "CMMP",
+      "Google Ads",
+      "TikTok Academy",
+      "Google Digital Marketing & E-commerce Certificate"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/digital-media/job-roles/marketing-manager/"
+  },
+  {
+    "id": "cmo",
+    "title": "Chief Marketing Officer (CMO)",
+    "sector": "digital-media",
+    "stage": "top",
+    "aka": [
+      "CMO",
+      "Head of Marketing",
+      "Marketing Director"
+    ],
+    "summary": "Leads brand, marketing technology and crisis communications.",
+    "next": [],
+    "routes": [
+      {
+        "bdqf": 6,
+        "years": 10,
+        "note": "BDQF 6 + certification, 10 years at senior level"
+      },
+      {
+        "bdqf": 5,
+        "years": 12,
+        "note": "BDQF 5 + certification, 12 years at senior level"
+      }
+    ],
+    "skills": [
+      [
+        "Marketing Strategy",
+        "5"
+      ],
+      [
+        "Digital Analytics",
+        "5"
+      ],
+      [
+        "Digital Marketing Tools",
+        "5"
+      ],
+      [
+        "Business Development",
+        "5"
+      ],
+      [
+        "Customer Experience Management",
+        "5"
+      ]
+    ],
+    "soft": "Advanced",
+    "certs": [
+      "CMMP",
+      "Chartered Marketer",
+      "Certified CMO (CCMO)",
+      "MBA Marketing",
+      "Certified Agile Marketing Specialist"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/digital-media/job-roles/chief-marketing-officer/"
+  },
+  {
+    "id": "data-entry",
+    "title": "Data Entry",
+    "sector": "data-ai",
+    "stage": "entry",
+    "aka": [
+      "Data Entry Clerk",
+      "Data Entry Operator",
+      "Data Processor"
+    ],
+    "summary": "Enters, checks and backs up data accurately.",
+    "next": [
+      "data-analyst"
+    ],
+    "routes": [
+      {
+        "bdqf": 4,
+        "years": 0,
+        "note": "BDQF 4 in Data Analytics, IT or IS"
+      }
+    ],
+    "skills": [
+      [
+        "Data Analytics",
+        "2"
+      ],
+      [
+        "Data Ethics",
+        "2"
+      ],
+      [
+        "Data Governance",
+        "2"
+      ],
+      [
+        "Database Administration",
+        "2"
+      ],
+      [
+        "Data Migration",
+        "2"
+      ]
+    ],
+    "soft": "Basic",
+    "certs": [
+      "Microsoft Excel",
+      "Google Data Analytics",
+      "Power BI",
+      "Power Apps",
+      "Basic Coding"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/data-and-artificial-intelligence/job-roles/data-entry/"
+  },
+  {
+    "id": "data-analyst",
+    "title": "Data Analyst",
+    "sector": "data-ai",
+    "stage": "entry",
+    "aka": [
+      "Business Intelligence Analyst",
+      "BI Analyst",
+      "Data Modeler",
+      "Business Analyst"
+    ],
+    "summary": "Cleans, analyses and visualises data; builds reports and dashboards.",
+    "next": [
+      "data-engineer",
+      "ai-engineer"
+    ],
+    "routes": [
+      {
+        "bdqf": 6,
+        "years": 0,
+        "note": "BDQF 6 in IS or Computer Science"
+      },
+      {
+        "bdqf": 5,
+        "years": null,
+        "note": "BDQF 5 + industry experience, or a relevant portfolio"
+      }
+    ],
+    "skills": [
+      [
+        "Data Analytics",
+        "3→4"
+      ],
+      [
+        "Data Visualisation",
+        "3→4"
+      ],
+      [
+        "Data Cleansing",
+        "3→4"
+      ],
+      [
+        "Data Engineering",
+        "3→4"
+      ],
+      [
+        "Database Administration",
+        "3→4"
+      ]
+    ],
+    "soft": "Intermediate → Advanced",
+    "certs": [
+      "Microsoft Certified: Data Analyst Associate (Power BI)",
+      "Tableau",
+      "IBM Data Science Professional Certificate",
+      "Google Professional Data Engineer",
+      "SAS Certified Data Scientist"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/data-and-artificial-intelligence/job-roles/data-analyst/"
+  },
+  {
+    "id": "data-engineer",
+    "title": "Data Engineer",
+    "sector": "data-ai",
+    "stage": "mid",
+    "aka": [
+      "Big Data Engineer",
+      "ETL Developer",
+      "BI Engineer",
+      "Machine Learning Engineer"
+    ],
+    "summary": "Builds data pipelines (ETL), data stores and platforms; deploys ML models.",
+    "next": [
+      "data-architect"
+    ],
+    "routes": [
+      {
+        "bdqf": 6,
+        "years": 0,
+        "note": "BDQF 6 in CS, IS or Software Engineering"
+      },
+      {
+        "bdqf": 5,
+        "years": 5,
+        "note": "BDQF 5 + certification"
+      }
+    ],
+    "skills": [
+      [
+        "Data Engineering",
+        "3"
+      ],
+      [
+        "Data Design",
+        "3→4"
+      ],
+      [
+        "Data Governance",
+        "3→4"
+      ],
+      [
+        "Computational Modelling",
+        "3"
+      ],
+      [
+        "Emerging Technology Synthesis",
+        "3→4"
+      ]
+    ],
+    "soft": "Intermediate → Advanced",
+    "certs": [
+      "Google Professional Data Engineer",
+      "Azure Data Engineer Associate",
+      "AWS Data Analytics – Specialty",
+      "Cloudera CCP Data Engineer",
+      "TensorFlow Developer Certificate"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/data-and-artificial-intelligence/job-roles/data-engineer/"
+  },
+  {
+    "id": "ai-engineer",
+    "title": "Artificial Intelligence Engineer",
+    "sector": "data-ai",
+    "stage": "mid",
+    "aka": [
+      "AI Engineer",
+      "Machine Learning Engineer",
+      "ML Engineer",
+      "AI Specialist",
+      "AI Manager"
+    ],
+    "summary": "Builds, tests and deploys ML, NLP and AI systems.",
+    "next": [
+      "data-manager"
+    ],
+    "routes": [
+      {
+        "bdqf": 6,
+        "years": 5,
+        "note": "BDQF 6 in AI or Computer Science + certification"
+      },
+      {
+        "bdqf": 5,
+        "years": 8,
+        "note": "BDQF 5 in AI, CS or IS + certification or portfolio"
+      }
+    ],
+    "skills": [
+      [
+        "Computational Modelling",
+        "4"
+      ],
+      [
+        "Computer Vision Technology",
+        "4"
+      ],
+      [
+        "Intelligent Reasoning",
+        "4"
+      ],
+      [
+        "Pattern Recognition Systems",
+        "4"
+      ],
+      [
+        "Data Strategy",
+        "4"
+      ]
+    ],
+    "soft": "Advanced",
+    "certs": [
+      "Google Professional Data Engineer",
+      "AWS Data Analytics – Specialty",
+      "IBM Certified Data Architect – Big Data",
+      "DASCA Big Data Engineer",
+      "Cloud Architect"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/data-and-artificial-intelligence/job-roles/artificial-intelligence-engineer/"
+  },
+  {
+    "id": "data-architect",
+    "title": "Data Architect",
+    "sector": "data-ai",
+    "stage": "senior",
+    "aka": [
+      "Data Warehouse Architect",
+      "Enterprise Data Architect"
+    ],
+    "summary": "Designs the organisation's data architecture.",
+    "next": [
+      "bi-director"
+    ],
+    "routes": [],
+    "skills": [],
+    "soft": "",
+    "certs": [],
+    "unavailable": true,
+    "url": "https://www.biicf.bn/sub-sectors/data-and-artificial-intelligence/job-roles/data-architect/"
+  },
+  {
+    "id": "data-manager",
+    "title": "Data Manager",
+    "sector": "data-ai",
+    "stage": "senior",
+    "aka": [
+      "Data Management Specialist",
+      "Data Management Lead",
+      "Data Management Consultant"
+    ],
+    "summary": "Leads data collection, research and market/customer insight reports.",
+    "next": [
+      "bi-director"
+    ],
+    "routes": [
+      {
+        "bdqf": 6,
+        "years": 3,
+        "note": "BDQF 6 in IS, CS, Statistics, Maths or Actuarial Science — 3 years as a Data Analyst or similar"
+      },
+      {
+        "bdqf": 5,
+        "years": 3,
+        "note": "BDQF 5 in the same fields + industry experience or portfolio — 3 years as a Data Analyst or similar"
+      }
+    ],
+    "skills": [
+      [
+        "Data and Trend Analytics",
+        "4"
+      ],
+      [
+        "Customer Intelligence Analysis",
+        "4"
+      ],
+      [
+        "Market Research",
+        "4"
+      ],
+      [
+        "Quality Standards",
+        "4"
+      ],
+      [
+        "Service Level Management",
+        "4"
+      ]
+    ],
+    "soft": "Advanced",
+    "certs": [
+      "DAMA CDMP",
+      "Data Governance and Stewardship Professional (DGSP)",
+      "Informatica MDM",
+      "Power BI",
+      "GDPR Compliance"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/data-and-artificial-intelligence/job-roles/data-manager/"
+  },
+  {
+    "id": "bi-director",
+    "title": "Business Intelligence Director",
+    "sector": "data-ai",
+    "stage": "top",
+    "aka": [
+      "BI Director",
+      "Head of Analytics",
+      "Chief Business Intelligence Officer",
+      "VP of Business Intelligence"
+    ],
+    "summary": "Sets BI strategy, data governance and decision dashboards.",
+    "next": [
+      "data-scientist"
+    ],
+    "routes": [
+      {
+        "bdqf": 6,
+        "years": 10,
+        "note": "BDQF 6 in Business IS or IT + certification, 10 years at senior level"
+      },
+      {
+        "bdqf": 5,
+        "years": 12,
+        "note": "BDQF 5 + certification, 12 years at senior level"
+      }
+    ],
+    "skills": [
+      [
+        "Data Analytics",
+        "5"
+      ],
+      [
+        "Data Governance",
+        "5"
+      ],
+      [
+        "Data Visualisation",
+        "5"
+      ],
+      [
+        "Data Warehouse",
+        "5"
+      ],
+      [
+        "Design Thinking",
+        "5"
+      ]
+    ],
+    "soft": "Advanced",
+    "certs": [
+      "TDWI CBIP",
+      "Google Business Intelligence Certificate",
+      "Microsoft Power BI Data Analyst",
+      "Tableau Certified Data Analyst",
+      "Qlik Sense Business Analyst"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/data-and-artificial-intelligence/job-roles/business-intelligence-director/"
+  },
+  {
+    "id": "data-scientist",
+    "title": "Data Scientist",
+    "sector": "data-ai",
+    "stage": "top",
+    "aka": [
+      "AI Scientist",
+      "Machine Learning Scientist",
+      "Data Mining Engineer"
+    ],
+    "summary": "Creates advanced models and ML/AI research with business impact.",
+    "next": [],
+    "routes": [
+      {
+        "bdqf": 6,
+        "years": 6,
+        "note": "BDQF 6 in IT, CS, Maths, Statistics or Software Engineering"
+      },
+      {
+        "bdqf": 5,
+        "years": 10,
+        "note": "BDQF 5 + certification, 10 years in data science"
+      }
+    ],
+    "skills": [
+      [
+        "Business Innovation",
+        "5"
+      ],
+      [
+        "Machine Learning",
+        "4"
+      ],
+      [
+        "Data Modelling and Design",
+        "4"
+      ],
+      [
+        "Pattern Recognition",
+        "4"
+      ],
+      [
+        "Intelligent Reasoning",
+        "4"
+      ]
+    ],
+    "soft": "Advanced",
+    "certs": [
+      "Statistics",
+      "Python / R",
+      "SQL & NoSQL",
+      "Machine & Deep Learning",
+      "Big Data (Hadoop, Spark)",
+      "Model Deployment"
+    ],
+    "url": "https://www.biicf.bn/sub-sectors/data-and-artificial-intelligence/job-roles/data-scientist/"
+  }
+]

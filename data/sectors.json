@@ -1,0 +1,44 @@
+[
+  {
+    "id": "it-services",
+    "name": "IT Services",
+    "short": "IT Services",
+    "color": "#4f7cff",
+    "emoji": "🖥️"
+  },
+  {
+    "id": "telecom-network",
+    "name": "Telecommunications and Network",
+    "short": "Network",
+    "color": "#00b3a4",
+    "emoji": "📡"
+  },
+  {
+    "id": "apps-solutions",
+    "name": "Applications and Solutions Development",
+    "short": "Apps & Software",
+    "color": "#8b5cf6",
+    "emoji": "💻"
+  },
+  {
+    "id": "ict-security",
+    "name": "ICT Security",
+    "short": "Cyber Security",
+    "color": "#ef4444",
+    "emoji": "🛡️"
+  },
+  {
+    "id": "digital-media",
+    "name": "Digital Media",
+    "short": "Digital Media",
+    "color": "#f97316",
+    "emoji": "📣"
+  },
+  {
+    "id": "data-ai",
+    "name": "Data and Artificial Intelligence",
+    "short": "Data & AI",
+    "color": "#10b981",
+    "emoji": "📊"
+  }
+]

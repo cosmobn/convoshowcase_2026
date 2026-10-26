@@ -1,0 +1,2444 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "PathFinder ICT — Static Data & Deep-Link API",
+    "version": "1.0.0",
+    "summary": "Career-path data and shareable URLs for the PathFinder ICT student site.",
+    "description": "PathFinder ICT is a **static website** with no backend. This document describes everything a static host serves for it:\n\n1. **Data** — read-only JSON files: the 39 ICT job roles, the 6 sectors, the 38 COSMO courses linked to those roles, and a role → courses index. These are the only machine-readable resources.\n2. **Pages** — the single-page app and its deep-link query parameters. Every roadmap is a URL, e.g. `/?goal=ciso&from=hnd`.\n3. **Share redirects** — `/r/{sectorId}/` pages that give link previews a sector image, then redirect to the app with the same query string.\n4. **Assets** — Open Graph images, fonts, CSS and JavaScript modules.\n\n**Read-only.** Only `GET` (and implicitly `HEAD`) is supported. There is no authentication, no cookies, no tracking and no rate limiting beyond what the host applies.\n\n**Computed results are client-side.** The roadmap (path, study step, status badges, header numbers) is computed in the browser by `js/path.js` from `roles.json`. No endpoint returns a roadmap. The `Roadmap` and `StepStatus` schemas below document that computed shape for integrators who reimplement the logic.\n\n**Courses and career paths.** Every COSMO course carries `careerLinks` to BIICF roles, and `/data/role-courses.json` gives the reverse view. Each link has a `fit`:\n\n| fit | Meaning | How it is decided |\n|---|---|---|\n| `qualifies` | The course meets an entry route for the role with no experience needed. | Rule: route BDQF ≤ course BDQF, and the route's subject (e.g. \"in IT, IS or Computer Science\") matches the course subject. |\n| `needs-experience-or-portfolio` | Qualification met; BIICF also expects some unspecified experience or a portfolio. | Same rule; the route's `years` is null. |\n| `with-experience` | Qualification met; `years` of experience are also needed. | Same rule; the route needs `years` > 0. Experience is cumulative across a career. |\n| `builds-skills` | A short course that builds skills, certifications or job titles listed for the role. It is not an entry qualification. | Curated by hand; `why` explains the link. |\n\nQualification links use the same entry routes and BDQF rules as the website's roadmap, so the two always agree. BDQF levels for BTEC Levels 1–3 and City & Guilds are **estimated** from the UK RQF level (`bdqfSource: \"estimated\"`); confirm with COSMO before relying on them.\n\n**Source and disclaimer.** Data is based on the Brunei ICT Industry Competency Framework (https://www.biicf.bn). PathFinder ICT is an unofficial student guide and is not affiliated with AITI, MISC or BIICF. Always check the official site for the latest requirements. Course data is from cosmo.edu.bn (October 2026); fees, intakes and entry requirements are on each course page.",
+    "contact": {
+      "name": "Cosmopolitan College of Commerce & Technology (COSMO)",
+      "url": "https://cosmo.edu.bn",
+      "email": "info@cosmo.edu.bn"
+    }
+  },
+  "security": [],
+  "externalDocs": {
+    "description": "Official BIICF website (data source)",
+    "url": "https://www.biicf.bn"
+  },
+  "servers": [
+    {
+      "url": "https://{host}{basePath}",
+      "description": "Production static host (GitHub Pages, Netlify or Vercel)",
+      "variables": {
+        "host": {
+          "default": "pathfinder-ict.example",
+          "description": "Your deployed domain."
+        },
+        "basePath": {
+          "default": "",
+          "description": "Sub-path if hosted in a folder, e.g. `/pathfinder` on GitHub Pages project sites. Empty for a root domain."
+        }
+      }
+    },
+    {
+      "url": "http://localhost:8080",
+      "description": "Local development (npm start)"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Data",
+      "description": "Read-only JSON datasets. Safe to consume from other apps."
+    },
+    {
+      "name": "Courses",
+      "description": "COSMO courses and how each one connects to BIICF career roles."
+    },
+    {
+      "name": "Pages",
+      "description": "HTML pages and their deep-link parameters. Use these URLs to link people to a specific roadmap, quiz or comparison."
+    },
+    {
+      "name": "Share",
+      "description": "Redirect pages used in shared links so chat apps show a per-sector preview image."
+    },
+    {
+      "name": "Assets",
+      "description": "Static images, fonts, stylesheets and scripts."
+    }
+  ],
+  "paths": {
+    "/data/roles.json": {
+      "get": {
+        "tags": [
+          "Data"
+        ],
+        "operationId": "listRoles",
+        "summary": "List all 39 ICT job roles",
+        "description": "Returns every role with its career progression (`next`), entry routes, key skills, certifications and official BIICF link. The `next` arrays form a directed graph per sector; roles that no other role points to are the sector entry roles.",
+        "responses": {
+          "200": {
+            "description": "All roles.",
+            "headers": {
+              "Cache-Control": {
+                "$ref": "#/components/headers/CacheControlShort"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Role"
+                  },
+                  "description": "Always 39 roles."
+                },
+                "examples": {
+                  "ciso": {
+                    "summary": "One role (CISO), excerpt",
+                    "value": [
+                      {
+                        "id": "ciso",
+                        "title": "Chief Information Security Officer (CISO)",
+                        "sector": "ict-security",
+                        "stage": "top",
+                        "aka": [
+                          "CISO",
+                          "Head of IT Security",
+                          "Chief Security Officer",
+                          "Director of Cybersecurity"
+                        ],
+                        "summary": "Leads the organisation's whole information security strategy.",
+                        "next": [],
+                        "routes": [
+                          {
+                            "bdqf": 6,
+                            "years": 10,
+                            "note": "BDQF 6 + certification, 10 years at senior level"
+                          },
+                          {
+                            "bdqf": 5,
+                            "years": 12,
+                            "note": "BDQF 5 + certification, 12 years at senior level"
+                          }
+                        ],
+                        "skills": [
+                          [
+                            "Security Strategy",
+                            "5"
+                          ],
+                          [
+                            "Threat Analysis and Defence",
+                            "5"
+                          ],
+                          [
+                            "Threat Intelligence and Detection",
+                            "5"
+                          ],
+                          [
+                            "Cyber Forensics",
+                            "5"
+                          ],
+                          [
+                            "Business Continuity",
+                            "5"
+                          ]
+                        ],
+                        "soft": "Advanced",
+                        "certs": [
+                          "CCISO",
+                          "CISSP",
+                          "CISM",
+                          "CRISC",
+                          "GIAC GSTRT",
+                          "NIST CSF 2.0 Lead Implementer"
+                        ],
+                        "url": "https://www.biicf.bn/sub-sectors/ict-security/job-roles/chief-information-security-officer-ciso/"
+                      }
+                    ]
+                  },
+                  "unavailable": {
+                    "summary": "A role whose official details are not yet published",
+                    "value": [
+                      {
+                        "id": "data-architect",
+                        "title": "Data Architect",
+                        "sector": "data-ai",
+                        "stage": "senior",
+                        "aka": [
+                          "Data Warehouse Architect",
+                          "Enterprise Data Architect"
+                        ],
+                        "summary": "Designs the organisation's data architecture.",
+                        "next": [
+                          "bi-director"
+                        ],
+                        "routes": [],
+                        "skills": [],
+                        "soft": "",
+                        "certs": [],
+                        "unavailable": true,
+                        "url": "https://www.biicf.bn/sub-sectors/data-and-artificial-intelligence/job-roles/data-architect/"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/data/sectors.json": {
+      "get": {
+        "tags": [
+          "Data"
+        ],
+        "operationId": "listSectors",
+        "summary": "List the 6 ICT sectors",
+        "description": "Returns the sub-sectors with display names, short labels, accent colours and emoji.",
+        "responses": {
+          "200": {
+            "description": "All sectors.",
+            "headers": {
+              "Cache-Control": {
+                "$ref": "#/components/headers/CacheControlShort"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Sector"
+                  },
+                  "description": "Always 6 sectors."
+                },
+                "examples": {
+                  "all": {
+                    "summary": "All sectors",
+                    "value": [
+                      {
+                        "id": "it-services",
+                        "name": "IT Services",
+                        "short": "IT Services",
+                        "color": "#4f7cff",
+                        "emoji": "🖥️"
+                      },
+                      {
+                        "id": "telecom-network",
+                        "name": "Telecommunications and Network",
+                        "short": "Network",
+                        "color": "#00b3a4",
+                        "emoji": "📡"
+                      },
+                      {
+                        "id": "apps-solutions",
+                        "name": "Applications and Solutions Development",
+                        "short": "Apps & Software",
+                        "color": "#8b5cf6",
+                        "emoji": "💻"
+                      },
+                      {
+                        "id": "ict-security",
+                        "name": "ICT Security",
+                        "short": "Cyber Security",
+                        "color": "#ef4444",
+                        "emoji": "🛡️"
+                      },
+                      {
+                        "id": "digital-media",
+                        "name": "Digital Media",
+                        "short": "Digital Media",
+                        "color": "#f97316",
+                        "emoji": "📣"
+                      },
+                      {
+                        "id": "data-ai",
+                        "name": "Data and Artificial Intelligence",
+                        "short": "Data & AI",
+                        "color": "#10b981",
+                        "emoji": "📊"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/data/courses.json": {
+      "get": {
+        "tags": [
+          "Courses",
+          "Data"
+        ],
+        "operationId": "listCourses",
+        "summary": "List all 38 COSMO courses with their career links",
+        "description": "Every COSMO course: BTEC and City & Guilds qualifications (with level, BDQF level and the next course up), COSMO Certified Programs (CCP) short courses, The AI Board awards and English. `careerLinks` lists the BIICF roles each course leads to or prepares for. Courses outside ICT (logistics, health and safety, hospitality) are included with no links and a `note`.\n\nTo find courses for one role, filter `careerLinks[].role`, or use `/data/role-courses.json`.",
+        "responses": {
+          "200": {
+            "description": "All courses.",
+            "headers": {
+              "Cache-Control": {
+                "$ref": "#/components/headers/CacheControlShort"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Course"
+                  },
+                  "description": "Always 38 courses."
+                },
+                "examples": {
+                  "hndComputing": {
+                    "summary": "HND in Computing (qualification, rule-linked)",
+                    "value": [
+                      {
+                        "id": "hnd-computing",
+                        "title": "Pearson BTEC HND in Computing",
+                        "provider": "COSMO",
+                        "type": "qualification",
+                        "area": "information-technology",
+                        "awardingBody": "Pearson BTEC",
+                        "level": 5,
+                        "bdqf": 5,
+                        "bdqfSource": "biicf-table",
+                        "nextCourse": null,
+                        "url": "https://cosmo.edu.bn/hnd-in-computing",
+                        "careerLinks": [
+                          {
+                            "role": "it-technician",
+                            "fit": "qualifies",
+                            "years": 0,
+                            "route": "Level 3 — BDQF 4 (or BDQF 3 + industry certification)"
+                          },
+                          {
+                            "role": "it-administrator-manager",
+                            "fit": "needs-experience-or-portfolio",
+                            "years": null,
+                            "route": "BDQF 5 + industry experience or a relevant portfolio"
+                          },
+                          {
+                            "role": "project-coordinator",
+                            "fit": "qualifies",
+                            "years": 0,
+                            "route": "BDQF 5"
+                          },
+                          {
+                            "role": "systems-engineer",
+                            "fit": "qualifies",
+                            "years": 0,
+                            "route": "BDQF 5 + relevant industry certification"
+                          },
+                          {
+                            "role": "project-manager",
+                            "fit": "needs-experience-or-portfolio",
+                            "years": null,
+                            "route": "BDQF 5 + project management certification and a few years' experience"
+                          },
+                          {
+                            "role": "it-operations-manager",
+                            "fit": "with-experience",
+                            "years": 8,
+                            "route": "BDQF 5 + certification or portfolio"
+                          },
+                          {
+                            "role": "cio",
+                            "fit": "with-experience",
+                            "years": 12,
+                            "route": "BDQF 5 + certification, 12 years at senior level"
+                          },
+                          {
+                            "role": "network-technician",
+                            "fit": "qualifies",
+                            "years": 0,
+                            "route": "BDQF 4 in IT or Telecommunications"
+                          },
+                          {
+                            "role": "network-team-lead",
+                            "fit": "needs-experience-or-portfolio",
+                            "years": null,
+                            "route": "BDQF 5 + industry experience or portfolio"
+                          },
+                          {
+                            "role": "network-engineer",
+                            "fit": "qualifies",
+                            "years": 0,
+                            "route": "Specialist — BDQF 5 in IT or Telecommunications"
+                          },
+                          {
+                            "role": "infrastructure-engineer",
+                            "fit": "with-experience",
+                            "years": 8,
+                            "route": "BDQF 5 + certification or portfolio"
+                          },
+                          {
+                            "role": "infrastructure-manager",
+                            "fit": "with-experience",
+                            "years": 8,
+                            "route": "BDQF 5 + certification or portfolio"
+                          },
+                          {
+                            "role": "cto-telecom",
+                            "fit": "with-experience",
+                            "years": 12,
+                            "route": "BDQF 5 + certification, 12 years at senior level"
+                          },
+                          {
+                            "role": "junior-programmer",
+                            "fit": "qualifies",
+                            "years": 0,
+                            "route": "BDQF 5 + industry certification or a portfolio"
+                          },
+                          {
+                            "role": "applications-developer",
+                            "fit": "with-experience",
+                            "years": 5,
+                            "route": "BDQF 5 + industry experience, or a relevant portfolio"
+                          },
+                          {
+                            "role": "solutions-architect",
+                            "fit": "with-experience",
+                            "years": 6,
+                            "route": "BDQF 5 + 6 years' relevant experience"
+                          },
+                          {
+                            "role": "application-system-engineer",
+                            "fit": "with-experience",
+                            "years": 8,
+                            "route": "BDQF 5 + certification or portfolio"
+                          },
+                          {
+                            "role": "software-architect",
+                            "fit": "with-experience",
+                            "years": 8,
+                            "route": "BDQF 5 + certification or portfolio"
+                          },
+                          {
+                            "role": "software-development-manager",
+                            "fit": "with-experience",
+                            "years": 8,
+                            "route": "BDQF 5 + certification or portfolio"
+                          },
+                          {
+                            "role": "cto-apps",
+                            "fit": "with-experience",
+                            "years": 12,
+                            "route": "BDQF 5 + certification, 12 years at senior level"
+                          },
+                          {
+                            "role": "associate-security-analyst",
+                            "fit": "qualifies",
+                            "years": 0,
+                            "route": "BDQF 5 in IS or Computer Science"
+                          },
+                          {
+                            "role": "cyber-risk-analyst",
+                            "fit": "with-experience",
+                            "years": 4,
+                            "route": "BDQF 5 + 4 years in relevant roles"
+                          },
+                          {
+                            "role": "security-engineer",
+                            "fit": "with-experience",
+                            "years": 4,
+                            "route": "BDQF 5 + 4–6 years' experience"
+                          },
+                          {
+                            "role": "cyber-risk-manager",
+                            "fit": "with-experience",
+                            "years": 8,
+                            "route": "BDQF 5 + certification or portfolio"
+                          },
+                          {
+                            "role": "ciso",
+                            "fit": "with-experience",
+                            "years": 12,
+                            "route": "BDQF 5 + certification, 12 years at senior level"
+                          },
+                          {
+                            "role": "data-entry",
+                            "fit": "qualifies",
+                            "years": 0,
+                            "route": "BDQF 4 in Data Analytics, IT or IS"
+                          },
+                          {
+                            "role": "data-analyst",
+                            "fit": "needs-experience-or-portfolio",
+                            "years": null,
+                            "route": "BDQF 5 + industry experience, or a relevant portfolio"
+                          },
+                          {
+                            "role": "data-engineer",
+                            "fit": "with-experience",
+                            "years": 5,
+                            "route": "BDQF 5 + certification"
+                          },
+                          {
+                            "role": "ai-engineer",
+                            "fit": "with-experience",
+                            "years": 8,
+                            "route": "BDQF 5 in AI, CS or IS + certification or portfolio"
+                          },
+                          {
+                            "role": "data-manager",
+                            "fit": "with-experience",
+                            "years": 3,
+                            "route": "BDQF 5 in the same fields + industry experience or portfolio — 3 years as a Data Analyst or similar"
+                          },
+                          {
+                            "role": "bi-director",
+                            "fit": "with-experience",
+                            "years": 12,
+                            "route": "BDQF 5 + certification, 12 years at senior level"
+                          },
+                          {
+                            "role": "data-scientist",
+                            "fit": "with-experience",
+                            "years": 10,
+                            "route": "BDQF 5 + certification, 10 years in data science"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "ccpCybersecurity": {
+                    "summary": "CCP Cybersecurity (short course, hand-linked)",
+                    "value": [
+                      {
+                        "id": "ccp-cybersecurity",
+                        "title": "CCP Cybersecurity",
+                        "provider": "COSMO",
+                        "type": "short-course",
+                        "area": "information-technology",
+                        "awardingBody": "COSMO",
+                        "level": null,
+                        "bdqf": null,
+                        "bdqfSource": null,
+                        "nextCourse": null,
+                        "url": "https://cosmo.edu.bn/ccp-cybersecurity/",
+                        "careerLinks": [
+                          {
+                            "role": "associate-security-analyst",
+                            "fit": "builds-skills",
+                            "years": null,
+                            "route": null,
+                            "why": "Builds Network Security, Security Administration and incident skills; prepares for CompTIA Security+."
+                          },
+                          {
+                            "role": "it-technician",
+                            "fit": "builds-skills",
+                            "years": null,
+                            "route": null,
+                            "why": "Builds Information Security Management; CompTIA Security+ is listed for this role."
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "steppingStone": {
+                    "summary": "A qualification with no direct ICT role",
+                    "value": [
+                      {
+                        "id": "btec-l2-creative-media",
+                        "title": "Pearson BTEC Certificate in Creative Media",
+                        "provider": "COSMO",
+                        "type": "qualification",
+                        "area": "creative-media",
+                        "awardingBody": "Pearson BTEC",
+                        "level": 2,
+                        "bdqf": 3,
+                        "bdqfSource": "estimated",
+                        "nextCourse": "btec-l3-creative-media",
+                        "url": "https://cosmo.edu.bn/international-certificate-in-creative-media-production",
+                        "careerLinks": [],
+                        "note": "No BIICF ICT role accepts this qualification on its own. It is a stepping stone: see nextCourse."
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/data/role-courses.json": {
+      "get": {
+        "tags": [
+          "Courses",
+          "Data"
+        ],
+        "operationId": "listCoursesByRole",
+        "summary": "COSMO courses for each career role (reverse index)",
+        "description": "An object with one key per role id (all 39 roles). Each value lists the courses linked to that role, best fit first: `qualifies`, then `needs-experience-or-portfolio`, then `builds-skills`, then `with-experience` (fewest years first). A role with no linked course has an empty array.\n\nTypical use: show \"Study this at COSMO\" on a role or roadmap step. Read `roleCourses[goal]`.",
+        "responses": {
+          "200": {
+            "description": "Courses per role.",
+            "headers": {
+              "Cache-Control": {
+                "$ref": "#/components/headers/CacheControlShort"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoleCoursesIndex"
+                },
+                "examples": {
+                  "ciso": {
+                    "summary": "Courses toward CISO and its entry role",
+                    "value": {
+                      "associate-security-analyst": [
+                        {
+                          "course": "hnd-computing",
+                          "title": "Pearson BTEC HND in Computing",
+                          "type": "qualification",
+                          "fit": "qualifies",
+                          "years": 0,
+                          "url": "https://cosmo.edu.bn/hnd-in-computing"
+                        },
+                        {
+                          "course": "ccp-cybersecurity",
+                          "title": "CCP Cybersecurity",
+                          "type": "short-course",
+                          "fit": "builds-skills",
+                          "years": null,
+                          "url": "https://cosmo.edu.bn/ccp-cybersecurity/"
+                        },
+                        {
+                          "course": "btec-l3-it",
+                          "title": "Pearson BTEC Diploma in Information Technology",
+                          "type": "qualification",
+                          "fit": "with-experience",
+                          "years": 5,
+                          "url": "https://cosmo.edu.bn/diploma-in-information-technology"
+                        }
+                      ],
+                      "ciso": [
+                        {
+                          "course": "hnd-computing",
+                          "title": "Pearson BTEC HND in Computing",
+                          "type": "qualification",
+                          "fit": "with-experience",
+                          "years": 12,
+                          "url": "https://cosmo.edu.bn/hnd-in-computing"
+                        }
+                      ]
+                    }
+                  },
+                  "digitalMarketing": {
+                    "summary": "Courses toward Digital Marketing Executive",
+                    "value": {
+                      "digital-marketing-executive": [
+                        {
+                          "course": "ccp-web-and-content-management",
+                          "title": "CCP Web and Content Management",
+                          "type": "short-course",
+                          "fit": "builds-skills",
+                          "years": null,
+                          "url": "https://cosmo.edu.bn/ccp-web-and-content-management/"
+                        },
+                        {
+                          "course": "ccp-graphic-design-illustration",
+                          "title": "CCP Graphic Design & Illustration",
+                          "type": "short-course",
+                          "fit": "builds-skills",
+                          "years": null,
+                          "url": "https://cosmo.edu.bn/ccp-graphic-design-illustration/"
+                        },
+                        {
+                          "course": "ccp-print-digital-media-publication",
+                          "title": "CCP Print & Digital Media Publication",
+                          "type": "short-course",
+                          "fit": "builds-skills",
+                          "years": null,
+                          "url": "https://cosmo.edu.bn/ccp-print-digital-media-publication/"
+                        },
+                        {
+                          "course": "ccp-motion-graphics-design",
+                          "title": "CCP Motion Graphics Design",
+                          "type": "short-course",
+                          "fit": "builds-skills",
+                          "years": null,
+                          "url": "https://cosmo.edu.bn/ccp-motion-graphics-design/"
+                        },
+                        {
+                          "course": "ccp-video-editing-production",
+                          "title": "CCP Video Editing & Production",
+                          "type": "short-course",
+                          "fit": "builds-skills",
+                          "years": null,
+                          "url": "https://cosmo.edu.bn/ccp-video-editing-production/"
+                        },
+                        {
+                          "course": "ccp-photography",
+                          "title": "CCP Photography",
+                          "type": "short-course",
+                          "fit": "builds-skills",
+                          "years": null,
+                          "url": "https://cosmo.edu.bn/ccp-photography/"
+                        },
+                        {
+                          "course": "ccp-canva-design-specialist",
+                          "title": "CCP Canva Design Specialist",
+                          "type": "short-course",
+                          "fit": "builds-skills",
+                          "years": null,
+                          "url": "https://cosmo.edu.bn/ccp-canva-design-specialist/"
+                        },
+                        {
+                          "course": "ccp-capcut-video-creator",
+                          "title": "CCP CapCut Video Creator",
+                          "type": "short-course",
+                          "fit": "builds-skills",
+                          "years": null,
+                          "url": "https://cosmo.edu.bn/ccp-capcut-video-creator/"
+                        },
+                        {
+                          "course": "ccp-social-media-marketing-management",
+                          "title": "CCP Social Media Marketing & Management",
+                          "type": "short-course",
+                          "fit": "builds-skills",
+                          "years": null,
+                          "url": "https://cosmo.edu.bn/ccp-social-media-marketing-management/"
+                        },
+                        {
+                          "course": "hnd-business",
+                          "title": "Pearson BTEC HND in Business",
+                          "type": "qualification",
+                          "fit": "with-experience",
+                          "years": 5,
+                          "url": "https://cosmo.edu.bn/hnd-in-business"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "tags": [
+          "Pages"
+        ],
+        "operationId": "openApp",
+        "summary": "Open the app (any screen, via query parameters)",
+        "description": "The single-page app. The screen shown depends on the query parameters, checked in this order:\n\n| Parameters | Screen |\n|---|---|\n| `view=quiz` | 30-second quiz (or a quiz result with `result`) |\n| `view=explore` or `compare` | Explore all careers, optional side-by-side comparison |\n| `goal` + `from` | **Roadmap** for that goal from that starting point |\n| `goal` only | \"Where are you right now?\" |\n| none | Landing page |\n\nUnknown or invalid values never cause an HTTP error: the page always returns 200 and the app falls back to a sensible screen (an unknown `goal` shows the landing page with a notice). `mode=present` can be added to any screen.\n\nThe server ignores all query parameters; they are read by the browser. A shared link reopens the identical roadmap.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/goal"
+          },
+          {
+            "$ref": "#/components/parameters/from"
+          },
+          {
+            "$ref": "#/components/parameters/exp"
+          },
+          {
+            "$ref": "#/components/parameters/w"
+          },
+          {
+            "$ref": "#/components/parameters/r"
+          },
+          {
+            "$ref": "#/components/parameters/view"
+          },
+          {
+            "$ref": "#/components/parameters/compare"
+          },
+          {
+            "$ref": "#/components/parameters/sector"
+          },
+          {
+            "$ref": "#/components/parameters/stage"
+          },
+          {
+            "$ref": "#/components/parameters/result"
+          },
+          {
+            "$ref": "#/components/parameters/mode"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The app shell. Content is rendered client-side from the query parameters.",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "const": "text/html; charset=utf-8"
+                }
+              }
+            },
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/index.html": {
+      "get": {
+        "tags": [
+          "Pages"
+        ],
+        "operationId": "openAppIndex",
+        "summary": "Alias of `/`",
+        "description": "Same document as `/`, accepting the same query parameters.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/goal"
+          },
+          {
+            "$ref": "#/components/parameters/from"
+          },
+          {
+            "$ref": "#/components/parameters/exp"
+          },
+          {
+            "$ref": "#/components/parameters/w"
+          },
+          {
+            "$ref": "#/components/parameters/r"
+          },
+          {
+            "$ref": "#/components/parameters/view"
+          },
+          {
+            "$ref": "#/components/parameters/compare"
+          },
+          {
+            "$ref": "#/components/parameters/sector"
+          },
+          {
+            "$ref": "#/components/parameters/stage"
+          },
+          {
+            "$ref": "#/components/parameters/result"
+          },
+          {
+            "$ref": "#/components/parameters/mode"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The app shell.",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "const": "text/html; charset=utf-8"
+                }
+              }
+            },
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/r/{sectorId}/": {
+      "get": {
+        "tags": [
+          "Share"
+        ],
+        "operationId": "openShareRedirect",
+        "summary": "Shared roadmap link with a per-sector preview",
+        "description": "A small HTML page carrying Open Graph and Twitter tags for the sector (title and `og-{sectorId}.png` image), so WhatsApp, Instagram DMs and other chat apps show a rich preview.\n\nIn a browser it immediately redirects with JavaScript to `../../` (the app) keeping the **same query string and hash**. Crawlers do not run JavaScript, so they read the preview tags instead.\n\nThe app builds these links itself when the user taps \"Share my path\", e.g. `/r/ict-security/?goal=ciso&from=hnd`.",
+        "parameters": [
+          {
+            "name": "sectorId",
+            "in": "path",
+            "required": true,
+            "description": "Sector of the goal role.",
+            "schema": {
+              "$ref": "#/components/schemas/SectorId"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/goal"
+          },
+          {
+            "$ref": "#/components/parameters/from"
+          },
+          {
+            "$ref": "#/components/parameters/exp"
+          },
+          {
+            "$ref": "#/components/parameters/w"
+          },
+          {
+            "$ref": "#/components/parameters/r"
+          },
+          {
+            "$ref": "#/components/parameters/view"
+          },
+          {
+            "$ref": "#/components/parameters/compare"
+          },
+          {
+            "$ref": "#/components/parameters/sector"
+          },
+          {
+            "$ref": "#/components/parameters/stage"
+          },
+          {
+            "$ref": "#/components/parameters/result"
+          },
+          {
+            "$ref": "#/components/parameters/mode"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Redirect page with preview meta tags. Not indexed (`robots: noindex`).",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "const": "text/html; charset=utf-8"
+                }
+              }
+            },
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/assets/og-image.png": {
+      "get": {
+        "tags": [
+          "Assets"
+        ],
+        "operationId": "getDefaultOgImage",
+        "summary": "Default social preview image (1200×630)",
+        "responses": {
+          "200": {
+            "description": "Default Open Graph image.",
+            "headers": {
+              "Cache-Control": {
+                "$ref": "#/components/headers/CacheControlLong"
+              }
+            },
+            "content": {
+              "image/png": {
+                "schema": {
+                  "type": "string",
+                  "contentEncoding": "binary"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/assets/og-{sectorId}.png": {
+      "get": {
+        "tags": [
+          "Assets"
+        ],
+        "operationId": "getSectorOgImage",
+        "summary": "Per-sector social preview image (1200×630)",
+        "parameters": [
+          {
+            "name": "sectorId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/SectorId"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Open Graph image for the sector.",
+            "headers": {
+              "Cache-Control": {
+                "$ref": "#/components/headers/CacheControlLong"
+              }
+            },
+            "content": {
+              "image/png": {
+                "schema": {
+                  "type": "string",
+                  "contentEncoding": "binary"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/assets/fonts/{fontFile}": {
+      "get": {
+        "tags": [
+          "Assets"
+        ],
+        "operationId": "getFont",
+        "summary": "Self-hosted web font",
+        "parameters": [
+          {
+            "name": "fontFile",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "inter-latin.woff2",
+                "plus-jakarta-sans-latin.woff2"
+              ]
+            },
+            "description": "Inter (body, variable 400–600) or Plus Jakarta Sans (headings, variable 700–800). SIL Open Font License 1.1."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "WOFF2 font file.",
+            "headers": {
+              "Cache-Control": {
+                "$ref": "#/components/headers/CacheControlImmutable"
+              }
+            },
+            "content": {
+              "font/woff2": {
+                "schema": {
+                  "type": "string",
+                  "contentEncoding": "binary"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/css/styles.css": {
+      "get": {
+        "tags": [
+          "Assets"
+        ],
+        "operationId": "getStylesheet",
+        "summary": "Site stylesheet",
+        "responses": {
+          "200": {
+            "description": "CSS.",
+            "headers": {
+              "Cache-Control": {
+                "$ref": "#/components/headers/CacheControlShort"
+              }
+            },
+            "content": {
+              "text/css": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/js/{module}": {
+      "get": {
+        "tags": [
+          "Assets"
+        ],
+        "operationId": "getScriptModule",
+        "summary": "JavaScript ES module",
+        "description": "`path.js` contains the pure path-finding and status functions (`findPaths`, `stepStatus`, `headerYears`, `buildRoadmap`) and can be imported by other projects.",
+        "parameters": [
+          {
+            "name": "module",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "app.js",
+                "path.js",
+                "share.js",
+                "quiz.js"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "JavaScript module.",
+            "headers": {
+              "Cache-Control": {
+                "$ref": "#/components/headers/CacheControlShort"
+              }
+            },
+            "content": {
+              "text/javascript": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "goal": {
+        "name": "goal",
+        "in": "query",
+        "required": false,
+        "description": "Target role. With `from` it opens the roadmap; alone it opens \"Where are you right now?\".",
+        "schema": {
+          "$ref": "#/components/schemas/RoleId"
+        },
+        "example": "ciso"
+      },
+      "from": {
+        "name": "from",
+        "in": "query",
+        "required": false,
+        "description": "Starting point. `olevel` = BDQF 3, `alevel` = BDQF 4 (A Level, HNTec), `hnd` = BDQF 5, `degree` = BDQF 6, `working` = treated as BDQF 5 with work experience.",
+        "schema": {
+          "$ref": "#/components/schemas/FromValue"
+        },
+        "example": "hnd"
+      },
+      "exp": {
+        "name": "exp",
+        "in": "query",
+        "required": false,
+        "description": "Years of work experience. The app slider covers 0–15 (15 shown as \"15+\"); values up to 50 are accepted. Invalid values become 0.",
+        "schema": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 50,
+          "default": 0
+        },
+        "example": 3
+      },
+      "w": {
+        "name": "w",
+        "in": "query",
+        "required": false,
+        "description": "Set to `1` when the user chose \"Already working\" and then picked a qualification. Changes the \"You are here\" label.",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "1"
+          ]
+        }
+      },
+      "r": {
+        "name": "r",
+        "in": "query",
+        "required": false,
+        "description": "Set to `1` to show the alternative route (Route B) where the road splits. Ignored if the goal has no alternative.",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "1"
+          ]
+        }
+      },
+      "view": {
+        "name": "view",
+        "in": "query",
+        "required": false,
+        "description": "Open the quiz or the explore page.",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "quiz",
+            "explore"
+          ]
+        }
+      },
+      "compare": {
+        "name": "compare",
+        "in": "query",
+        "required": false,
+        "description": "One or two comma-separated role ids to compare side by side on the explore page. Unknown ids are dropped; only the first two are used.",
+        "style": "form",
+        "explode": false,
+        "schema": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/RoleId"
+          },
+          "minItems": 1,
+          "maxItems": 2
+        },
+        "example": [
+          "ciso",
+          "cto-apps"
+        ]
+      },
+      "sector": {
+        "name": "sector",
+        "in": "query",
+        "required": false,
+        "description": "Explore page filter by sector.",
+        "schema": {
+          "$ref": "#/components/schemas/SectorId"
+        }
+      },
+      "stage": {
+        "name": "stage",
+        "in": "query",
+        "required": false,
+        "description": "Explore page filter by career stage.",
+        "schema": {
+          "$ref": "#/components/schemas/Stage"
+        }
+      },
+      "result": {
+        "name": "result",
+        "in": "query",
+        "required": false,
+        "description": "With `view=quiz`, shows the quiz result for this sector without retaking the quiz.",
+        "schema": {
+          "$ref": "#/components/schemas/SectorId"
+        }
+      },
+      "mode": {
+        "name": "mode",
+        "in": "query",
+        "required": false,
+        "description": "Teacher mode for classroom projectors: hides navigation and enlarges the roadmap. Stays on while navigating; never included in share links.",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "present"
+          ]
+        }
+      }
+    },
+    "headers": {
+      "CacheControlShort": {
+        "description": "Recommended caching (see `_headers` for Netlify). Hosts may differ.",
+        "schema": {
+          "type": "string",
+          "example": "public, max-age=3600, stale-while-revalidate=86400"
+        }
+      },
+      "CacheControlLong": {
+        "description": "Recommended caching for images.",
+        "schema": {
+          "type": "string",
+          "example": "public, max-age=604800"
+        }
+      },
+      "CacheControlImmutable": {
+        "description": "Recommended caching for fonts.",
+        "schema": {
+          "type": "string",
+          "example": "public, max-age=31536000, immutable"
+        }
+      }
+    },
+    "responses": {
+      "NotFound": {
+        "description": "The file does not exist. The body is the host's own 404 page and its format varies by host.",
+        "content": {
+          "text/html": {
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "RoleId": {
+        "type": "string",
+        "description": "URL-safe role identifier.",
+        "enum": [
+          "it-technician",
+          "it-administrator-manager",
+          "project-coordinator",
+          "systems-engineer",
+          "project-manager",
+          "it-operations-manager",
+          "cio",
+          "network-technician",
+          "network-team-lead",
+          "network-engineer",
+          "infrastructure-engineer",
+          "infrastructure-manager",
+          "cto-telecom",
+          "junior-programmer",
+          "applications-developer",
+          "solutions-architect",
+          "application-system-engineer",
+          "software-architect",
+          "software-development-manager",
+          "cto-apps",
+          "associate-security-analyst",
+          "cyber-risk-analyst",
+          "security-engineer",
+          "cyber-risk-manager",
+          "ciso",
+          "market-analyst",
+          "digital-marketing-executive",
+          "business-development-manager",
+          "customer-experience-manager",
+          "marketing-manager",
+          "cmo",
+          "data-entry",
+          "data-analyst",
+          "data-engineer",
+          "ai-engineer",
+          "data-architect",
+          "data-manager",
+          "bi-director",
+          "data-scientist"
+        ]
+      },
+      "SectorId": {
+        "type": "string",
+        "description": "Sector identifier.",
+        "enum": [
+          "it-services",
+          "telecom-network",
+          "apps-solutions",
+          "ict-security",
+          "digital-media",
+          "data-ai"
+        ]
+      },
+      "Stage": {
+        "type": "string",
+        "enum": [
+          "entry",
+          "mid",
+          "senior",
+          "top"
+        ],
+        "description": "Career stage used for colour and filtering. A PathFinder grouping, not a BIICF field. Labels: Entry, Mid-career, Senior, Top."
+      },
+      "FromValue": {
+        "type": "string",
+        "enum": [
+          "olevel",
+          "alevel",
+          "hnd",
+          "degree",
+          "working"
+        ]
+      },
+      "Bdqf": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 8,
+        "description": "Brunei Darussalam Qualifications Framework level. 3 = O Level, 4 = A Level / HNTec, 5 = HND / Diploma, 6 = Bachelor's, 7 = Master's, 8 = Doctorate. `0` means any qualification (used with a certification route)."
+      },
+      "Sector": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "short",
+          "color",
+          "emoji"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/SectorId"
+          },
+          "name": {
+            "type": "string",
+            "description": "Full BIICF sub-sector name.",
+            "example": "ICT Security"
+          },
+          "short": {
+            "type": "string",
+            "description": "Short label for chips and buttons.",
+            "example": "Cyber Security"
+          },
+          "color": {
+            "type": "string",
+            "pattern": "^#[0-9a-fA-F]{6}$",
+            "description": "Accent colour for dots, chips and borders. Not for text (contrast).",
+            "example": "#ef4444"
+          },
+          "emoji": {
+            "type": "string",
+            "description": "Decorative emoji.",
+            "example": "🛡️"
+          }
+        }
+      },
+      "Route": {
+        "type": "object",
+        "description": "One way into a role: a minimum qualification plus minimum experience.",
+        "required": [
+          "bdqf",
+          "years",
+          "note"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "bdqf": {
+            "$ref": "#/components/schemas/Bdqf"
+          },
+          "years": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0,
+            "description": "Minimum years of experience. `null` means \"some experience, not specified\" (often \"or a relevant portfolio\"). BIICF experience is cumulative, not per step."
+          },
+          "note": {
+            "type": "string",
+            "description": "Human-readable requirement from BIICF.",
+            "example": "BDQF 5 + 4 years in relevant roles"
+          }
+        }
+      },
+      "Skill": {
+        "type": "array",
+        "description": "A `[name, level]` pair. Level is 1–5 (1 Follow, 2 Assist, 3 Apply, 4 Ensure, 5 Strategise). `\"3→4\"` means the level rises within the role; `\"2–3\"` is a range.",
+        "prefixItems": [
+          {
+            "type": "string",
+            "description": "Technical skill name.",
+            "example": "Security Architecture"
+          },
+          {
+            "type": "string",
+            "pattern": "^[1-5]([–→-][1-5])?$",
+            "description": "Required level.",
+            "example": "3→4"
+          }
+        ],
+        "minItems": 2,
+        "maxItems": 2,
+        "items": false,
+        "example": [
+          "Cyber Risk Management",
+          "4"
+        ]
+      },
+      "Role": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "sector",
+          "stage",
+          "aka",
+          "summary",
+          "next",
+          "routes",
+          "skills",
+          "soft",
+          "certs",
+          "url"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/RoleId"
+          },
+          "title": {
+            "type": "string",
+            "example": "Chief Information Security Officer (CISO)"
+          },
+          "sector": {
+            "$ref": "#/components/schemas/SectorId"
+          },
+          "stage": {
+            "$ref": "#/components/schemas/Stage"
+          },
+          "aka": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Nicknames and alternate titles, used by search."
+          },
+          "summary": {
+            "type": "string",
+            "description": "One line on what the person does."
+          },
+          "next": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RoleId"
+            },
+            "description": "Roles this role progresses to (same sector). Empty for top roles."
+          },
+          "routes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Route"
+            },
+            "description": "Entry routes. Empty when `unavailable` is true."
+          },
+          "skills": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Skill"
+            },
+            "description": "Key technical skills (up to 5). Empty when `unavailable` is true."
+          },
+          "soft": {
+            "type": "string",
+            "description": "Soft-skill level summary (Basic, Intermediate, Advanced, Expert). Empty when `unavailable` is true.",
+            "example": "Advanced"
+          },
+          "certs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Recommended certifications or training."
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Official BIICF job-role page."
+          },
+          "unavailable": {
+            "type": "boolean",
+            "description": "True when the official page has no details yet (Data Architect). Show \"Details coming soon\".",
+            "default": false
+          }
+        }
+      },
+      "CourseId": {
+        "type": "string",
+        "description": "COSMO course identifier.",
+        "enum": [
+          "btec-l1-business",
+          "btec-l2-business",
+          "btec-l3-business",
+          "hnd-business",
+          "btec-l1-it",
+          "btec-l2-it",
+          "btec-l3-it",
+          "hnd-computing",
+          "btec-l1-digital-media",
+          "btec-l2-creative-media",
+          "btec-l3-creative-media",
+          "hnd-graphic-design",
+          "cg-l3-logistics",
+          "cg-l3-ohs",
+          "hntec-tourism-operations",
+          "ntec-hotel-business-tourism",
+          "ccp-data-analytics",
+          "ccp-excel-for-professionals",
+          "ccp-cybersecurity",
+          "ccp-networking-professional",
+          "ccp-web-and-content-management",
+          "ccp-graphic-design-illustration",
+          "ccp-print-digital-media-publication",
+          "ccp-motion-graphics-design",
+          "ccp-video-editing-production",
+          "ccp-photography",
+          "ccp-canva-design-specialist",
+          "ccp-capcut-video-creator",
+          "ccp-social-media-marketing-management",
+          "ccp-prompt-engineering-ai",
+          "ai-board-understanding-ai",
+          "ai-board-ai-for-teaching-professionals",
+          "ai-board-applied-ai",
+          "ai-board-ai-business",
+          "ccp-team-building-and-teamwork",
+          "ccp-smart-budgeting-business-finance",
+          "ccp-customer-experience-excellence",
+          "versant-english"
+        ]
+      },
+      "CourseArea": {
+        "type": "string",
+        "description": "COSMO subject area.",
+        "enum": [
+          "business",
+          "information-technology",
+          "creative-media",
+          "logistics",
+          "health-and-safety",
+          "hospitality-tourism",
+          "artificial-intelligence",
+          "ai-board",
+          "team-building",
+          "english"
+        ]
+      },
+      "CourseType": {
+        "type": "string",
+        "enum": [
+          "qualification",
+          "short-course",
+          "language"
+        ],
+        "description": "`qualification` = BTEC, City & Guilds, HNTec or NTec with a level. `short-course` = COSMO Certified Program (CCP) or The AI Board award, a few weeks long. `language` = English language certification."
+      },
+      "CourseFit": {
+        "type": "string",
+        "enum": [
+          "qualifies",
+          "needs-experience-or-portfolio",
+          "with-experience",
+          "builds-skills"
+        ],
+        "description": "How a course relates to a role. See the table in the API description."
+      },
+      "CareerLink": {
+        "type": "object",
+        "description": "One link from a course to a BIICF role.",
+        "required": [
+          "role",
+          "fit",
+          "years",
+          "route"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "role": {
+            "$ref": "#/components/schemas/RoleId"
+          },
+          "fit": {
+            "$ref": "#/components/schemas/CourseFit"
+          },
+          "years": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0,
+            "description": "Years of experience also needed on the matching route. 0 for `qualifies`; null for `needs-experience-or-portfolio` and `builds-skills`."
+          },
+          "route": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The BIICF entry route the course satisfies (its `note`). Null for `builds-skills`."
+          },
+          "why": {
+            "type": "string",
+            "description": "For `builds-skills`: which skill, certification or job title in the role the course matches."
+          }
+        }
+      },
+      "Course": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "provider",
+          "type",
+          "area",
+          "awardingBody",
+          "level",
+          "bdqf",
+          "bdqfSource",
+          "nextCourse",
+          "url",
+          "careerLinks"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/CourseId"
+          },
+          "title": {
+            "type": "string",
+            "example": "Pearson BTEC HND in Computing"
+          },
+          "provider": {
+            "type": "string",
+            "const": "COSMO",
+            "description": "Cosmopolitan College of Commerce & Technology, Brunei."
+          },
+          "type": {
+            "$ref": "#/components/schemas/CourseType"
+          },
+          "area": {
+            "$ref": "#/components/schemas/CourseArea"
+          },
+          "awardingBody": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Who awards the certificate, e.g. Pearson BTEC, City and Guilds, COSMO, The AI Board."
+          },
+          "level": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1,
+            "maximum": 8,
+            "description": "Level as named by the awarding body (BTEC/City & Guilds). Null for short courses and HNTec/NTec."
+          },
+          "bdqf": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/Bdqf"
+              }
+            ],
+            "description": "BDQF level the qualification gives, used to match role entry routes. Null for short courses."
+          },
+          "bdqfSource": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "biicf-table",
+              "estimated",
+              null
+            ],
+            "description": "`biicf-table` = the qualification is named in BIICF's BDQF table (HND, HNTec, NTec). `estimated` = mapped from the UK RQF level; confirm with COSMO."
+          },
+          "nextCourse": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/CourseId"
+              }
+            ],
+            "description": "The next COSMO qualification up the same ladder (e.g. Level 3 → HND)."
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Course page on cosmo.edu.bn (fees, intakes, entry requirements)."
+          },
+          "careerLinks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CareerLink"
+            },
+            "description": "Roles this course leads to or prepares for. Empty for courses outside ICT."
+          },
+          "note": {
+            "type": "string",
+            "description": "Present when `careerLinks` is empty or needs explaining."
+          }
+        }
+      },
+      "RoleCourse": {
+        "type": "object",
+        "description": "One course entry in the role → courses index.",
+        "required": [
+          "course",
+          "title",
+          "type",
+          "fit",
+          "years",
+          "url"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "course": {
+            "$ref": "#/components/schemas/CourseId"
+          },
+          "title": {
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/CourseType"
+          },
+          "fit": {
+            "$ref": "#/components/schemas/CourseFit"
+          },
+          "years": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      },
+      "RoleCoursesIndex": {
+        "type": "object",
+        "description": "Keys are role ids. The served file always contains all 39 roles (empty array when no course is linked); examples show only a few.",
+        "propertyNames": {
+          "$ref": "#/components/schemas/RoleId"
+        },
+        "additionalProperties": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/RoleCourse"
+          }
+        }
+      },
+      "StepStatus": {
+        "description": "**Computed client-side** (`stepStatus` in `js/path.js`), not served by any endpoint. The status badge for one role on the roadmap.",
+        "oneOf": [
+          {
+            "type": "object",
+            "title": "ok",
+            "required": [
+              "type",
+              "route"
+            ],
+            "properties": {
+              "type": {
+                "const": "ok",
+                "description": "✅ You qualify now."
+              },
+              "route": {
+                "$ref": "#/components/schemas/Route"
+              },
+              "soft": {
+                "type": "boolean",
+                "description": "True when the route needs unspecified experience and the user has none: \"You qualify (with a portfolio)\"."
+              }
+            }
+          },
+          {
+            "type": "object",
+            "title": "experience",
+            "required": [
+              "type",
+              "years",
+              "route"
+            ],
+            "properties": {
+              "type": {
+                "const": "experience",
+                "description": "⏳ Qualification met, experience not."
+              },
+              "years": {
+                "type": "integer",
+                "minimum": 1,
+                "description": "Years still needed."
+              },
+              "route": {
+                "$ref": "#/components/schemas/Route"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "title": "study",
+            "required": [
+              "type",
+              "needBdqf"
+            ],
+            "properties": {
+              "type": {
+                "const": "study",
+                "description": "🎓 Qualification not met on any route."
+              },
+              "needBdqf": {
+                "$ref": "#/components/schemas/Bdqf"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "title": "info",
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "info",
+                "description": "ℹ️ Details coming soon (unavailable role)."
+              }
+            }
+          }
+        ]
+      },
+      "Roadmap": {
+        "type": "object",
+        "description": "**Computed client-side** (`buildRoadmap` in `js/path.js`), not served by any endpoint. Documented for anyone reimplementing the logic.\n\n- **Path:** BFS over `next` from the sector's entry roles to the goal; shortest chain first, ties go to the first listed `next`. An alternative of the same length or one step longer becomes Route B.\n- **Status rule:** a route is eligible if user BDQF ≥ route BDQF. The best eligible route needs the least experience (`null` counts as 0), then prefers an explicit number, then the higher BDQF.\n- **Header years:** experience the goal needs on the user's best route, or on the BDQF 5 route if the user qualifies for none. Never summed across steps.\n- **Study step:** added when user BDQF is below the first role's lowest route.",
+        "required": [
+          "ids",
+          "steps",
+          "study",
+          "hasAlt",
+          "routeIndex",
+          "split",
+          "header",
+          "firstOk",
+          "furthestOk"
+        ],
+        "properties": {
+          "ids": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RoleId"
+            },
+            "description": "Role ids on the shown route, entry first, goal last."
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "role",
+                "status"
+              ],
+              "properties": {
+                "role": {
+                  "$ref": "#/components/schemas/Role"
+                },
+                "status": {
+                  "$ref": "#/components/schemas/StepStatus"
+                }
+              }
+            }
+          },
+          "study": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "required": [
+                  "needBdqf"
+                ],
+                "properties": {
+                  "needBdqf": {
+                    "$ref": "#/components/schemas/Bdqf"
+                  }
+                }
+              }
+            ],
+            "description": "Study step shown before the first role, or null."
+          },
+          "hasAlt": {
+            "type": "boolean"
+          },
+          "routeIndex": {
+            "type": "integer",
+            "enum": [
+              0,
+              1
+            ],
+            "description": "0 = main route, 1 = alternative."
+          },
+          "split": {
+            "type": "integer",
+            "minimum": -1,
+            "description": "Index of the last shared role before the routes diverge; -1 when there is no alternative."
+          },
+          "mainIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RoleId"
+            }
+          },
+          "altIds": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/RoleId"
+                }
+              }
+            ]
+          },
+          "header": {
+            "type": "object",
+            "required": [
+              "steps",
+              "years",
+              "route"
+            ],
+            "properties": {
+              "steps": {
+                "type": "integer",
+                "minimum": 1,
+                "description": "Number of role nodes."
+              },
+              "years": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "description": "Experience needed at the goal; null if unspecified or unavailable."
+              },
+              "route": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "$ref": "#/components/schemas/Route"
+                  }
+                ]
+              }
+            }
+          },
+          "firstOk": {
+            "type": "integer",
+            "minimum": -1,
+            "description": "Index of the first ✅ step, or -1."
+          },
+          "furthestOk": {
+            "type": "integer",
+            "minimum": -1,
+            "description": "Index of the furthest ✅ step (\"Fast track\"), or -1."
+          }
+        },
+        "example": {
+          "ids": [
+            "associate-security-analyst",
+            "cyber-risk-analyst",
+            "security-engineer",
+            "cyber-risk-manager",
+            "ciso"
+          ],
+          "steps": [
+            {
+              "role": {
+                "id": "associate-security-analyst",
+                "title": "Associate Security Analyst",
+                "sector": "ict-security",
+                "stage": "entry",
+                "aka": [
+                  "Security Analyst",
+                  "SOC Analyst",
+                  "Ethical Hacker",
+                  "Hacker",
+                  "Information Security Officer",
+                  "Cyber Security"
+                ],
+                "summary": "Monitors security systems, responds to alerts and educates users.",
+                "next": [
+                  "cyber-risk-analyst"
+                ],
+                "routes": [
+                  {
+                    "bdqf": 5,
+                    "years": 0,
+                    "note": "BDQF 5 in IS or Computer Science"
+                  },
+                  {
+                    "bdqf": 4,
+                    "years": 5,
+                    "note": "BDQF 4 + 5 years' experience, or a relevant portfolio"
+                  }
+                ],
+                "skills": [
+                  [
+                    "Cyber Risk Management",
+                    "3"
+                  ],
+                  [
+                    "Cyber & Data Breach Incident Management",
+                    "3"
+                  ],
+                  [
+                    "Network Security Management",
+                    "3"
+                  ],
+                  [
+                    "Security Administration",
+                    "3"
+                  ],
+                  [
+                    "Security Governance",
+                    "3"
+                  ]
+                ],
+                "soft": "Intermediate → Advanced",
+                "certs": [
+                  "CompTIA Security+",
+                  "Certified Ethical Hacker (CEH)",
+                  "GIAC GSEC",
+                  "SSCP",
+                  "GIAC GCIH",
+                  "OSCP"
+                ],
+                "url": "https://www.biicf.bn/sub-sectors/ict-security/job-roles/associate-security-analyst/"
+              },
+              "status": {
+                "type": "ok",
+                "route": {
+                  "bdqf": 5,
+                  "years": 0,
+                  "note": "BDQF 5 in IS or Computer Science"
+                },
+                "soft": false
+              }
+            },
+            {
+              "role": {
+                "id": "cyber-risk-analyst",
+                "title": "Cyber Risk Analyst",
+                "sector": "ict-security",
+                "stage": "mid",
+                "aka": [
+                  "IT Risk Analyst",
+                  "Threat Analyst",
+                  "Risk Assessment Analyst"
+                ],
+                "summary": "Assesses cyber risks and recommends controls to reduce them.",
+                "next": [
+                  "security-engineer"
+                ],
+                "routes": [
+                  {
+                    "bdqf": 6,
+                    "years": 0,
+                    "note": "BDQF 6 in IS or Computer Science"
+                  },
+                  {
+                    "bdqf": 5,
+                    "years": 4,
+                    "note": "BDQF 5 + 4 years in relevant roles"
+                  }
+                ],
+                "skills": [
+                  [
+                    "Cyber Risk Management",
+                    "4"
+                  ],
+                  [
+                    "Security Architecture",
+                    "4"
+                  ],
+                  [
+                    "Security Governance",
+                    "4"
+                  ],
+                  [
+                    "Security Implementation",
+                    "4"
+                  ],
+                  [
+                    "Security Planning",
+                    "4"
+                  ]
+                ],
+                "soft": "Advanced",
+                "certs": [
+                  "CompTIA CySA+",
+                  "CompTIA CASP+",
+                  "CISSP",
+                  "CISA",
+                  "CISM",
+                  "ISO 27001"
+                ],
+                "url": "https://www.biicf.bn/sub-sectors/ict-security/job-roles/cyber-risk-analyst/"
+              },
+              "status": {
+                "type": "experience",
+                "years": 4,
+                "route": {
+                  "bdqf": 5,
+                  "years": 4,
+                  "note": "BDQF 5 + 4 years in relevant roles"
+                }
+              }
+            },
+            {
+              "role": {
+                "id": "security-engineer",
+                "title": "Security Engineer",
+                "sector": "ict-security",
+                "stage": "senior",
+                "aka": [
+                  "Cyber Security Engineer",
+                  "Information Security Engineer",
+                  "IT Security Engineer"
+                ],
+                "summary": "Designs and implements secure system architectures.",
+                "next": [
+                  "cyber-risk-manager"
+                ],
+                "routes": [
+                  {
+                    "bdqf": 6,
+                    "years": 0,
+                    "note": "BDQF 6 in Cyber Security, IT Security or CS"
+                  },
+                  {
+                    "bdqf": 5,
+                    "years": 4,
+                    "note": "BDQF 5 + 4–6 years' experience"
+                  },
+                  {
+                    "bdqf": 4,
+                    "years": 6,
+                    "note": "BDQF 4 + 6–8 years as a security analyst or similar"
+                  }
+                ],
+                "skills": [
+                  [
+                    "Security Architecture",
+                    "5"
+                  ],
+                  [
+                    "Network Security Management",
+                    "5"
+                  ],
+                  [
+                    "Infrastructure Design",
+                    "5"
+                  ],
+                  [
+                    "Cyber Risk Management",
+                    "4"
+                  ],
+                  [
+                    "Security Programme Management",
+                    "4"
+                  ]
+                ],
+                "soft": "Advanced",
+                "certs": [
+                  "CISSP",
+                  "CEH",
+                  "CISM",
+                  "Cisco CCNP Security",
+                  "OSCP",
+                  "Cisco CyberOps"
+                ],
+                "url": "https://www.biicf.bn/sub-sectors/ict-security/job-roles/security-engineer/"
+              },
+              "status": {
+                "type": "experience",
+                "years": 4,
+                "route": {
+                  "bdqf": 5,
+                  "years": 4,
+                  "note": "BDQF 5 + 4–6 years' experience"
+                }
+              }
+            },
+            {
+              "role": {
+                "id": "cyber-risk-manager",
+                "title": "Cyber Risk Manager",
+                "sector": "ict-security",
+                "stage": "senior",
+                "aka": [
+                  "IT Security Manager",
+                  "GRC Manager",
+                  "Information Security Manager",
+                  "Cyber Assurance Manager"
+                ],
+                "summary": "Owns security policy, governance, compliance and awareness programmes.",
+                "next": [
+                  "ciso"
+                ],
+                "routes": [
+                  {
+                    "bdqf": 6,
+                    "years": 5,
+                    "note": "BDQF 6 in Cybersecurity or CS + certification"
+                  },
+                  {
+                    "bdqf": 5,
+                    "years": 8,
+                    "note": "BDQF 5 + certification or portfolio"
+                  }
+                ],
+                "skills": [
+                  [
+                    "Audit and Compliance",
+                    "4"
+                  ],
+                  [
+                    "Cyber Forensics",
+                    "4"
+                  ],
+                  [
+                    "IT Governance",
+                    "4"
+                  ],
+                  [
+                    "Security Education and Awareness",
+                    "4"
+                  ],
+                  [
+                    "Security Programme Management",
+                    "4"
+                  ]
+                ],
+                "soft": "Intermediate",
+                "certs": [
+                  "CRISC",
+                  "CISA",
+                  "ISO 27005 Risk Manager",
+                  "ISC2 CGRC",
+                  "CompTIA CySA+",
+                  "CGEIT"
+                ],
+                "url": "https://www.biicf.bn/sub-sectors/ict-security/job-roles/cyber-risk-manager/"
+              },
+              "status": {
+                "type": "experience",
+                "years": 8,
+                "route": {
+                  "bdqf": 5,
+                  "years": 8,
+                  "note": "BDQF 5 + certification or portfolio"
+                }
+              }
+            },
+            {
+              "role": {
+                "id": "ciso",
+                "title": "Chief Information Security Officer (CISO)",
+                "sector": "ict-security",
+                "stage": "top",
+                "aka": [
+                  "CISO",
+                  "Head of IT Security",
+                  "Chief Security Officer",
+                  "Director of Cybersecurity"
+                ],
+                "summary": "Leads the organisation's whole information security strategy.",
+                "next": [],
+                "routes": [
+                  {
+                    "bdqf": 6,
+                    "years": 10,
+                    "note": "BDQF 6 + certification, 10 years at senior level"
+                  },
+                  {
+                    "bdqf": 5,
+                    "years": 12,
+                    "note": "BDQF 5 + certification, 12 years at senior level"
+                  }
+                ],
+                "skills": [
+                  [
+                    "Security Strategy",
+                    "5"
+                  ],
+                  [
+                    "Threat Analysis and Defence",
+                    "5"
+                  ],
+                  [
+                    "Threat Intelligence and Detection",
+                    "5"
+                  ],
+                  [
+                    "Cyber Forensics",
+                    "5"
+                  ],
+                  [
+                    "Business Continuity",
+                    "5"
+                  ]
+                ],
+                "soft": "Advanced",
+                "certs": [
+                  "CCISO",
+                  "CISSP",
+                  "CISM",
+                  "CRISC",
+                  "GIAC GSTRT",
+                  "NIST CSF 2.0 Lead Implementer"
+                ],
+                "url": "https://www.biicf.bn/sub-sectors/ict-security/job-roles/chief-information-security-officer-ciso/"
+              },
+              "status": {
+                "type": "experience",
+                "years": 12,
+                "route": {
+                  "bdqf": 5,
+                  "years": 12,
+                  "note": "BDQF 5 + certification, 12 years at senior level"
+                }
+              }
+            }
+          ],
+          "study": null,
+          "hasAlt": false,
+          "routeIndex": 0,
+          "split": -1,
+          "altIds": null,
+          "mainIds": [
+            "associate-security-analyst",
+            "cyber-risk-analyst",
+            "security-engineer",
+            "cyber-risk-manager",
+            "ciso"
+          ],
+          "header": {
+            "steps": 5,
+            "years": 12,
+            "route": {
+              "bdqf": 5,
+              "years": 12,
+              "note": "BDQF 5 + certification, 12 years at senior level"
+            }
+          },
+          "firstOk": 0,
+          "furthestOk": 0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+/* Short, finite transitions keep the pathway easy to scan and operate. */
+:root { --motion-ease: cubic-bezier(.2, .75, .2, 1); }
+.qualification-pill, .sector-tab, .icon-button, .card-save, .button, .course-link, .motion-control, .route-button, .hero-cta, .journey-autoplay, .journey-nav button, .evolution-step {
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, box-shadow 180ms ease, transform 220ms var(--motion-ease);
+}
+.pathway-card { transition: transform 230ms var(--motion-ease), border-color 200ms ease, box-shadow 230ms ease; }
+.pathway-card:hover, .pathway-card:focus-within { transform: translateY(-3px); }
+.pathway-card .next-role { transition: transform 220ms var(--motion-ease); }
+.pathway-card:hover .next-role { transform: translateX(2px); }
+.skill-fill { transition: width 500ms var(--motion-ease); }
+.evolution-node { transition: background-color 240ms ease, border-color 240ms ease, box-shadow 240ms ease; }
+.evolution-portrait > .character-sprite { transition: transform 280ms var(--motion-ease), filter 240ms ease; }
+.evolution-step:hover .evolution-portrait > .character-sprite, .evolution-step:focus-visible .evolution-portrait > .character-sprite { transform: translateY(-4px); }
+.evolution-step.is-current .evolution-portrait > .character-sprite { transform: translateY(-3px); }
+.hero-cta:hover svg { transform: translateX(2px); }
+.hero-cta svg { transition: transform 220ms var(--motion-ease); }
+.qualification-pill:active, .icon-button:active, .button:active { transform: translateY(1px); }
+.hero-line { display: block; }
+html.motion-ready .hero h1 { animation: headline-enter 650ms var(--motion-ease) both; }
+html.motion-ready .hero-description, html.motion-ready .hero-copy > p { animation: copy-enter 650ms 80ms var(--motion-ease) both; }
+html.motion-ready .profile-panel { animation: copy-enter 650ms 140ms var(--motion-ease) both; }
+html.motion-ready .future-preview { animation: future-enter 700ms 90ms var(--motion-ease) both; }
+html.motion-ready .detail-dialog[open] { animation: detail-enter 260ms var(--motion-ease) both; }
+html.motion-ready .detail-dialog[open]::backdrop { animation: backdrop-enter 200ms ease both; }
+html.motion-ready .toast:not([hidden]) { animation: toast-enter 240ms var(--motion-ease) both; }
+@keyframes headline-enter { from { opacity: .25; transform: translateX(19px); } to { opacity: 1; transform: none; } }
+@keyframes copy-enter { from { opacity: .25; transform: translateY(9px); } to { opacity: 1; transform: none; } }
+@keyframes detail-enter { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: none; } }
+@keyframes backdrop-enter { from { opacity: 0; } to { opacity: 1; } }
+@keyframes toast-enter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes future-enter { from { opacity: .4; transform: translateY(12px) scale(.98); } to { opacity: 1; transform: none; } }
+/* Welcome entrance: a staggered blur-in, the signature of the cinematic hero style. */
+html.motion-ready .flow-welcome .flow-eyebrow, html.motion-ready .flow-welcome .flow-title-line, html.motion-ready .flow-welcome .flow-intro, html.motion-ready .flow-welcome .flow-actions, html.motion-ready .flow-welcome .flow-caption, html.motion-ready .flow-welcome-foot > span { animation: blur-rise 900ms var(--motion-ease) both; }
+html.motion-ready .flow-welcome .flow-title-line:nth-child(1) { animation-delay: 90ms; }
+html.motion-ready .flow-welcome .flow-title-line:nth-child(2) { animation-delay: 180ms; }
+html.motion-ready .flow-welcome .flow-intro { animation-delay: 290ms; }
+html.motion-ready .flow-welcome .flow-actions { animation-delay: 380ms; }
+html.motion-ready .flow-welcome .flow-caption { animation-delay: 460ms; }
+html.motion-ready .flow-welcome-foot > span { animation-delay: 560ms; }
+html.motion-ready .flow-welcome-foot > span + span { animation-delay: 630ms; }
+html.motion-ready .flow-welcome .flow-portrait-start { animation: blur-rise 1000ms var(--motion-ease) 320ms both; }
+html.motion-ready .flow-welcome .flow-portrait-future { animation: blur-rise 1100ms var(--motion-ease) 620ms both; }
+@keyframes blur-rise { from { opacity: 0; filter: blur(12px); translate: 0 22px; } to { opacity: 1; filter: blur(0); translate: 0 0; } }
+/* Scroll-linked journey motion from scroll-motion.js; content is only held back while .scroll-fx is set. */
+.scroll-progress { position: fixed; z-index: 30; top: 0; left: 0; width: 100%; height: 3px; transform: scaleX(var(--scroll-progress, 0)); transform-origin: left; background: linear-gradient(90deg, var(--brand-yellow), #FFE680); box-shadow: 0 0 10px #FCD00F80; pointer-events: none; }
+html:not(.scroll-fx) .scroll-progress { display: none; }
+html.scroll-fx .scroll-reveal { opacity: 0; filter: blur(8px); translate: 0 34px; transition: opacity 700ms var(--motion-ease), filter 700ms var(--motion-ease), translate 800ms var(--motion-ease); }
+html.scroll-fx .scroll-reveal.is-revealed { opacity: 1; filter: none; translate: 0 0; }
+html.scroll-fx .hero-copy { translate: 0 calc(var(--hero-shift, 0) * 48px); opacity: calc(1 - var(--hero-shift, 0) * .8); }
+html.scroll-fx .future-preview { translate: 0 calc(var(--hero-shift, 0) * -36px); }
+html.scroll-fx .journey-panel:not(.is-revealed) .evolution-step { opacity: 0; }
+html.scroll-fx .journey-panel.is-revealed .evolution-step { animation: step-rise 650ms var(--motion-ease) calc(var(--step, 0) * 110ms + 150ms) both; }
+html.scroll-fx .journey-panel.is-revealed .evolution-step:not(:last-child)::before { transform-origin: left; animation: path-draw 520ms var(--motion-ease) calc(var(--step, 0) * 110ms + 380ms) both; }
+.evolution-step:nth-child(2) { --step: 1; } .evolution-step:nth-child(3) { --step: 2; } .evolution-step:nth-child(4) { --step: 3; }
+.evolution-step:nth-child(5) { --step: 4; } .evolution-step:nth-child(6) { --step: 5; } .evolution-step:nth-child(n+7) { --step: 6; }
+@keyframes step-rise { from { opacity: 0; filter: blur(6px); translate: 0 28px; } to { opacity: 1; filter: blur(0); translate: 0 0; } }
+@keyframes path-draw { from { scale: 0 1; } to { scale: 1 1; } }
+html.motion-paused *, html.motion-paused *::before, html.motion-paused *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+html.motion-paused .pathway-card:hover, html.motion-paused .pathway-card:focus-within, html.motion-paused .pathway-card:hover .next-role { transform: none; }
+html.motion-paused .evolution-step .evolution-portrait > .character-sprite, html.motion-paused .hero-cta:hover svg { transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  .pathway-card:hover, .pathway-card:focus-within, .pathway-card:hover .next-role { transform: none; }
+  .evolution-step .evolution-portrait > .character-sprite, .hero-cta:hover svg { transform: none !important; }
+}

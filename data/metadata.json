@@ -1,0 +1,40 @@
+{
+  "mode": "spec-examples",
+  "source": "https://ccctmacademy.edu.bn/showcase_2026/openapi.json",
+  "downloadedAt": "2026-10-16T12:21:51.071Z",
+  "explanation": "The four data endpoints described by the supplied OpenAPI document return HTTP 404. This page uses only the full example records embedded in that document: six documented roles, six sectors, three courses, and three role-course mappings. This is an incomplete example dataset, not the advertised complete 39-role / 38-course catalogue.",
+  "counts": {
+    "roles": 6,
+    "sectors": 6,
+    "courses": 3,
+    "roleCourseMappings": 3
+  },
+  "documentedCounts": {
+    "roles": 39,
+    "sectors": 6,
+    "courses": 38
+  },
+  "unavailableEndpoints": [
+    {
+      "path": "/data/roles.json",
+      "url": "https://ccctmacademy.edu.bn/showcase_2026/data/roles.json",
+      "status": 404
+    },
+    {
+      "path": "/data/sectors.json",
+      "url": "https://ccctmacademy.edu.bn/showcase_2026/data/sectors.json",
+      "status": 404
+    },
+    {
+      "path": "/data/courses.json",
+      "url": "https://ccctmacademy.edu.bn/showcase_2026/data/courses.json",
+      "status": 404
+    },
+    {
+      "path": "/data/role-courses.json",
+      "url": "https://ccctmacademy.edu.bn/showcase_2026/data/role-courses.json",
+      "status": 404
+    }
+  ],
+  "note": "Some example course links reference roles outside the available example records. Their names, requirements and progression have not been invented. Run node scripts/refresh-data.mjs after the source publishes its datasets to replace the examples with a validated full snapshot."
+}

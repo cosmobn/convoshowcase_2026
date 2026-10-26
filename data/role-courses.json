@@ -1,0 +1,120 @@
+{
+  "associate-security-analyst": [
+    {
+      "course": "hnd-computing",
+      "title": "Pearson BTEC HND in Computing",
+      "type": "qualification",
+      "fit": "qualifies",
+      "years": 0,
+      "url": "https://cosmo.edu.bn/hnd-in-computing"
+    },
+    {
+      "course": "ccp-cybersecurity",
+      "title": "CCP Cybersecurity",
+      "type": "short-course",
+      "fit": "builds-skills",
+      "years": null,
+      "url": "https://cosmo.edu.bn/ccp-cybersecurity/"
+    },
+    {
+      "course": "btec-l3-it",
+      "title": "Pearson BTEC Diploma in Information Technology",
+      "type": "qualification",
+      "fit": "with-experience",
+      "years": 5,
+      "url": "https://cosmo.edu.bn/diploma-in-information-technology"
+    }
+  ],
+  "ciso": [
+    {
+      "course": "hnd-computing",
+      "title": "Pearson BTEC HND in Computing",
+      "type": "qualification",
+      "fit": "with-experience",
+      "years": 12,
+      "url": "https://cosmo.edu.bn/hnd-in-computing"
+    }
+  ],
+  "digital-marketing-executive": [
+    {
+      "course": "ccp-web-and-content-management",
+      "title": "CCP Web and Content Management",
+      "type": "short-course",
+      "fit": "builds-skills",
+      "years": null,
+      "url": "https://cosmo.edu.bn/ccp-web-and-content-management/"
+    },
+    {
+      "course": "ccp-graphic-design-illustration",
+      "title": "CCP Graphic Design & Illustration",
+      "type": "short-course",
+      "fit": "builds-skills",
+      "years": null,
+      "url": "https://cosmo.edu.bn/ccp-graphic-design-illustration/"
+    },
+    {
+      "course": "ccp-print-digital-media-publication",
+      "title": "CCP Print & Digital Media Publication",
+      "type": "short-course",
+      "fit": "builds-skills",
+      "years": null,
+      "url": "https://cosmo.edu.bn/ccp-print-digital-media-publication/"
+    },
+    {
+      "course": "ccp-motion-graphics-design",
+      "title": "CCP Motion Graphics Design",
+      "type": "short-course",
+      "fit": "builds-skills",
+      "years": null,
+      "url": "https://cosmo.edu.bn/ccp-motion-graphics-design/"
+    },
+    {
+      "course": "ccp-video-editing-production",
+      "title": "CCP Video Editing & Production",
+      "type": "short-course",
+      "fit": "builds-skills",
+      "years": null,
+      "url": "https://cosmo.edu.bn/ccp-video-editing-production/"
+    },
+    {
+      "course": "ccp-photography",
+      "title": "CCP Photography",
+      "type": "short-course",
+      "fit": "builds-skills",
+      "years": null,
+      "url": "https://cosmo.edu.bn/ccp-photography/"
+    },
+    {
+      "course": "ccp-canva-design-specialist",
+      "title": "CCP Canva Design Specialist",
+      "type": "short-course",
+      "fit": "builds-skills",
+      "years": null,
+      "url": "https://cosmo.edu.bn/ccp-canva-design-specialist/"
+    },
+    {
+      "course": "ccp-capcut-video-creator",
+      "title": "CCP CapCut Video Creator",
+      "type": "short-course",
+      "fit": "builds-skills",
+      "years": null,
+      "url": "https://cosmo.edu.bn/ccp-capcut-video-creator/"
+    },
+    {
+      "course": "ccp-social-media-marketing-management",
+      "title": "CCP Social Media Marketing & Management",
+      "type": "short-course",
+      "fit": "builds-skills",
+      "years": null,
+      "url": "https://cosmo.edu.bn/ccp-social-media-marketing-management/"
+    },
+    {
+      "course": "hnd-business",
+      "title": "Pearson BTEC HND in Business",
+      "type": "qualification",
+      "fit": "with-experience",
+      "years": 5,
+      "url": "https://cosmo.edu.bn/hnd-in-business"
+    }
+  ]
+}

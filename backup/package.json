@@ -1,0 +1,14 @@
+{
+  "name": "pathfinder-ict",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "PathFinder ICT: a static career-path finder for students in Brunei, based on BIICF.",
+  "scripts": {
+    "test": "node tests/path.test.js && node tests/courses.test.js",
+    "start": "npx --yes serve -l 8080 .",
+    "share-pages": "node tools/make-share-pages.js",
+    "openapi": "node tools/make-courses.js && node tools/make-openapi.js",
+    "courses": "node tools/make-courses.js"
+  }
+}
