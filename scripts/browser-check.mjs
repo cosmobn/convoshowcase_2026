@@ -73,13 +73,21 @@ try {
     await call('Input.dispatchKeyEvent', { type: 'keyUp', key, code, windowsVirtualKeyCode }); await frames();
   }
   async function waitFlow(screen, focused = false) {
-    await waitFor(`document.querySelector('#career-flow')?.getClientRects().length > 0 && document.querySelector('#flow-title') && document.querySelectorAll('#flow-progress > li').length === 5 && !document.querySelector('#flow-content .flow-loading') && (new URL(location.href).searchParams.get('screen') || 'welcome') === ${JSON.stringify(screen)}`, `the ${screen} career-selection screen`);
+    await waitFor(`document.querySelector('#career-flow')?.getClientRects().length > 0 && document.querySelector('#flow-title') && document.querySelectorAll('#flow-progress > li').length === 7 && !document.querySelector('#flow-content .flow-loading') && (new URL(location.href).searchParams.get('screen') || 'welcome') === ${JSON.stringify(screen)}`, `the ${screen} career-selection screen`);
     assert(await evaluate('document.querySelector("#career-experience").hidden'), `The pathway is visible before the ${screen} step is confirmed`);
     if (focused) await waitFor('document.activeElement === document.querySelector("#flow-title")', `the ${screen} screen title to receive focus`);
   }
   async function waitJourney(goal) {
     await waitFor(`document.querySelector('#career-experience')?.getClientRects().length > 0 && document.querySelector('#goal-select')?.value === ${JSON.stringify(goal)} && document.querySelectorAll('.pathway-card').length > 0`, `the visible ${goal} career journey`);
     assert(await evaluate('document.querySelector("#career-flow").hidden'), 'Career selection remains visible after starting the journey');
+  }
+  // Answers the "What do you like?" questions (kind "quiz") or the quick field quiz (kind "discover") one click at a time.
+  async function answer(values, kind = 'quiz') {
+    for (const value of values) {
+      const count = await evaluate('new URL(location.href).searchParams.get(' + JSON.stringify(kind === 'quiz' ? 'likes' : 'quiz') + ')?.split(".").filter(Boolean).length || 0');
+      await click(`[data-${kind}-answer="${value}"]`);
+      await waitFor(`(new URL(location.href).searchParams.get(${JSON.stringify(kind === 'quiz' ? 'likes' : 'quiz')})?.split(".").filter(Boolean).length || 0) === ${count + 1}`, `${kind} answer ${count + 1} to be recorded`);
+    }
   }
   async function historyStep(delta, screen, goal) {
     await evaluate(`history.go(${delta})`);
@@ -125,8 +133,10 @@ try {
     }
     return characters;
   }
+  // CM, IT and Business have field art; OHS has none yet and shows the illustrated character.
   async function checkFieldPortraits(mobile = false) {
-    const portraits = await evaluate(`Promise.all([...document.querySelectorAll('#flow-content [data-flow-field]')].map(async card => {
+    assert(await evaluate('!!document.querySelector("#flow-content [data-flow-field=ohs] .flow-field-sprite .character-sprite") && !document.querySelector("#flow-content [data-flow-field=ohs] img")'), 'OHS should show the illustrated character until it has field art');
+    const portraits = await evaluate(`Promise.all([...document.querySelectorAll('#flow-content [data-flow-field]:not([data-flow-field=ohs])')].map(async card => {
       const image = card.querySelector('img.flow-field-photo');
       if (!image) throw new Error('Missing career portrait for ' + card.dataset.flowField);
       await image.decode();
@@ -175,24 +185,39 @@ try {
   await navigate(); await evaluate('localStorage.clear()'); await load('Page.reload');
   await waitFlow('welcome');
   assert.equal(await evaluate('document.querySelector("#flow-title").innerText.replace(/\\s+/g, " ").trim()'), 'What do you want to be?');
-  assert.equal(await evaluate('document.querySelector("#flow-progress").children.length'), 5, 'The guide should communicate its five selection steps');
+  assert.equal(await evaluate('document.querySelector("#flow-progress").children.length'), 7, 'The guide should communicate its seven selection steps');
   assert(await evaluate('document.documentElement.scrollWidth <= innerWidth'), 'The desktop welcome screen overflows');
   const welcomeCharacters = await checkCharacterSprites('#flow-content .character-sprite');
   assert.deepEqual(welcomeCharacters.map(character => character.level), ['0', '5'], 'The welcome scene should show the student and future professional');
   await screenshot('desktop-welcome.png', true);
   await evaluate('document.querySelector("[data-flow-action=start]").focus()'); await key('Enter');
   await waitFlow('fields', true);
-  assert.equal(await evaluate('document.querySelectorAll("#flow-content [data-flow-field]").length'), 3, 'Students should be offered IT, Creative and Business');
+  assert.deepEqual(await evaluate('[...document.querySelectorAll("#flow-content [data-flow-field]")].map(card => card.dataset.flowField)'), ['creative', 'it', 'business', 'ohs'], 'Students should be offered CM, IT, Business and OHS');
   await checkFieldPortraits();
   await screenshot('desktop-fields.png', true);
   assert(await evaluate('document.querySelector("#flow-progress [data-flow-screen=journey]").disabled'), 'Future progress steps must not bypass career confirmation');
-  await evaluate('document.querySelector("[data-flow-field=creative]").focus()'); await key('ArrowLeft');
+  await evaluate('document.querySelector("[data-flow-field=creative]").focus()'); await key('ArrowRight');
   assert.equal(await evaluate('document.activeElement.dataset.flowField'), 'it', 'Arrow keys should move through the field roster');
   assert.equal(await evaluate('new URL(location.href).searchParams.get("field")'), 'it', 'The highlighted field should be kept in the URL');
   await evaluate('document.querySelector("[data-flow-action=choose-field]").focus()'); await key('Enter');
+  await waitFlow('likes', true);
+  assert.match(await evaluate('document.querySelector(".quiz-progress").textContent'), /Question 1 of 7/, 'What do you like? should ask seven questions');
+  assert.equal(await evaluate('document.querySelectorAll("[data-quiz-answer]").length'), 6, 'Each IT question offers five job areas and None of these');
+  await screenshot('desktop-likes.png', true);
+  await answer(Array(7).fill('security'));
+  await waitFlow('match', true);
+  assert.equal(await evaluate('document.querySelectorAll(".pie-chart .pie-slice").length'), 1, 'All-security answers should draw one full slice');
+  assert.equal(await evaluate('document.querySelectorAll(".pie-legend li").length'), 5, 'The answers legend should list every IT job area');
+  assert.match(await evaluate('document.querySelector("#flow-title").textContent'), /Cyber Security/, 'The match should name the best job area');
+  assert.equal(await evaluate('document.querySelectorAll(".match-card:not(.match-others) [data-match-career]").length'), 5, 'Jobs that suit you should list the five Cyber Security roles');
+  assert(await evaluate('document.documentElement.scrollWidth <= innerWidth'), 'The desktop match screen overflows');
+  await screenshot('desktop-match.png', true);
+  await click('[data-match-career="associate-security-analyst"]');
   await waitFlow('careers', true);
-  assert.equal(await evaluate('document.querySelectorAll("#flow-content [data-flow-career]").length'), 6, 'IT should contain the six published career examples');
-  assert.equal((await checkCharacterSprites('#flow-content .cs-thumb .character-sprite')).length, 6, 'Each roster portrait should show the smiling human character');
+  assert.equal(await evaluate('document.querySelectorAll("#flow-content [data-flow-career]").length'), 33, 'IT should contain all 33 IT roles');
+  assert.equal((await checkCharacterSprites('#flow-content .cs-thumb .character-sprite')).length, 33, 'Each roster portrait should show the smiling human character');
+  assert.deepEqual(await evaluate('[...document.querySelectorAll("#flow-content [data-flow-career]")].slice(0, 5).map(thumb => thumb.dataset.flowCareer)'), ['associate-security-analyst', 'cyber-risk-analyst', 'security-engineer', 'cyber-risk-manager', 'ciso'], 'The roster should lead with the best-matching roles');
+  assert(await evaluate('!!document.querySelector(".cs-info .cs-best")'), 'A best-matching role should be tagged');
   await screenshot('desktop-careers.png', true);
   assert.equal(await evaluate('document.querySelector(".cs-thumb[aria-pressed=true]").dataset.flowCareer'), 'associate-security-analyst', 'Career select should highlight the first career');
   await evaluate('document.querySelector(".cs-thumb[aria-pressed=true]").focus()'); await key('ArrowRight');
@@ -201,10 +226,11 @@ try {
   assert.match(await evaluate('document.querySelector(".cs-info h2").textContent'), /Cyber Risk Analyst/, 'The character card did not follow the roster');
   await click('.cs-skill[data-cs-skill="1"]');
   assert(await evaluate('document.querySelector(".cs-skill[aria-pressed=true]").dataset.csSkill === "1" && /Level [1-5]/.test(document.querySelector("#cs-skill-detail").textContent)'), 'Choosing a skill tile did not show its level');
-  assert.equal(await evaluate('document.querySelectorAll("#flow-content [data-flow-career]").length'), 6);
+  assert.equal(await evaluate('document.querySelectorAll("#flow-content [data-flow-career]").length'), 33);
   assert.equal(await evaluate('new URL(location.href).searchParams.get("field")'), 'it');
   await click('[data-flow-career="associate-security-analyst"]'); await click('[data-flow-action=choose]'); await waitFlow('profile', true);
   assert.match(await evaluate('document.querySelector("#flow-content").textContent'), /Associate Security Analyst/);
+  assert.match(await evaluate('document.querySelector(".mission-study")?.textContent || ""'), /Pearson BTEC HND in Computing meets an entry route/, 'The profile should name the COSMO qualification that leads to the role');
   assert(await evaluate('!!document.querySelector("#flow-content .character-sprite")'), 'The career profile is missing its illustrated character');
   assert.equal((await checkCharacterSprites('#flow-content .flow-profile-character .character-sprite')).length, 1, 'The selected career profile should show the smiling human character');
   await screenshot('desktop-profile.png', true);
@@ -219,8 +245,9 @@ try {
   await historyStep(-1, 'profile');
   assert(!await evaluate('document.querySelector("#detail-dialog").open'), 'Browser Back left a journey modal blocking career selection');
   await historyStep(1, 'journey', 'associate-security-analyst');
-  for (const screen of ['profile', 'careers', 'fields', 'welcome']) await historyStep(-1, screen);
-  for (const screen of ['fields', 'careers', 'profile', 'journey']) await historyStep(1, screen, 'associate-security-analyst');
+  // Each answer is its own history entry, so Back steps through the questions too.
+  for (const screen of ['profile', 'careers', 'match', ...Array(7).fill('likes'), 'fields', 'welcome']) await historyStep(-1, screen);
+  for (const screen of ['fields', ...Array(7).fill('likes'), 'match', 'careers', 'profile', 'journey']) await historyStep(1, screen, 'associate-security-analyst');
   await click('[data-qualification="hnd"]'); await setValue('#experience-slider', '4', 'input');
   assert.equal(await evaluate('new URL(location.href).searchParams.get("screen")'), 'journey', 'Updating a profile lost the current flow screen');
   await click('#change-career'); await waitFlow('profile', true);
@@ -229,15 +256,30 @@ try {
   assert.equal(await evaluate('document.querySelector(".qualification-pill[aria-pressed=true]").dataset.qualification'), 'hnd', 'Reconfirming a career lost the chosen qualification');
   assert.equal(await evaluate('document.querySelector("#experience-slider").value'), '4', 'Reconfirming a career lost the experience value');
   await click('#change-career'); await waitFlow('profile', true); await click('[data-flow-screen=fields]'); await waitFlow('fields', true);
-  for (const field of ['creative', 'business']) {
-    await click(`[data-flow-field="${field}"]`); await click('[data-flow-action=choose-field]'); await waitFlow('careers', true);
-    assert.equal(await evaluate('document.querySelectorAll("#flow-content [data-flow-career]").length'), 0, `${field} invented unpublished career examples`);
-    assert.match(await evaluate('document.querySelector("#flow-content").textContent'), /not (?:yet )?published|not available|no (?:published )?careers|coming soon/i, `${field} does not explain its unavailable data`);
-    await click('[data-flow-action=fields]'); await waitFlow('fields', true);
-  }
-  await click('[data-flow-field=creative]'); await click('[data-flow-action=choose-field]'); await waitFlow('careers', true);
-  await click('[data-flow-action=explore-it]'); await waitFlow('careers', true);
-  assert.equal(await evaluate('new URL(location.href).searchParams.get("field")'), 'it', 'The empty-state recovery did not open IT careers');
+  await click('[data-flow-field=business]'); await click('[data-flow-action=choose-field]'); await waitFlow('likes', true);
+  await answer(Array(7).fill('numbers')); await waitFlow('match', true);
+  assert.equal(await evaluate('document.querySelectorAll("[data-match-career]").length'), 0, 'Business jobs are COSMO careers, not BIICF roles');
+  await click('[data-flow-action=guide]'); await waitFlow('careers', true);
+  assert.equal(await evaluate('document.querySelectorAll("#flow-content [data-flow-career]").length'), 0, 'Business should not invent an ordered career ladder');
+  assert.equal(await evaluate('document.querySelectorAll(".business-level").length'), 4, 'Business should show the four published BTEC study levels');
+  assert.equal(await evaluate('document.querySelectorAll(".business-tags li").length'), 10, 'Business should show the ten career possibilities published by COSMO');
+  assert.deepEqual(await evaluate('[...document.querySelectorAll(".business-tags li.is-match")].map(item => item.firstChild.textContent.trim())'), ['Business Analyst', 'Finance Assistant'], 'Business should mark the best-matching careers');
+  assert.equal(await evaluate('document.querySelectorAll(".business-topics li").length'), 7, 'Business should show the published HND leadership topics');
+  assert.match(await evaluate('document.querySelector("#flow-content").textContent'), /course-based study guide|not a BIICF competency framework/i, 'Business does not explain its source boundary');
+  await screenshot('desktop-business.png', true);
+  await click('[data-flow-action=to-match]'); await waitFlow('match', true);
+  await click('[data-flow-action=fields]'); await waitFlow('fields', true);
+  await click('[data-flow-field=creative]'); await click('[data-flow-action=choose-field]'); await waitFlow('likes', true);
+  await answer(Array(7).fill('research')); await waitFlow('match', true);
+  await click('[data-match-career="market-analyst"]'); await waitFlow('careers', true);
+  assert.equal(await evaluate('document.querySelectorAll("#flow-content [data-flow-career]").length'), 6, 'CM should contain the six published Digital Media careers');
+  assert.match(await evaluate('document.querySelector("#flow-content").textContent'), /Market Analyst/, 'The Digital Media entry career is missing');
+  await click('[data-flow-action=to-match]'); await waitFlow('match', true);
+  await click('[data-flow-action=fields]'); await waitFlow('fields', true);
+  await click('[data-flow-field=it]'); await click('[data-flow-action=choose-field]'); await waitFlow('likes', true);
+  await answer(Array(7).fill('security')); await waitFlow('match', true);
+  await click('[data-match-career="ciso"]'); await waitFlow('careers', true);
+  assert.equal(await evaluate('new URL(location.href).searchParams.get("field")'), 'it', 'Returning from Digital Media did not open IT careers');
   await click('[data-flow-career=ciso]'); await click('[data-flow-action=choose]'); await waitFlow('profile', true);
   assert.match(await evaluate('document.querySelector("#flow-content").textContent'), /Chief Information Security Officer/);
   await click('[data-flow-action=ready]'); await waitJourney('ciso');
@@ -304,37 +346,58 @@ try {
   await click('#saved-button'); assert.equal(await evaluate('document.querySelectorAll("#detail-dialog .saved-role").length'), 1); await closeDialog();
 
   await click('#sector-tabs [data-sector="apps-solutions"]');
-  assert.equal(await evaluate('document.querySelectorAll(".pathway-card").length'), 0, 'Software should not invent role data');
-  assert(await evaluate('!!document.querySelector(".empty-state")'), 'Software has no explicit empty state');
+  assert.equal(await evaluate('document.querySelectorAll(".pathway-card").length'), 5, 'Software should show the path to Chief Technology Officer (Software)');
   await click('#sector-tabs [data-sector="telecom-network"]');
-  assert.equal(await evaluate('document.querySelectorAll(".pathway-card").length'), 0, 'Network should not invent role data');
+  assert.equal(await evaluate('document.querySelectorAll(".pathway-card").length'), 5, 'Network should show the path to Chief Technology Officer (Network)');
   await setValue('#more-sectors', 'it-services');
-  assert(await evaluate('!!document.querySelector(".empty-state") && document.querySelectorAll(".pathway-card").length === 0'), 'IT Services has no empty state');
-  await setValue('#more-sectors', 'digital-media'); assert.equal(await evaluate('document.querySelectorAll(".pathway-card").length'), 0);
-  await click('#sector-tabs [data-sector="data-ai"]'); assert.equal(await evaluate('document.querySelectorAll(".pathway-card").length'), 1);
-  assert.equal(await evaluate('document.querySelectorAll("[data-evolution]").length'), 2);
-  await click('[data-evolution="1"]');
+  assert.equal(await evaluate('document.querySelectorAll(".pathway-card").length'), 6, 'IT Services should show the path to Chief Information Officer');
+  await setValue('#more-sectors', 'digital-media'); assert.equal(await evaluate('document.querySelectorAll(".pathway-card").length'), 5, 'Digital Media should show the published path to Chief Marketing Officer');
+  await click('#sector-tabs [data-sector="data-ai"]'); assert.equal(await evaluate('document.querySelectorAll(".pathway-card").length'), 5, 'Data & AI should show the path to Business Intelligence Director');
+  await setValue('#goal-select', 'data-architect'); assert.equal(await evaluate('document.querySelectorAll(".pathway-card").length'), 4);
+  assert.equal(await evaluate('document.querySelectorAll("[data-evolution]").length'), 5);
+  await click('[data-evolution="4"]');
   assert.match(await evaluate('document.querySelector("#journey-insight").textContent'), /not been published/i, 'Data Architect progression should explain unpublished requirements');
   await click('.card-open[data-detail="data-architect"]');
   assert(await evaluate('/not published|coming soon|unavailable/i.test(document.querySelector("#detail-dialog").textContent)'), 'Data Architect should explain unavailable detail data');
   await closeDialog(); await click('#sector-tabs [data-sector="ict-security"]');
   await setValue('#goal-select', 'associate-security-analyst'); assert.equal(await evaluate('document.querySelectorAll(".pathway-card").length'), 1);
   await setValue('#goal-select', 'ciso'); assert.equal(await evaluate('document.querySelectorAll(".pathway-card").length'), 5);
-  await click('#courses-button'); assert.equal(await evaluate('document.querySelectorAll("#detail-dialog .course-card").length'), 3); await closeDialog();
+  await click('#courses-button'); assert.equal(await evaluate('document.querySelectorAll("#detail-dialog .course-card").length'), 38); await closeDialog();
   await click('#about-button');
   const about = await evaluate('document.querySelector("#detail-dialog").textContent');
-  assert(/(?:6|six)\s+(?:complete\s+)?(?:role|career)/i.test(about), 'Data provenance does not disclose six role examples');
-  assert(/(?:3|three)\s+(?:complete\s+)?course/i.test(about), 'Data provenance does not disclose three course examples'); await closeDialog();
+  assert(/39\s+documented\s+roles/i.test(about), 'Data provenance does not disclose the 39 roles');
+  assert(/(?:6|six)\s+Digital Media/i.test(about), 'Data provenance does not disclose six Digital Media roles');
+  assert(/Business & Leadership/i.test(about) && /Occupational Health & Safety/i.test(about), 'Data provenance does not disclose the Business and OHS guides');
+  assert(/38\s+COSMO\s+courses/i.test(about), 'Data provenance does not disclose the 38 courses'); await closeDialog();
 
   await navigate(); await waitFlow('welcome');
   assert.equal(await evaluate('document.querySelector("#flow-title").innerText.replace(/\\s+/g, " ").trim()'), 'What do you want to be?', 'A remembered qualification should not skip the welcome screen');
   await navigate('?screen=profile&field=business&career=ciso'); await waitFlow('careers');
   assert.equal(await evaluate('new URL(location.href).searchParams.get("field")'), 'business', 'An invalid career/field combination did not retain the valid field');
   assert.equal(await evaluate('document.querySelectorAll("#flow-content [data-flow-career]").length'), 0, 'A mismatched career leaked into the Business list');
+  assert.equal(await evaluate('document.querySelectorAll(".business-level").length'), 4, 'The guarded Business link did not restore its study guide');
   await navigate('?screen=profile&field=invalid&career=ciso'); await waitFlow('fields');
   await navigate('?screen=invalid&field=it&career=ciso'); await waitFlow('welcome');
   await navigate('?screen=profile&field=it&career=data-architect'); await waitFlow('profile');
   assert.match(await evaluate('document.querySelector("#flow-content").textContent'), /not (?:yet )?published|not available|coming soon|unavailable|requirements are still pending/i, 'The Data Architect profile should disclose unpublished requirements');
+  await navigate('?screen=match&field=ohs&likes=site.site.site.site.site.site.site'); await waitFlow('match');
+  assert.match(await evaluate('document.querySelector("#flow-title").textContent'), /On-site safety/, 'OHS answers should pick an OHS work area');
+  await click('[data-flow-action=guide]'); await waitFlow('careers', true);
+  assert.equal(await evaluate('document.querySelectorAll(".business-level").length'), 1, 'OHS should show the COSMO City and Guilds qualification');
+  assert.equal(await evaluate('document.querySelectorAll(".business-tags li").length'), 10, 'OHS should list its example jobs');
+  assert.match(await evaluate('document.querySelector("#flow-content").textContent'), /example OHS job titles/i, 'OHS must say its jobs are examples');
+  await screenshot('desktop-ohs.png', true);
+  await navigate('?screen=match&field=it&likes=none.none.none.apps.apps.apps'); await waitFlow('likes');
+  await answer(['none']); await waitFlow('likes');
+  assert.match(await evaluate('document.querySelector("#flow-title").textContent'), /may not be the best fit/, 'Mostly "None of these" should question the chosen field');
+  await click('[data-flow-action=discover]'); await waitFlow('discover', true);
+  await answer(Array(5).fill('ohs'), 'discover');
+  assert.match(await evaluate('document.querySelector("#flow-title").textContent'), /Occupational Health & Safety/, 'The field quiz should suggest the field its answers point to');
+  assert.equal(await evaluate('document.querySelectorAll(".pie-legend li").length'), 4, 'The field quiz pie should list all four fields');
+  await screenshot('desktop-discover.png', true);
+  await click('[data-flow-pick=ohs]'); await waitFlow('likes', true);
+  assert.equal(await evaluate('new URL(location.href).searchParams.get("field")'), 'ohs', 'Continuing from the field quiz should open that field');
+  await navigate('?screen=match&field=it&likes=none.none.none.none.apps.apps.apps&anyway=1'); await waitFlow('match');
   await navigate('?screen=journey&field=it&career=ciso&from=olevel&exp=0'); await waitJourney('ciso');
   assert.equal(await evaluate('document.querySelectorAll(".pathway-card").length'), 5, 'An explicit journey deep link failed to restore its career');
   await navigate('?sector=ict-security&from=hnd&exp=4&goal=ciso');
@@ -344,9 +407,9 @@ try {
   assert.equal(await evaluate('document.querySelectorAll(".pathway-card .status-ready").length'), 3);
   assert.equal(await evaluate('document.querySelector(".card-save[data-save=associate-security-analyst]").getAttribute("aria-pressed")'), 'true');
   await evaluate('history.pushState(null, "", "?sector=data-ai&from=degree&exp=9&goal=data-architect"); dispatchEvent(new PopStateEvent("popstate"))');
-  await waitFor('document.querySelector("#goal-select").value === "data-architect" && document.querySelectorAll(".pathway-card").length === 1', 'popstate to restore URL choices');
+  await waitFor('document.querySelector("#goal-select").value === "data-architect" && document.querySelectorAll(".pathway-card").length === 4', 'popstate to restore URL choices');
   assert.equal(await evaluate('document.querySelector("#experience-slider").value'), '9');
-  await navigate('?sector=ict-security&from=hnd&exp=4&goal=ciso'); await click('#share-button');
+  await navigate('?sector=ict-security&from=hnd&exp=4&goal=ciso'); await waitJourney('ciso'); await click('#share-button');
   await waitFor('!!document.querySelector(".share-url") || (document.querySelector("#toast") && !document.querySelector("#toast").hidden)', 'share confirmation or URL fallback');
   const fallbackUrl = await evaluate('document.querySelector(".share-url")?.value || document.querySelector(".share-url")?.textContent || null');
   if (fallbackUrl) {
@@ -372,7 +435,20 @@ try {
   assert(await evaluate('document.documentElement.scrollWidth <= innerWidth && [...document.querySelectorAll("#flow-content [data-flow-field]")].every(card => { const bounds = card.getBoundingClientRect(); return bounds.left >= 0 && bounds.right <= innerWidth; })'), 'Career field cards or portraits overflow a narrow 320px screen');
   await call('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 1, mobile: true });
   await frames();
-  await click('[data-flow-field=it]'); await click('[data-flow-action=choose-field]'); await waitFlow('careers', true);
+  await click('[data-flow-field=business]'); await click('[data-flow-action=choose-field]'); await waitFlow('likes', true);
+  assert(await evaluate('document.documentElement.scrollWidth <= innerWidth && [...document.querySelectorAll("[data-quiz-answer]")].every(answer => answer.getBoundingClientRect().right <= innerWidth)'), 'Mobile questions are clipped');
+  await screenshot('mobile-likes.png', true);
+  await answer(Array(7).fill('people')); await waitFlow('match', true);
+  await click('[data-flow-action=guide]'); await waitFlow('careers', true);
+  assert(await evaluate('document.documentElement.scrollWidth <= innerWidth && document.querySelectorAll(".business-level").length === 4'), 'Mobile Business & Leadership guide is clipped or incomplete');
+  await screenshot('mobile-business.png', true);
+  await click('[data-flow-action=to-match]'); await waitFlow('match', true);
+  await click('[data-flow-action=fields]'); await waitFlow('fields', true);
+  await click('[data-flow-field=it]'); await click('[data-flow-action=choose-field]'); await waitFlow('likes', true);
+  await answer(['security', 'security', 'apps', 'security', 'none', 'data', 'security']); await waitFlow('match', true);
+  assert(await evaluate('document.documentElement.scrollWidth <= innerWidth && document.querySelector(".pie-chart").getBoundingClientRect().right <= innerWidth'), 'Mobile match screen or pie chart overflows');
+  await screenshot('mobile-match.png', true);
+  await click('[data-match-career="ciso"]'); await waitFlow('careers', true);
   assert(await evaluate('document.documentElement.scrollWidth <= innerWidth'), 'Mobile career list has horizontal overflow');
   await click('[data-flow-career=ciso]'); await click('[data-flow-action=choose]'); await waitFlow('profile', true);
   assert(await evaluate('document.documentElement.scrollWidth <= innerWidth && document.querySelector("[data-flow-action=ready]").getBoundingClientRect().right <= innerWidth'), 'Mobile career profile or confirmation action is clipped');
@@ -390,7 +466,7 @@ try {
   assert(await evaluate('(() => { const dialog = document.querySelector("#detail-dialog"); const r = dialog.getBoundingClientRect(); return dialog.open && r.left >= 0 && r.right <= innerWidth && r.height <= innerHeight; })()'), 'Mobile role details do not fit');
   await screenshot('mobile-detail.png'); await escape();
   assert.deepEqual(errors, [], 'Uncaught browser errors');
-  console.log('PASS: five-step career selection, three matched smiling field portraits with PNG fallbacks, smiling human artwork across welcome/list/profile/hero/stages/insight/role cards, six distinct ordered level frames, keyboard entry/focus, browser Back/Forward, truthful field lists, confirmation/change-career, guarded/deep links, readiness, saved careers, details, courses, sharing, motion-safe mobile selection and pathway layouts.');
-  console.log('Screenshots saved in artifacts/desktop-welcome.png, artifacts/desktop-fields.png, artifacts/desktop-careers.png, artifacts/desktop-profile.png, artifacts/mobile-welcome.png, artifacts/mobile-fields.png, artifacts/mobile-profile.png, artifacts/desktop.png, artifacts/character-levels.png, artifacts/mobile.png and artifacts/mobile-detail.png.');
+  console.log('PASS: seven-step career selection with field choice, "What do you like?" questions, the answers pie chart and best-match jobs, the "None of these" field check and quick field quiz, all 39 BIICF roles across IT and CM, the COSMO Business and OHS study guides, three matched smiling field portraits with PNG fallbacks plus the OHS character, smiling human artwork across welcome/list/profile/hero/stages/insight/role cards, six distinct ordered level frames, keyboard entry/focus, browser Back/Forward, truthful field lists, confirmation/change-career, guarded/deep links, readiness, saved careers, details, courses, sharing, motion-safe mobile selection and pathway layouts.');
+  console.log('Screenshots saved in artifacts/desktop-welcome.png, artifacts/desktop-fields.png, artifacts/desktop-likes.png, artifacts/desktop-match.png, artifacts/desktop-business.png, artifacts/desktop-ohs.png, artifacts/desktop-discover.png, artifacts/desktop-careers.png, artifacts/desktop-profile.png, artifacts/mobile-welcome.png, artifacts/mobile-fields.png, artifacts/mobile-likes.png, artifacts/mobile-business.png, artifacts/mobile-match.png, artifacts/mobile-profile.png, artifacts/desktop.png, artifacts/character-levels.png, artifacts/mobile.png and artifacts/mobile-detail.png.');
   await call('Browser.close');
 } finally { if (ws?.readyState === WebSocket.OPEN) ws.close(); chrome.kill(); }

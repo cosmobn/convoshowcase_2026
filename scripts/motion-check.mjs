@@ -164,7 +164,9 @@ try {
   await waitFor('new URL(location.href).searchParams.get("screen") === "fields" && document.activeElement === document.querySelector("#flow-title")', 'the career-selection field screen');
   await waitFor(`${active}.length === 0`, 'finite field-selection entrances to finish');
   await reduced('reduce');
-  for (const [selector, screen] of [['[data-flow-field=it]', 'fields'], ['[data-flow-action=choose-field]', 'careers'], ['[data-flow-career=ciso]', 'careers'], ['[data-flow-action=choose]', 'profile']]) {
+  // Seven "What do you like?" answers lead to the match, then on to the chosen career.
+  const likes = Array.from({ length: 7 }, (_, index) => ['[data-quiz-answer=security]', index === 6 ? 'match' : 'likes']);
+  for (const [selector, screen] of [['[data-flow-field=it]', 'fields'], ['[data-flow-action=choose-field]', 'likes'], ...likes, ['[data-match-career=ciso]', 'careers'], ['[data-flow-career=ciso]', 'careers'], ['[data-flow-action=choose]', 'profile']]) {
     await click(selector);
     await waitFor(`new URL(location.href).searchParams.get('screen') === ${JSON.stringify(screen)} && document.activeElement === document.querySelector('#flow-title')`, `the reduced-motion ${screen} screen`);
     await waitFor(`${active}.length === 0`, `the reduced-motion ${screen} screen to stay still`);

@@ -49,7 +49,7 @@ function persist(key, value) { try { localStorage.setItem(key, JSON.stringify(va
 const prior = readStorage('pathfinder-profile', {});
 const saved = readStorage('pathfinder-saved', []);
 const state = { sector: 'ict-security', qualification: Object.hasOwn(qualifications, prior.qualification || prior.from) ? prior.qualification || prior.from : 'olevel', years: Math.max(0, Math.min(50, Math.floor(Number(prior.years) || 0))), goal: typeof prior.goal === 'string' ? prior.goal : 'ciso', route: 0, saved: new Set(Array.isArray(saved) ? saved.filter(id => typeof id === 'string') : []), dialogMode: '', courseQuery: '' };
-let roles = [], courses = [], sectors = [], roleCourses = {}, metadata = {}, toastTimer;
+let roles = [], courses = [], sectors = [], roleCourses = {}, metadata = {}, businessGuide = null, toastTimer;
 let journeyItems = [], journeyIndex = 0, journeySignature = '';
 // The journey plays itself on a loop. It rests while the reader points at or focuses the map, and for a while after they pick a stage.
 const autoplay = { visible: false, hover: false, restUntil: 0 };
@@ -77,7 +77,7 @@ function readLocation() {
 function updateLocation(push = false) {
   const url = new URL(location.href);
   // Keep the selection flow in the URL while profile and pathway choices change.
-  for (const name of [...url.searchParams.keys()]) if (!['screen', 'field', 'career'].includes(name)) url.searchParams.delete(name);
+  for (const name of [...url.searchParams.keys()]) if (!['screen', 'field', 'career', 'likes', 'anyway'].includes(name)) url.searchParams.delete(name);
   url.searchParams.set('sector', state.sector);
   url.searchParams.set('from', qualifications[state.qualification].from);
   if (qualifications[state.qualification].estimated) url.searchParams.set('q', state.qualification);
@@ -253,7 +253,7 @@ function renderCourses() {
   motion.refresh(document.getElementById('catalog-grid'));
 }
 function openSaved() { const items = roles.filter(role => state.saved.has(role.id)); openDialog(dialogHeader('YOUR SHORTLIST', 'Saved careers', 'Keep the roles that interest you in one place.') + `<div class="detail-body">${items.length ? items.map(role => `<div class="saved-role"><button class="saved-role-open" data-detail="${esc(role.id)}"><strong>${esc(role.title)}</strong><span>${esc(sectorDisplay[role.sector]?.name || 'ICT')}</span></button><button class="icon-button" data-save="${esc(role.id)}" aria-label="Unsave ${esc(role.title)}">${icon('bookmark')}</button></div>`).join('') : '<div class="empty-state"><h3>Your next chapter is still unwritten.</h3><p>Use the bookmark on any pathway card to save a career here.</p></div>'}</div>`, 'saved'); updateSavedButtons(); }
-function openAbout() { openDialog(dialogHeader('ABOUT THIS GUIDE', 'A clearer starting point.') + `<div class="detail-body"><section class="detail-section"><h3>Where the data comes from</h3><p>This unofficial student guide uses the ${link('https://ccctmacademy.edu.bn/showcase_2026/openapi.json', 'supplied OpenAPI specification')} and its BIICF-derived career information.</p><p>${metadata.mode === 'spec-examples' ? `The full data endpoints returned 404 errors when the data was retrieved. This version contains ${roles.length} complete role examples and ${courses.length} complete course examples from the specification. Empty sectors are shown without invented career requirements.` : 'The page uses a locally bundled snapshot of the public career datasets.'}</p></section><section class="detail-section"><h3>How to read the pathway</h3><p>The cards follow the source's career progression links. The qualification and experience fields describe the same entry route. Ready now checks level and years only; subject, certification, portfolio and other entry conditions still apply. Experience is cumulative and is never added across steps.</p><p>BTEC equivalences marked with an asterisk are estimated and must be confirmed with COSMO. This guide is not affiliated with AITI, MISC or BIICF.</p></section><section class="detail-section"><h3>Your choices stay in this browser</h3><p>Bookmarks, qualification choices and the animation preference are stored locally. No account is needed.</p></section><div class="dialog-actions">${link('https://www.biicf.bn', 'Official BIICF framework', 'button button-primary')}${link('https://cosmo.edu.bn', 'COSMO courses', 'button button-secondary')}</div></div>`, 'about'); }
+function openAbout() { const digitalRoles = roles.filter(role => role.sector === 'digital-media').length; openDialog(dialogHeader('ABOUT THIS GUIDE', 'A clearer starting point.') + `<div class="detail-body"><section class="detail-section"><h3>Where the data comes from</h3><p>This unofficial student guide uses the ${link('https://ccctmacademy.edu.bn/showcase_2026/openapi.json', 'supplied OpenAPI specification')}, the ${link(metadata.digitalMediaSource || 'https://www.biicf.bn/sub-sectors/digital-media/', 'official BIICF Digital Media framework')} and ${link(businessGuide?.source || 'https://cosmo.edu.bn/business/', 'COSMO Business programmes')}.</p><p>${metadata.mode === 'combined-snapshot' ? `This version contains all ${roles.length} documented roles and ${courses.length} COSMO courses from a bundled snapshot, with ${digitalRoles} Digital Media roles checked against BIICF on 27 October 2026, and separate COSMO-based Business & Leadership and Occupational Health & Safety study guides. Neither guide is presented as a BIICF career ladder; the OHS job titles are general examples.` : metadata.mode === 'spec-examples' ? `The full data endpoints returned 404 errors when the data was retrieved. This version contains ${roles.length} complete role examples and ${courses.length} complete course examples from the specification. Empty sectors are shown without invented career requirements.` : 'The page uses a locally bundled snapshot of the public career datasets.'}</p></section><section class="detail-section"><h3>How to read the pathway</h3><p>The cards follow the source's career progression links. The qualification and experience fields describe the same entry route. Ready now checks level and years only; subject, certification, portfolio and other entry conditions still apply. Experience is cumulative and is never added across steps.</p><p>BTEC equivalences marked with an asterisk are estimated and must be confirmed with COSMO. This guide is not affiliated with AITI, MISC or BIICF.</p></section><section class="detail-section"><h3>Your choices stay in this browser</h3><p>Bookmarks, qualification choices and the animation preference are stored locally. No account is needed.</p></section><div class="dialog-actions">${link('https://www.biicf.bn', 'Official BIICF framework', 'button button-primary')}${link('https://cosmo.edu.bn', 'COSMO courses', 'button button-secondary')}</div></div>`, 'about'); }
 
 document.addEventListener('click', async event => {
   const evolution = event.target.closest('[data-evolution]');
@@ -308,13 +308,13 @@ fillIcons(); updateProfile();
 async function loadData() {
   const notice = document.getElementById('data-notice');
   try {
-    const data = await Promise.all(['roles', 'sectors', 'courses', 'role-courses', 'metadata'].map(async name => { const response = await fetch(`./data/${name}.json`); if (!response.ok) throw new Error(`Unable to load ${name}`); return response.json(); }));
-    [roles, sectors, courses, roleCourses, metadata] = data;
-    if (!Array.isArray(roles) || !roles.length || !Array.isArray(courses) || !Array.isArray(sectors)) throw new Error('Invalid pathway data');
+    const data = await Promise.all(['roles', 'sectors', 'courses', 'role-courses', 'metadata', 'business-leadership'].map(async name => { const response = await fetch(`./data/${name}.json`); if (!response.ok) throw new Error(`Unable to load ${name}`); return response.json(); }));
+    [roles, sectors, courses, roleCourses, metadata, businessGuide] = data;
+    if (!Array.isArray(roles) || !roles.length || !Array.isArray(courses) || !Array.isArray(sectors) || !Array.isArray(businessGuide?.studyPath)) throw new Error('Invalid pathway data');
     state.saved = new Set([...state.saved].filter(id => roles.some(role => role.id === id)));
     readLocation(); renderPathway();
     careerFlow = initializeCareerFlow({
-      roles, sectorDisplay, characterFrame, icon, esc, motion,
+      roles, sectorDisplay, businessGuide, courses, roleCourses, characterFrame, icon, esc, motion,
       onStart(role) {
         state.sector = role.sector; state.goal = role.id; state.route = 0;
         persistProfile(); renderPathway(); updateLocation();
@@ -322,7 +322,7 @@ async function loadData() {
       onLeaveJourney() { if (dialog.open) dialog.close(); },
     });
     careerFlow.syncFromLocation();
-    notice.innerHTML = `${metadata.mode === 'spec-examples' ? `<strong>Preview data:</strong> ${roles.length} role examples and ${courses.length} course examples from the specification. Full dataset links were unavailable when this snapshot was retrieved. ` : ''}<span>*Ready now checks qualification level and years only. All other route requirements still apply.</span>`;
+    notice.innerHTML = `${metadata.mode === 'combined-snapshot' ? `<strong>Updated data:</strong> ${roles.length} BIICF roles and ${courses.length} COSMO courses from a bundled snapshot, including ${roles.filter(role => role.sector === 'digital-media').length} Digital Media roles re-verified from BIICF, plus COSMO Business and OHS study guides. ` : metadata.mode === 'spec-examples' ? `<strong>Preview data:</strong> ${roles.length} role examples and ${courses.length} course examples from the specification. Full dataset links were unavailable when this snapshot was retrieved. ` : ''}<span>*Ready now checks qualification level and years only. All other route requirements still apply.</span>`;
     motion.refresh(document);
   } catch { row.innerHTML = '<div class="empty-state"><h3>The pathway data could not be loaded.</h3><p>Please refresh the page to try again.</p></div>'; notice.textContent = 'Use an HTTP server to open this page and its data files.'; document.getElementById('flow-content').innerHTML = '<section class="flow-screen flow-empty"><h1 id="flow-title" tabindex="-1">Your future is still ahead.</h1><p>The career data could not be loaded. Refresh the page to try again.</p><a class="button button-primary" href="./">Try again</a></section>'; }
 }

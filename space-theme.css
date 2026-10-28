@@ -152,3 +152,13 @@ option { background: var(--brand-blue); color: white; }
 .evolution-track:has(.is-current) .evolution-step:not(.is-current) .character-sprite { opacity: .55; }
 .evolution-step:not(.is-current):hover .character-sprite { opacity: .9; }
 html.motion-paused .evolution-portrait > .character-sprite { transition: none; }
+
+/* Business and OHS guides sit on the same glass as the rest of the flow. */
+.business-guide h2, .business-level h3 { color: white; }
+.business-kicker { color: var(--brand-yellow); }
+.business-level, .business-guide-grid > div { border-color: var(--glass-border); background: var(--glass); box-shadow: 0 14px 34px #0710301F; }
+.business-level p { color: #D5DDF3; }
+.business-source, .business-level a { color: #E2E7FA; }
+.business-tags li { border-color: #FFFFFF24; background: #FFFFFF0F; color: #DCE3FA; }
+.business-topics li { border-color: #FCD00F59; background: #FCD00F14; color: #FFE89A; }
+.business-disclaimer { background: #FCD00F14; color: #FFE89A; }

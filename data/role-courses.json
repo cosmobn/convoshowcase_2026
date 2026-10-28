@@ -1,4 +1,300 @@
 {
+  "it-technician": [
+    {
+      "course": "btec-l2-it",
+      "title": "Pearson BTEC Certificate in Information Technology",
+      "type": "qualification",
+      "fit": "qualifies",
+      "years": 0,
+      "url": "https://cosmo.edu.bn/international-certificate-in-information-technology"
+    },
+    {
+      "course": "btec-l3-it",
+      "title": "Pearson BTEC Diploma in Information Technology",
+      "type": "qualification",
+      "fit": "qualifies",
+      "years": 0,
+      "url": "https://cosmo.edu.bn/diploma-in-information-technology"
+    },
+    {
+      "course": "hnd-computing",
+      "title": "Pearson BTEC HND in Computing",
+      "type": "qualification",
+      "fit": "qualifies",
+      "years": 0,
+      "url": "https://cosmo.edu.bn/hnd-in-computing"
+    },
+    {
+      "course": "btec-l1-it",
+      "title": "Pearson BTEC Introductory Diploma in Information Technology",
+      "type": "qualification",
+      "fit": "needs-experience-or-portfolio",
+      "years": null,
+      "url": "https://cosmo.edu.bn/introductory-diploma-in-information-technology"
+    },
+    {
+      "course": "ccp-cybersecurity",
+      "title": "CCP Cybersecurity",
+      "type": "short-course",
+      "fit": "builds-skills",
+      "years": null,
+      "url": "https://cosmo.edu.bn/ccp-cybersecurity/"
+    },
+    {
+      "course": "ccp-networking-professional",
+      "title": "CCP Networking Professional",
+      "type": "short-course",
+      "fit": "builds-skills",
+      "years": null,
+      "url": "https://cosmo.edu.bn/ccp-networking-professional/"
+    }
+  ],
+  "it-administrator-manager": [
+    {
+      "course": "hnd-computing",
+      "title": "Pearson BTEC HND in Computing",
+      "type": "qualification",
+      "fit": "needs-experience-or-portfolio",
+      "years": null,
+      "url": "https://cosmo.edu.bn/hnd-in-computing"
+    },
+    {
+      "course": "ccp-smart-budgeting-business-finance",
+      "title": "CCP Smart Budgeting & Business Finance",
+      "type": "short-course",
+      "fit": "builds-skills",
+      "years": null,
+      "url": "https://cosmo.edu.bn/ccp-smart-budgeting-business-finance/"
+    }
+  ],
+  "project-coordinator": [
+    {
+      "course": "hnd-business",
+      "title": "Pearson BTEC HND in Business",
+      "type": "qualification",
+      "fit": "qualifies",
+      "years": 0,
+      "url": "https://cosmo.edu.bn/hnd-in-business"
+    },
+    {
+      "course": "hnd-computing",
+      "title": "Pearson BTEC HND in Computing",
+      "type": "qualification",
+      "fit": "qualifies",
+      "years": 0,
+      "url": "https://cosmo.edu.bn/hnd-in-computing"
+    }
+  ],
+  "systems-engineer": [
+    {
+      "course": "hnd-computing",
+      "title": "Pearson BTEC HND in Computing",
+      "type": "qualification",
+      "fit": "qualifies",
+      "years": 0,
+      "url": "https://cosmo.edu.bn/hnd-in-computing"
+    }
+  ],
+  "project-manager": [
+    {
+      "course": "hnd-computing",
+      "title": "Pearson BTEC HND in Computing",
+      "type": "qualification",
+      "fit": "needs-experience-or-portfolio",
+      "years": null,
+      "url": "https://cosmo.edu.bn/hnd-in-computing"
+    }
+  ],
+  "it-operations-manager": [
+    {
+      "course": "hnd-computing",
+      "title": "Pearson BTEC HND in Computing",
+      "type": "qualification",
+      "fit": "with-experience",
+      "years": 8,
+      "url": "https://cosmo.edu.bn/hnd-in-computing"
+    }
+  ],
+  "cio": [
+    {
+      "course": "ai-board-ai-business",
+      "title": "The AI Board Award in AI Business",
+      "type": "short-course",
+      "fit": "builds-skills",
+      "years": null,
+      "url": "https://cosmo.edu.bn/the-ai-board-award-in-ai-business/"
+    },
+    {
+      "course": "hnd-computing",
+      "title": "Pearson BTEC HND in Computing",
+      "type": "qualification",
+      "fit": "with-experience",
+      "years": 12,
+      "url": "https://cosmo.edu.bn/hnd-in-computing"
+    }
+  ],
+  "network-technician": [
+    {
+      "course": "btec-l2-it",
+      "title": "Pearson BTEC Certificate in Information Technology",
+      "type": "qualification",
+      "fit": "qualifies",
+      "years": 0,
+      "url": "https://cosmo.edu.bn/international-certificate-in-information-technology"
+    },
+    {
+      "course": "btec-l3-it",
+      "title": "Pearson BTEC Diploma in Information Technology",
+      "type": "qualification",
+      "fit": "qualifies",
+      "years": 0,
+      "url": "https://cosmo.edu.bn/diploma-in-information-technology"
+    },
+    {
+      "course": "hnd-computing",
+      "title": "Pearson BTEC HND in Computing",
+      "type": "qualification",
+      "fit": "qualifies",
+      "years": 0,
+      "url": "https://cosmo.edu.bn/hnd-in-computing"
+    },
+    {
+      "course": "ccp-networking-professional",
+      "title": "CCP Networking Professional",
+      "type": "short-course",
+      "fit": "builds-skills",
+      "years": null,
+      "url": "https://cosmo.edu.bn/ccp-networking-professional/"
+    }
+  ],
+  "network-team-lead": [
+    {
+      "course": "hnd-computing",
+      "title": "Pearson BTEC HND in Computing",
+      "type": "qualification",
+      "fit": "needs-experience-or-portfolio",
+      "years": null,
+      "url": "https://cosmo.edu.bn/hnd-in-computing"
+    }
+  ],
+  "network-engineer": [
+    {
+      "course": "hnd-computing",
+      "title": "Pearson BTEC HND in Computing",
+      "type": "qualification",
+      "fit": "qualifies",
+      "years": 0,
+      "url": "https://cosmo.edu.bn/hnd-in-computing"
+    }
+  ],
+  "infrastructure-engineer": [
+    {
+      "course": "hnd-computing",
+      "title": "Pearson BTEC HND in Computing",
+      "type": "qualification",
+      "fit": "with-experience",
+      "years": 8,
+      "url": "https://cosmo.edu.bn/hnd-in-computing"
+    }
+  ],
+  "infrastructure-manager": [
+    {
+      "course": "hnd-computing",
+      "title": "Pearson BTEC HND in Computing",
+      "type": "qualification",
+      "fit": "with-experience",
+      "years": 8,
+      "url": "https://cosmo.edu.bn/hnd-in-computing"
+    }
+  ],
+  "cto-telecom": [
+    {
+      "course": "hnd-computing",
+      "title": "Pearson BTEC HND in Computing",
+      "type": "qualification",
+      "fit": "with-experience",
+      "years": 12,
+      "url": "https://cosmo.edu.bn/hnd-in-computing"
+    }
+  ],
+  "junior-programmer": [
+    {
+      "course": "hnd-computing",
+      "title": "Pearson BTEC HND in Computing",
+      "type": "qualification",
+      "fit": "qualifies",
+      "years": 0,
+      "url": "https://cosmo.edu.bn/hnd-in-computing"
+    },
+    {
+      "course": "ccp-web-and-content-management",
+      "title": "CCP Web and Content Management",
+      "type": "short-course",
+      "fit": "builds-skills",
+      "years": null,
+      "url": "https://cosmo.edu.bn/ccp-web-and-content-management/"
+    }
+  ],
+  "applications-developer": [
+    {
+      "course": "hnd-computing",
+      "title": "Pearson BTEC HND in Computing",
+      "type": "qualification",
+      "fit": "with-experience",
+      "years": 5,
+      "url": "https://cosmo.edu.bn/hnd-in-computing"
+    }
+  ],
+  "solutions-architect": [
+    {
+      "course": "hnd-computing",
+      "title": "Pearson BTEC HND in Computing",
+      "type": "qualification",
+      "fit": "with-experience",
+      "years": 6,
+      "url": "https://cosmo.edu.bn/hnd-in-computing"
+    }
+  ],
+  "application-system-engineer": [
+    {
+      "course": "hnd-computing",
+      "title": "Pearson BTEC HND in Computing",
+      "type": "qualification",
+      "fit": "with-experience",
+      "years": 8,
+      "url": "https://cosmo.edu.bn/hnd-in-computing"
+    }
+  ],
+  "software-architect": [
+    {
+      "course": "hnd-computing",
+      "title": "Pearson BTEC HND in Computing",
+      "type": "qualification",
+      "fit": "with-experience",
+      "years": 8,
+      "url": "https://cosmo.edu.bn/hnd-in-computing"
+    }
+  ],
+  "software-development-manager": [
+    {
+      "course": "hnd-computing",
+      "title": "Pearson BTEC HND in Computing",
+      "type": "qualification",
+      "fit": "with-experience",
+      "years": 8,
+      "url": "https://cosmo.edu.bn/hnd-in-computing"
+    }
+  ],
+  "cto-apps": [
+    {
+      "course": "hnd-computing",
+      "title": "Pearson BTEC HND in Computing",
+      "type": "qualification",
+      "fit": "with-experience",
+      "years": 12,
+      "url": "https://cosmo.edu.bn/hnd-in-computing"
+    }
+  ],
   "associate-security-analyst": [
     {
       "course": "hnd-computing",
@@ -25,6 +321,44 @@
       "url": "https://cosmo.edu.bn/diploma-in-information-technology"
     }
   ],
+  "cyber-risk-analyst": [
+    {
+      "course": "hnd-computing",
+      "title": "Pearson BTEC HND in Computing",
+      "type": "qualification",
+      "fit": "with-experience",
+      "years": 4,
+      "url": "https://cosmo.edu.bn/hnd-in-computing"
+    }
+  ],
+  "security-engineer": [
+    {
+      "course": "hnd-computing",
+      "title": "Pearson BTEC HND in Computing",
+      "type": "qualification",
+      "fit": "with-experience",
+      "years": 4,
+      "url": "https://cosmo.edu.bn/hnd-in-computing"
+    },
+    {
+      "course": "btec-l3-it",
+      "title": "Pearson BTEC Diploma in Information Technology",
+      "type": "qualification",
+      "fit": "with-experience",
+      "years": 6,
+      "url": "https://cosmo.edu.bn/diploma-in-information-technology"
+    }
+  ],
+  "cyber-risk-manager": [
+    {
+      "course": "hnd-computing",
+      "title": "Pearson BTEC HND in Computing",
+      "type": "qualification",
+      "fit": "with-experience",
+      "years": 8,
+      "url": "https://cosmo.edu.bn/hnd-in-computing"
+    }
+  ],
   "ciso": [
     {
       "course": "hnd-computing",
@@ -33,6 +367,48 @@
       "fit": "with-experience",
       "years": 12,
       "url": "https://cosmo.edu.bn/hnd-in-computing"
+    }
+  ],
+  "market-analyst": [
+    {
+      "course": "ccp-data-analytics",
+      "title": "CCP Data Analytics",
+      "type": "short-course",
+      "fit": "builds-skills",
+      "years": null,
+      "url": "https://cosmo.edu.bn/ccp-data-analytics/"
+    },
+    {
+      "course": "ccp-social-media-marketing-management",
+      "title": "CCP Social Media Marketing & Management",
+      "type": "short-course",
+      "fit": "builds-skills",
+      "years": null,
+      "url": "https://cosmo.edu.bn/ccp-social-media-marketing-management/"
+    },
+    {
+      "course": "ccp-smart-budgeting-business-finance",
+      "title": "CCP Smart Budgeting & Business Finance",
+      "type": "short-course",
+      "fit": "builds-skills",
+      "years": null,
+      "url": "https://cosmo.edu.bn/ccp-smart-budgeting-business-finance/"
+    },
+    {
+      "course": "btec-l3-business",
+      "title": "Pearson BTEC Diploma in Business",
+      "type": "qualification",
+      "fit": "with-experience",
+      "years": 3,
+      "url": "https://cosmo.edu.bn/diploma-in-business"
+    },
+    {
+      "course": "hnd-business",
+      "title": "Pearson BTEC HND in Business",
+      "type": "qualification",
+      "fit": "with-experience",
+      "years": 3,
+      "url": "https://cosmo.edu.bn/hnd-in-business"
     }
   ],
   "digital-marketing-executive": [
@@ -115,6 +491,277 @@
       "fit": "with-experience",
       "years": 5,
       "url": "https://cosmo.edu.bn/hnd-in-business"
+    }
+  ],
+  "business-development-manager": [
+    {
+      "course": "ccp-customer-experience-excellence",
+      "title": "CCP Customer Experience Excellence",
+      "type": "short-course",
+      "fit": "builds-skills",
+      "years": null,
+      "url": "https://cosmo.edu.bn/ccp-customer-experience-excellence/"
+    },
+    {
+      "course": "hnd-business",
+      "title": "Pearson BTEC HND in Business",
+      "type": "qualification",
+      "fit": "with-experience",
+      "years": 8,
+      "url": "https://cosmo.edu.bn/hnd-in-business"
+    },
+    {
+      "course": "hnd-graphic-design",
+      "title": "Pearson BTEC HND in Graphic Design",
+      "type": "qualification",
+      "fit": "with-experience",
+      "years": 8,
+      "url": "https://cosmo.edu.bn/hnd-in-Graphic-Design"
+    }
+  ],
+  "customer-experience-manager": [
+    {
+      "course": "ccp-customer-experience-excellence",
+      "title": "CCP Customer Experience Excellence",
+      "type": "short-course",
+      "fit": "builds-skills",
+      "years": null,
+      "url": "https://cosmo.edu.bn/ccp-customer-experience-excellence/"
+    },
+    {
+      "course": "hnd-business",
+      "title": "Pearson BTEC HND in Business",
+      "type": "qualification",
+      "fit": "with-experience",
+      "years": 8,
+      "url": "https://cosmo.edu.bn/hnd-in-business"
+    },
+    {
+      "course": "hnd-graphic-design",
+      "title": "Pearson BTEC HND in Graphic Design",
+      "type": "qualification",
+      "fit": "with-experience",
+      "years": 8,
+      "url": "https://cosmo.edu.bn/hnd-in-Graphic-Design"
+    }
+  ],
+  "marketing-manager": [
+    {
+      "course": "ccp-social-media-marketing-management",
+      "title": "CCP Social Media Marketing & Management",
+      "type": "short-course",
+      "fit": "builds-skills",
+      "years": null,
+      "url": "https://cosmo.edu.bn/ccp-social-media-marketing-management/"
+    },
+    {
+      "course": "ccp-prompt-engineering-ai",
+      "title": "CCP Prompt Engineering & AI",
+      "type": "short-course",
+      "fit": "builds-skills",
+      "years": null,
+      "url": "https://cosmo.edu.bn/ccp-prompt-engineering-ai/"
+    },
+    {
+      "course": "ai-board-ai-business",
+      "title": "The AI Board Award in AI Business",
+      "type": "short-course",
+      "fit": "builds-skills",
+      "years": null,
+      "url": "https://cosmo.edu.bn/the-ai-board-award-in-ai-business/"
+    },
+    {
+      "course": "hnd-business",
+      "title": "Pearson BTEC HND in Business",
+      "type": "qualification",
+      "fit": "with-experience",
+      "years": 8,
+      "url": "https://cosmo.edu.bn/hnd-in-business"
+    },
+    {
+      "course": "hnd-graphic-design",
+      "title": "Pearson BTEC HND in Graphic Design",
+      "type": "qualification",
+      "fit": "with-experience",
+      "years": 8,
+      "url": "https://cosmo.edu.bn/hnd-in-Graphic-Design"
+    }
+  ],
+  "cmo": [
+    {
+      "course": "hnd-business",
+      "title": "Pearson BTEC HND in Business",
+      "type": "qualification",
+      "fit": "with-experience",
+      "years": 12,
+      "url": "https://cosmo.edu.bn/hnd-in-business"
+    },
+    {
+      "course": "hnd-graphic-design",
+      "title": "Pearson BTEC HND in Graphic Design",
+      "type": "qualification",
+      "fit": "with-experience",
+      "years": 12,
+      "url": "https://cosmo.edu.bn/hnd-in-Graphic-Design"
+    }
+  ],
+  "data-entry": [
+    {
+      "course": "btec-l3-it",
+      "title": "Pearson BTEC Diploma in Information Technology",
+      "type": "qualification",
+      "fit": "qualifies",
+      "years": 0,
+      "url": "https://cosmo.edu.bn/diploma-in-information-technology"
+    },
+    {
+      "course": "hnd-computing",
+      "title": "Pearson BTEC HND in Computing",
+      "type": "qualification",
+      "fit": "qualifies",
+      "years": 0,
+      "url": "https://cosmo.edu.bn/hnd-in-computing"
+    },
+    {
+      "course": "ccp-data-analytics",
+      "title": "CCP Data Analytics",
+      "type": "short-course",
+      "fit": "builds-skills",
+      "years": null,
+      "url": "https://cosmo.edu.bn/ccp-data-analytics/"
+    },
+    {
+      "course": "ccp-excel-for-professionals",
+      "title": "CCP Excel for Professionals",
+      "type": "short-course",
+      "fit": "builds-skills",
+      "years": null,
+      "url": "https://cosmo.edu.bn/ccp-excel-for-professionals/"
+    }
+  ],
+  "data-analyst": [
+    {
+      "course": "hnd-computing",
+      "title": "Pearson BTEC HND in Computing",
+      "type": "qualification",
+      "fit": "needs-experience-or-portfolio",
+      "years": null,
+      "url": "https://cosmo.edu.bn/hnd-in-computing"
+    },
+    {
+      "course": "ccp-data-analytics",
+      "title": "CCP Data Analytics",
+      "type": "short-course",
+      "fit": "builds-skills",
+      "years": null,
+      "url": "https://cosmo.edu.bn/ccp-data-analytics/"
+    },
+    {
+      "course": "ccp-excel-for-professionals",
+      "title": "CCP Excel for Professionals",
+      "type": "short-course",
+      "fit": "builds-skills",
+      "years": null,
+      "url": "https://cosmo.edu.bn/ccp-excel-for-professionals/"
+    },
+    {
+      "course": "ai-board-understanding-ai",
+      "title": "The AI Board Award in Understanding AI",
+      "type": "short-course",
+      "fit": "builds-skills",
+      "years": null,
+      "url": "https://cosmo.edu.bn/the-ai-board-in-understanding-ai/"
+    }
+  ],
+  "data-engineer": [
+    {
+      "course": "hnd-computing",
+      "title": "Pearson BTEC HND in Computing",
+      "type": "qualification",
+      "fit": "with-experience",
+      "years": 5,
+      "url": "https://cosmo.edu.bn/hnd-in-computing"
+    }
+  ],
+  "ai-engineer": [
+    {
+      "course": "ccp-prompt-engineering-ai",
+      "title": "CCP Prompt Engineering & AI",
+      "type": "short-course",
+      "fit": "builds-skills",
+      "years": null,
+      "url": "https://cosmo.edu.bn/ccp-prompt-engineering-ai/"
+    },
+    {
+      "course": "ai-board-understanding-ai",
+      "title": "The AI Board Award in Understanding AI",
+      "type": "short-course",
+      "fit": "builds-skills",
+      "years": null,
+      "url": "https://cosmo.edu.bn/the-ai-board-in-understanding-ai/"
+    },
+    {
+      "course": "ai-board-applied-ai",
+      "title": "The AI Board Award in Applied AI",
+      "type": "short-course",
+      "fit": "builds-skills",
+      "years": null,
+      "url": "https://cosmo.edu.bn/the-ai-board-in-applied-ai/"
+    },
+    {
+      "course": "hnd-computing",
+      "title": "Pearson BTEC HND in Computing",
+      "type": "qualification",
+      "fit": "with-experience",
+      "years": 8,
+      "url": "https://cosmo.edu.bn/hnd-in-computing"
+    }
+  ],
+  "data-architect": [],
+  "data-manager": [
+    {
+      "course": "hnd-computing",
+      "title": "Pearson BTEC HND in Computing",
+      "type": "qualification",
+      "fit": "with-experience",
+      "years": 3,
+      "url": "https://cosmo.edu.bn/hnd-in-computing"
+    }
+  ],
+  "bi-director": [
+    {
+      "course": "ai-board-ai-business",
+      "title": "The AI Board Award in AI Business",
+      "type": "short-course",
+      "fit": "builds-skills",
+      "years": null,
+      "url": "https://cosmo.edu.bn/the-ai-board-award-in-ai-business/"
+    },
+    {
+      "course": "hnd-computing",
+      "title": "Pearson BTEC HND in Computing",
+      "type": "qualification",
+      "fit": "with-experience",
+      "years": 12,
+      "url": "https://cosmo.edu.bn/hnd-in-computing"
+    }
+  ],
+  "data-scientist": [
+    {
+      "course": "ai-board-applied-ai",
+      "title": "The AI Board Award in Applied AI",
+      "type": "short-course",
+      "fit": "builds-skills",
+      "years": null,
+      "url": "https://cosmo.edu.bn/the-ai-board-in-applied-ai/"
+    },
+    {
+      "course": "hnd-computing",
+      "title": "Pearson BTEC HND in Computing",
+      "type": "qualification",
+      "fit": "with-experience",
+      "years": 10,
+      "url": "https://cosmo.edu.bn/hnd-in-computing"
     }
   ]
 }

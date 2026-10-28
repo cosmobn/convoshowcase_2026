@@ -1,6 +1,6 @@
 # COSMO Career Pathways
 
-A responsive career pathway explorer in COSMO blue and yellow. Students start with “What do you want to be?”, choose a field and career, meet its illustrated future character, and press “I’m Ready” to enter the pathway. A connected character journey visualises the stages toward that goal, with the real qualifications, skills, certifications and experience behind each role. Qualification pills, an experience slider, sector tabs, bookmarks, a course catalogue and shareable goals are included. Built with plain HTML, CSS and JavaScript; no runtime dependencies or account required.
+A responsive career pathway explorer in COSMO blue and yellow. Students start with “What do you want to be?”, choose a field, answer seven “What do you like?” questions, see a pie chart of their answers with the jobs that suit them, meet the chosen career's illustrated future character, and press “Accept mission” to enter the pathway. A connected character journey visualises the stages toward that goal, with the real qualifications, skills, certifications and experience behind each role. Qualification pills, an experience slider, sector tabs, bookmarks, a course catalogue and shareable goals are included. Built with plain HTML, CSS and JavaScript; no runtime dependencies or account required.
 
 Live website: https://abi437.github.io/cosmo-career-pathways/
 
@@ -9,16 +9,20 @@ Public source repository: https://github.com/abi437/cosmo-career-pathways
 ## Student flow
 
 1. **Start:** “What do you want to be?” introduces the journey.
-2. **Field:** choose IT, Creative or Business.
-3. **Careers:** browse the careers available for that field.
-4. **Your future:** see the selected career's character, summary and published skills, then press **I’m Ready** to confirm.
-5. **Journey:** explore the career stages and adjust qualification and experience to understand the next requirements.
+2. **Field:** choose CM (Creative Media), IT, Business or OHS (Occupational Health & Safety). Unsure students can take a five-question field quiz that suggests a field and shows their answers as a pie chart.
+3. **Likes:** seven “What do you like?” questions written for that field. Each answer points to one job area, such as Cyber Security or Data & AI; every question also offers **None of these**.
+4. **Match:** a pie chart of the answers, the jobs in the best-matching area(s), then the rest of the field. If four or more answers were “None of these”, the student is asked whether the field fits, and can take the field quiz or see the jobs anyway.
+5. **Career:** for IT and CM, the character select with the best-matching roles first and tagged **Best match**. Business and OHS open their COSMO course-based guides instead, with best-matching careers marked.
+6. **Your future:** the role's entry routes, the closest COSMO qualification, skills and certifications, then **Accept mission** to confirm.
+7. **Journey:** explore the career stages and adjust qualification and experience to understand the next requirements. Role details list every linked COSMO course.
 
-Back controls and browser Back/Forward preserve the selection flow. **Change career** returns to career selection without clearing qualification or experience settings. Existing shared `?goal=...` links open the journey directly; ordinary visits start at the opening question. The URL records the active screen and selection.
+Back controls and browser Back/Forward preserve the selection flow, including each answer. **Change career** returns to career selection without clearing qualification or experience settings. Existing shared `?goal=...` links open the journey directly; ordinary visits start at the opening question. The URL records the active screen, selection and answers (`likes`, `quiz`, `anyway`).
 
-IT groups the source's software, cyber security, network, data/AI and IT services sectors. Creative maps to Digital Media. The supplied snapshot contains six IT role records, no Creative role records and no Business sector records, so those fields show clear empty states rather than fabricated careers. New career data can be added through the existing validated refresh workflow.
+The questions, job areas and scoring live in [`career-quiz.js`](career-quiz.js), shared with the simple [`prototype/`](prototype/). [`pie-chart.js`](pie-chart.js) draws the answers chart; its colours were checked for colour-blind separation on the dark glass panels, and the legend always shows names and percentages.
 
-Each field card has a smiling career portrait based on the supplied reference photo: IT with a laptop, Creative with a drawing tablet and stylus, and Business in a suit with a portfolio. The matching Creative and Business portraits also appear beside their availability notices. The same smiling man now appears at all six character levels, in the welcome scene, career list, future profile, goal preview and journey cards. These are illustrative career outfits; role data and journey requirements are unchanged.
+IT groups the source's software, cyber security, network, data/AI and IT services sectors (33 roles). CM maps to Digital Media (six roles checked against the official BIICF website on 27 October 2026). Business opens a separate COSMO-based guide with the published BTEC Levels 1, 2, 3 and 5 study progression, potential careers and HND leadership topics. OHS opens a COSMO guide built around the City and Guilds Level 3 NVQ in Occupational Health and Safety; its ten job titles are general examples because the data has no OHS roles. Both guides are clearly labelled as course-based information rather than BIICF career ladders.
+
+Each field card has a smiling career portrait based on the supplied reference photo: IT with a laptop, CM with a drawing tablet and stylus, and Business in a suit with a portfolio. OHS has no portrait yet and shows the illustrated character until one is added. The matching Creative and Business portraits also appear beside their availability notices. The same smiling man now appears at all six character levels, in the welcome scene, career list, future profile, goal preview and journey cards. These are illustrative career outfits; role data and journey requirements are unchanged.
 
 Original transparent smiling portraits and their individual generation prompts are saved as `assets/field-{it,creative,business}-smiling.png` and `assets/field-{it,creative,business}-smiling-prompt.md`. They were made with the built-in image generator. Lightweight 720-pixel-wide WebP copies are served through `<picture>`, with PNG fallbacks. Earlier portrait files remain available as source history.
 
@@ -36,7 +40,7 @@ Then open `http://127.0.0.1:8080/`. Use an HTTP server; browser module/data load
 
 Source: https://ccctmacademy.edu.bn/showcase_2026/openapi.json
 
-The supplied specification describes 39 roles, six sectors and 38 courses. Its four `/showcase_2026/data/*.json` endpoints returned HTTP 404 on 16 October 2026. This build uses only complete examples embedded in that specification: six roles, all six sector definitions, three full courses and three role-course mappings. The page clearly labels this incomplete dataset, and sectors without examples show an explanatory empty state. Requirements or records have not been invented.
+The supplied specification describes 39 roles, six sectors and 38 courses. Its four `/showcase_2026/data/*.json` endpoints returned HTTP 404 on 16 October 2026. This build uses the complete 39-role / 38-course snapshot bundled in [`backup/data/`](backup/data/), with the six Digital Media roles replaced by the [BIICF Digital Media pathway](https://www.biicf.bn/sub-sectors/digital-media/) checked on 27 October 2026, plus all six sector definitions and all 39 role-course mappings. The merged data passes the same checks as `npm run refresh:data` (every documented ID present, valid progression and course links). A separate [`data/business-leadership.json`](data/business-leadership.json) resource records the official [COSMO Business](https://cosmo.edu.bn/business/) study guide without inventing role progression or competency requirements.
 
 The roadmap engine follows the specification's directed role graph and BDQF/experience rules. Experience is cumulative, not added across steps. Subject, certification and portfolio conditions still apply. Estimated BDQF levels are identified, and unavailable role details are handled explicitly.
 

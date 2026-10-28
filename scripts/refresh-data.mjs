@@ -69,6 +69,8 @@ try {
   assert(errors.length === 0, errors.join('\n'));
   const data = Object.fromEntries(names.map((name, index) => [name, results[index].value]));
   validate(data, spec);
+  const businessGuide = JSON.parse(await readFile(path.join(dataDirectory, 'business-leadership.json'), 'utf8'));
+  assert(businessGuide?.id === 'business-leadership' && Array.isArray(businessGuide.studyPath) && Array.isArray(businessGuide.potentialCareers), 'Business & Leadership guide is invalid.');
   const metadata = {
     mode: 'live-snapshot',
     source,
@@ -82,7 +84,7 @@ try {
   staging = path.join(root, `.career-data-staging-${suffix}`);
   backup = path.join(root, `.career-data-backup-${suffix}`);
   await mkdir(staging);
-  await Promise.all([...names.map(name => writeFile(path.join(staging, `${name}.json`), `${JSON.stringify(data[name], null, 2)}\n`, 'utf8')), writeFile(path.join(staging, 'metadata.json'), `${JSON.stringify(metadata, null, 2)}\n`, 'utf8')]);
+  await Promise.all([...names.map(name => writeFile(path.join(staging, `${name}.json`), `${JSON.stringify(data[name], null, 2)}\n`, 'utf8')), writeFile(path.join(staging, 'business-leadership.json'), `${JSON.stringify(businessGuide, null, 2)}\n`, 'utf8'), writeFile(path.join(staging, 'metadata.json'), `${JSON.stringify(metadata, null, 2)}\n`, 'utf8')]);
   // Swap the complete directory, restoring the old snapshot if the swap fails.
   await rename(dataDirectory, backup);
   movedOriginal = true;

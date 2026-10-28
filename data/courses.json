@@ -1,5 +1,206 @@
 [
   {
+    "id": "btec-l1-business",
+    "title": "Pearson BTEC Introductory Diploma in Business",
+    "provider": "COSMO",
+    "type": "qualification",
+    "area": "business",
+    "awardingBody": "Pearson BTEC",
+    "level": 1,
+    "bdqf": 2,
+    "bdqfSource": "estimated",
+    "nextCourse": "btec-l2-business",
+    "url": "https://cosmo.edu.bn/introductory-diploma-in-business",
+    "careerLinks": [],
+    "note": "No BIICF ICT role accepts this qualification on its own. It is a stepping stone: see nextCourse."
+  },
+  {
+    "id": "btec-l2-business",
+    "title": "Pearson BTEC Certificate in Business",
+    "provider": "COSMO",
+    "type": "qualification",
+    "area": "business",
+    "awardingBody": "Pearson BTEC",
+    "level": 2,
+    "bdqf": 3,
+    "bdqfSource": "estimated",
+    "nextCourse": "btec-l3-business",
+    "url": "https://cosmo.edu.bn/international-certificate-in-business",
+    "careerLinks": [],
+    "note": "No BIICF ICT role accepts this qualification on its own. It is a stepping stone: see nextCourse."
+  },
+  {
+    "id": "btec-l3-business",
+    "title": "Pearson BTEC Diploma in Business",
+    "provider": "COSMO",
+    "type": "qualification",
+    "area": "business",
+    "awardingBody": "Pearson BTEC",
+    "level": 3,
+    "bdqf": 4,
+    "bdqfSource": "estimated",
+    "nextCourse": "hnd-business",
+    "url": "https://cosmo.edu.bn/diploma-in-business",
+    "careerLinks": [
+      {
+        "role": "market-analyst",
+        "fit": "with-experience",
+        "years": 3,
+        "route": "BDQF 4 in Marketing, Communications or Economics"
+      }
+    ]
+  },
+  {
+    "id": "hnd-business",
+    "title": "Pearson BTEC HND in Business",
+    "provider": "COSMO",
+    "type": "qualification",
+    "area": "business",
+    "awardingBody": "Pearson BTEC",
+    "level": 5,
+    "bdqf": 5,
+    "bdqfSource": "biicf-table",
+    "nextCourse": null,
+    "url": "https://cosmo.edu.bn/hnd-in-business",
+    "careerLinks": [
+      {
+        "role": "project-coordinator",
+        "fit": "qualifies",
+        "years": 0,
+        "route": "BDQF 5"
+      },
+      {
+        "role": "market-analyst",
+        "fit": "with-experience",
+        "years": 3,
+        "route": "BDQF 4 in Marketing, Communications or Economics"
+      },
+      {
+        "role": "digital-marketing-executive",
+        "fit": "with-experience",
+        "years": 5,
+        "route": "BDQF 5 in Marketing, Communications or Economics"
+      },
+      {
+        "role": "business-development-manager",
+        "fit": "with-experience",
+        "years": 8,
+        "route": "BDQF 5 + certification or portfolio"
+      },
+      {
+        "role": "customer-experience-manager",
+        "fit": "with-experience",
+        "years": 8,
+        "route": "BDQF 5 + certification or portfolio"
+      },
+      {
+        "role": "marketing-manager",
+        "fit": "with-experience",
+        "years": 8,
+        "route": "BDQF 5 + certification or portfolio"
+      },
+      {
+        "role": "cmo",
+        "fit": "with-experience",
+        "years": 12,
+        "route": "BDQF 5 + certification, 12 years at senior level"
+      }
+    ]
+  },
+  {
+    "id": "btec-l1-it",
+    "title": "Pearson BTEC Introductory Diploma in Information Technology",
+    "provider": "COSMO",
+    "type": "qualification",
+    "area": "information-technology",
+    "awardingBody": "Pearson BTEC",
+    "level": 1,
+    "bdqf": 2,
+    "bdqfSource": "estimated",
+    "nextCourse": "btec-l2-it",
+    "url": "https://cosmo.edu.bn/introductory-diploma-in-information-technology",
+    "careerLinks": [
+      {
+        "role": "it-technician",
+        "fit": "needs-experience-or-portfolio",
+        "years": null,
+        "route": "Level 1 — BDQF 2 in IT plus industry experience"
+      }
+    ]
+  },
+  {
+    "id": "btec-l2-it",
+    "title": "Pearson BTEC Certificate in Information Technology",
+    "provider": "COSMO",
+    "type": "qualification",
+    "area": "information-technology",
+    "awardingBody": "Pearson BTEC",
+    "level": 2,
+    "bdqf": 3,
+    "bdqfSource": "estimated",
+    "nextCourse": "btec-l3-it",
+    "url": "https://cosmo.edu.bn/international-certificate-in-information-technology",
+    "careerLinks": [
+      {
+        "role": "it-technician",
+        "fit": "qualifies",
+        "years": 0,
+        "route": "Level 2 — BDQF 3 in IT or related field"
+      },
+      {
+        "role": "network-technician",
+        "fit": "qualifies",
+        "years": 0,
+        "route": "BDQF 3 + relevant industry certification"
+      }
+    ]
+  },
+  {
+    "id": "btec-l3-it",
+    "title": "Pearson BTEC Diploma in Information Technology",
+    "provider": "COSMO",
+    "type": "qualification",
+    "area": "information-technology",
+    "awardingBody": "Pearson BTEC",
+    "level": 3,
+    "bdqf": 4,
+    "bdqfSource": "estimated",
+    "nextCourse": "hnd-computing",
+    "url": "https://cosmo.edu.bn/diploma-in-information-technology",
+    "careerLinks": [
+      {
+        "role": "it-technician",
+        "fit": "qualifies",
+        "years": 0,
+        "route": "Level 3 — BDQF 4 (or BDQF 3 + industry certification)"
+      },
+      {
+        "role": "network-technician",
+        "fit": "qualifies",
+        "years": 0,
+        "route": "BDQF 4 in IT or Telecommunications"
+      },
+      {
+        "role": "associate-security-analyst",
+        "fit": "with-experience",
+        "years": 5,
+        "route": "BDQF 4 + 5 years' experience, or a relevant portfolio"
+      },
+      {
+        "role": "security-engineer",
+        "fit": "with-experience",
+        "years": 6,
+        "route": "BDQF 4 + 6–8 years as a security analyst or similar"
+      },
+      {
+        "role": "data-entry",
+        "fit": "qualifies",
+        "years": 0,
+        "route": "BDQF 4 in Data Analytics, IT or IS"
+      }
+    ]
+  },
+  {
     "id": "hnd-computing",
     "title": "Pearson BTEC HND in Computing",
     "provider": "COSMO",
@@ -207,6 +408,215 @@
     ]
   },
   {
+    "id": "btec-l1-digital-media",
+    "title": "Pearson BTEC Introductory Diploma in Digital Media",
+    "provider": "COSMO",
+    "type": "qualification",
+    "area": "creative-media",
+    "awardingBody": "Pearson BTEC",
+    "level": 1,
+    "bdqf": 2,
+    "bdqfSource": "estimated",
+    "nextCourse": "btec-l2-creative-media",
+    "url": "https://cosmo.edu.bn/introductory-diploma-in-digital-media",
+    "careerLinks": [],
+    "note": "No BIICF ICT role accepts this qualification on its own. It is a stepping stone: see nextCourse."
+  },
+  {
+    "id": "btec-l2-creative-media",
+    "title": "Pearson BTEC Certificate in Creative Media",
+    "provider": "COSMO",
+    "type": "qualification",
+    "area": "creative-media",
+    "awardingBody": "Pearson BTEC",
+    "level": 2,
+    "bdqf": 3,
+    "bdqfSource": "estimated",
+    "nextCourse": "btec-l3-creative-media",
+    "url": "https://cosmo.edu.bn/international-certificate-in-creative-media-production",
+    "careerLinks": [],
+    "note": "No BIICF ICT role accepts this qualification on its own. It is a stepping stone: see nextCourse."
+  },
+  {
+    "id": "btec-l3-creative-media",
+    "title": "Pearson BTEC Diploma in Creative Media",
+    "provider": "COSMO",
+    "type": "qualification",
+    "area": "creative-media",
+    "awardingBody": "Pearson BTEC",
+    "level": 3,
+    "bdqf": 4,
+    "bdqfSource": "estimated",
+    "nextCourse": "hnd-graphic-design",
+    "url": "https://cosmo.edu.bn/diploma-in-creative-media-production",
+    "careerLinks": [],
+    "note": "No BIICF ICT role accepts this qualification on its own. It is a stepping stone: see nextCourse."
+  },
+  {
+    "id": "hnd-graphic-design",
+    "title": "Pearson BTEC HND in Graphic Design",
+    "provider": "COSMO",
+    "type": "qualification",
+    "area": "creative-media",
+    "awardingBody": "Pearson BTEC",
+    "level": 5,
+    "bdqf": 5,
+    "bdqfSource": "biicf-table",
+    "nextCourse": null,
+    "url": "https://cosmo.edu.bn/hnd-in-Graphic-Design",
+    "careerLinks": [
+      {
+        "role": "business-development-manager",
+        "fit": "with-experience",
+        "years": 8,
+        "route": "BDQF 5 + certification or portfolio"
+      },
+      {
+        "role": "customer-experience-manager",
+        "fit": "with-experience",
+        "years": 8,
+        "route": "BDQF 5 + certification or portfolio"
+      },
+      {
+        "role": "marketing-manager",
+        "fit": "with-experience",
+        "years": 8,
+        "route": "BDQF 5 + certification or portfolio"
+      },
+      {
+        "role": "cmo",
+        "fit": "with-experience",
+        "years": 12,
+        "route": "BDQF 5 + certification, 12 years at senior level"
+      }
+    ]
+  },
+  {
+    "id": "cg-l3-logistics",
+    "title": "City and Guilds Level 3 Logistics Operations",
+    "provider": "COSMO",
+    "type": "qualification",
+    "area": "logistics",
+    "awardingBody": "City and Guilds",
+    "level": 3,
+    "bdqf": 4,
+    "bdqfSource": "estimated",
+    "nextCourse": null,
+    "url": "https://cosmo.edu.bn/city-and-guilds-level-3-certificate-in-logistics-operations/",
+    "careerLinks": [],
+    "note": "Outside the BIICF ICT framework, so not linked to an ICT role."
+  },
+  {
+    "id": "cg-l3-ohs",
+    "title": "City and Guilds Level 3 NVQ Certificate in Occupational Health and Safety",
+    "provider": "COSMO",
+    "type": "qualification",
+    "area": "health-and-safety",
+    "awardingBody": "City and Guilds",
+    "level": 3,
+    "bdqf": 4,
+    "bdqfSource": "estimated",
+    "nextCourse": null,
+    "url": "https://cosmo.edu.bn/city-and-guilds-level-3-nvq-certificate-in-occupational-health-and-safety/",
+    "careerLinks": [],
+    "note": "Outside the BIICF ICT framework, so not linked to an ICT role."
+  },
+  {
+    "id": "hntec-tourism-operations",
+    "title": "HNTec Tourism Operations",
+    "provider": "COSMO",
+    "type": "qualification",
+    "area": "hospitality-tourism",
+    "awardingBody": null,
+    "level": null,
+    "bdqf": 4,
+    "bdqfSource": "biicf-table",
+    "nextCourse": null,
+    "url": "https://cosmo.edu.bn/hntech-in-tourism-operations/",
+    "careerLinks": [],
+    "note": "Outside the BIICF ICT framework, so not linked to an ICT role."
+  },
+  {
+    "id": "ntec-hotel-business-tourism",
+    "title": "NTec Hotel and Business Tourism",
+    "provider": "COSMO",
+    "type": "qualification",
+    "area": "hospitality-tourism",
+    "awardingBody": null,
+    "level": null,
+    "bdqf": 3,
+    "bdqfSource": "biicf-table",
+    "nextCourse": null,
+    "url": "https://cosmo.edu.bn/ntec-in-hotel-and-business-tourism/",
+    "careerLinks": [],
+    "note": "Outside the BIICF ICT framework, so not linked to an ICT role."
+  },
+  {
+    "id": "ccp-data-analytics",
+    "title": "CCP Data Analytics",
+    "provider": "COSMO",
+    "type": "short-course",
+    "area": "information-technology",
+    "awardingBody": "COSMO",
+    "level": null,
+    "bdqf": null,
+    "bdqfSource": null,
+    "nextCourse": null,
+    "url": "https://cosmo.edu.bn/ccp-data-analytics/",
+    "careerLinks": [
+      {
+        "role": "data-entry",
+        "fit": "builds-skills",
+        "years": null,
+        "route": null,
+        "why": "Builds the Data Analytics skill and the Google Data Analytics / Power BI learning listed for this role."
+      },
+      {
+        "role": "data-analyst",
+        "fit": "builds-skills",
+        "years": null,
+        "route": null,
+        "why": "Builds Data Analytics, Data Cleansing and Data Visualisation, the core skills of this role."
+      },
+      {
+        "role": "market-analyst",
+        "fit": "builds-skills",
+        "years": null,
+        "route": null,
+        "why": "Builds Data and Trend Analytics, a key skill of this role."
+      }
+    ]
+  },
+  {
+    "id": "ccp-excel-for-professionals",
+    "title": "CCP Excel for Professionals",
+    "provider": "COSMO",
+    "type": "short-course",
+    "area": "information-technology",
+    "awardingBody": "COSMO",
+    "level": null,
+    "bdqf": null,
+    "bdqfSource": null,
+    "nextCourse": null,
+    "url": "https://cosmo.edu.bn/ccp-excel-for-professionals/",
+    "careerLinks": [
+      {
+        "role": "data-entry",
+        "fit": "builds-skills",
+        "years": null,
+        "route": null,
+        "why": "Microsoft Excel is listed as recommended training for this role."
+      },
+      {
+        "role": "data-analyst",
+        "fit": "builds-skills",
+        "years": null,
+        "route": null,
+        "why": "Spreadsheet analysis supports Data Analytics and Data Cleansing."
+      }
+    ]
+  },
+  {
     "id": "ccp-cybersecurity",
     "title": "CCP Cybersecurity",
     "provider": "COSMO",
@@ -236,18 +646,477 @@
     ]
   },
   {
-    "id": "btec-l2-creative-media",
-    "title": "Pearson BTEC Certificate in Creative Media",
+    "id": "ccp-networking-professional",
+    "title": "CCP Networking Professional",
     "provider": "COSMO",
-    "type": "qualification",
+    "type": "short-course",
+    "area": "information-technology",
+    "awardingBody": "COSMO",
+    "level": null,
+    "bdqf": null,
+    "bdqfSource": null,
+    "nextCourse": null,
+    "url": "https://cosmo.edu.bn/ccp-networking-professional/",
+    "careerLinks": [
+      {
+        "role": "network-technician",
+        "fit": "builds-skills",
+        "years": null,
+        "route": null,
+        "why": "Builds Network Administration and Network Configuration; prepares for Cisco CCNA."
+      },
+      {
+        "role": "it-technician",
+        "fit": "builds-skills",
+        "years": null,
+        "route": null,
+        "why": "CompTIA Network+ and Cisco CCNA are listed for this role."
+      }
+    ]
+  },
+  {
+    "id": "ccp-web-and-content-management",
+    "title": "CCP Web and Content Management",
+    "provider": "COSMO",
+    "type": "short-course",
+    "area": "information-technology",
+    "awardingBody": "COSMO",
+    "level": null,
+    "bdqf": null,
+    "bdqfSource": null,
+    "nextCourse": null,
+    "url": "https://cosmo.edu.bn/ccp-web-and-content-management/",
+    "careerLinks": [
+      {
+        "role": "junior-programmer",
+        "fit": "builds-skills",
+        "years": null,
+        "route": null,
+        "why": "\"HTML, CSS & JavaScript for Web Developers\" is listed for this role, also known as Web Developer."
+      },
+      {
+        "role": "digital-marketing-executive",
+        "fit": "builds-skills",
+        "years": null,
+        "route": null,
+        "why": "This role runs website content and SEO."
+      }
+    ]
+  },
+  {
+    "id": "ccp-graphic-design-illustration",
+    "title": "CCP Graphic Design & Illustration",
+    "provider": "COSMO",
+    "type": "short-course",
     "area": "creative-media",
-    "awardingBody": "Pearson BTEC",
-    "level": 2,
-    "bdqf": 3,
-    "bdqfSource": "estimated",
-    "nextCourse": "btec-l3-creative-media",
-    "url": "https://cosmo.edu.bn/international-certificate-in-creative-media-production",
+    "awardingBody": "COSMO",
+    "level": null,
+    "bdqf": null,
+    "bdqfSource": null,
+    "nextCourse": null,
+    "url": "https://cosmo.edu.bn/ccp-graphic-design-illustration/",
+    "careerLinks": [
+      {
+        "role": "digital-marketing-executive",
+        "fit": "builds-skills",
+        "years": null,
+        "route": null,
+        "why": "Content creation for digital campaigns and social media; this role is also known as Content Creator."
+      }
+    ]
+  },
+  {
+    "id": "ccp-print-digital-media-publication",
+    "title": "CCP Print & Digital Media Publication",
+    "provider": "COSMO",
+    "type": "short-course",
+    "area": "creative-media",
+    "awardingBody": "COSMO",
+    "level": null,
+    "bdqf": null,
+    "bdqfSource": null,
+    "nextCourse": null,
+    "url": "https://cosmo.edu.bn/ccp-print-digital-media-publication/",
+    "careerLinks": [
+      {
+        "role": "digital-marketing-executive",
+        "fit": "builds-skills",
+        "years": null,
+        "route": null,
+        "why": "Content creation for digital campaigns and social media; this role is also known as Content Creator."
+      }
+    ]
+  },
+  {
+    "id": "ccp-motion-graphics-design",
+    "title": "CCP Motion Graphics Design",
+    "provider": "COSMO",
+    "type": "short-course",
+    "area": "creative-media",
+    "awardingBody": "COSMO",
+    "level": null,
+    "bdqf": null,
+    "bdqfSource": null,
+    "nextCourse": null,
+    "url": "https://cosmo.edu.bn/ccp-motion-graphics-design/",
+    "careerLinks": [
+      {
+        "role": "digital-marketing-executive",
+        "fit": "builds-skills",
+        "years": null,
+        "route": null,
+        "why": "Content creation for digital campaigns and social media; this role is also known as Content Creator."
+      }
+    ]
+  },
+  {
+    "id": "ccp-video-editing-production",
+    "title": "CCP Video Editing & Production",
+    "provider": "COSMO",
+    "type": "short-course",
+    "area": "creative-media",
+    "awardingBody": "COSMO",
+    "level": null,
+    "bdqf": null,
+    "bdqfSource": null,
+    "nextCourse": null,
+    "url": "https://cosmo.edu.bn/ccp-video-editing-production/",
+    "careerLinks": [
+      {
+        "role": "digital-marketing-executive",
+        "fit": "builds-skills",
+        "years": null,
+        "route": null,
+        "why": "Content creation for digital campaigns and social media; this role is also known as Content Creator."
+      }
+    ]
+  },
+  {
+    "id": "ccp-photography",
+    "title": "CCP Photography",
+    "provider": "COSMO",
+    "type": "short-course",
+    "area": "creative-media",
+    "awardingBody": "COSMO",
+    "level": null,
+    "bdqf": null,
+    "bdqfSource": null,
+    "nextCourse": null,
+    "url": "https://cosmo.edu.bn/ccp-photography/",
+    "careerLinks": [
+      {
+        "role": "digital-marketing-executive",
+        "fit": "builds-skills",
+        "years": null,
+        "route": null,
+        "why": "Content creation for digital campaigns and social media; this role is also known as Content Creator."
+      }
+    ]
+  },
+  {
+    "id": "ccp-canva-design-specialist",
+    "title": "CCP Canva Design Specialist",
+    "provider": "COSMO",
+    "type": "short-course",
+    "area": "creative-media",
+    "awardingBody": "COSMO",
+    "level": null,
+    "bdqf": null,
+    "bdqfSource": null,
+    "nextCourse": null,
+    "url": "https://cosmo.edu.bn/ccp-canva-design-specialist/",
+    "careerLinks": [
+      {
+        "role": "digital-marketing-executive",
+        "fit": "builds-skills",
+        "years": null,
+        "route": null,
+        "why": "Content creation for digital campaigns and social media; this role is also known as Content Creator."
+      }
+    ]
+  },
+  {
+    "id": "ccp-capcut-video-creator",
+    "title": "CCP CapCut Video Creator",
+    "provider": "COSMO",
+    "type": "short-course",
+    "area": "creative-media",
+    "awardingBody": "COSMO",
+    "level": null,
+    "bdqf": null,
+    "bdqfSource": null,
+    "nextCourse": null,
+    "url": "https://cosmo.edu.bn/ccp-capcut-video-creator/",
+    "careerLinks": [
+      {
+        "role": "digital-marketing-executive",
+        "fit": "builds-skills",
+        "years": null,
+        "route": null,
+        "why": "Content creation for digital campaigns and social media; this role is also known as Content Creator."
+      }
+    ]
+  },
+  {
+    "id": "ccp-social-media-marketing-management",
+    "title": "CCP Social Media Marketing & Management",
+    "provider": "COSMO",
+    "type": "short-course",
+    "area": "creative-media",
+    "awardingBody": "COSMO",
+    "level": null,
+    "bdqf": null,
+    "bdqfSource": null,
+    "nextCourse": null,
+    "url": "https://cosmo.edu.bn/ccp-social-media-marketing-management/",
+    "careerLinks": [
+      {
+        "role": "digital-marketing-executive",
+        "fit": "builds-skills",
+        "years": null,
+        "route": null,
+        "why": "Runs social media campaigns; also known as Social Media Specialist. Builds Media & Platform Management."
+      },
+      {
+        "role": "market-analyst",
+        "fit": "builds-skills",
+        "years": null,
+        "route": null,
+        "why": "Builds Media & Platform Management; Meta Blueprint and HubSpot are listed for this role."
+      },
+      {
+        "role": "marketing-manager",
+        "fit": "builds-skills",
+        "years": null,
+        "route": null,
+        "why": "Builds Digital Advertising Platforms and Campaign Management skills."
+      }
+    ]
+  },
+  {
+    "id": "ccp-prompt-engineering-ai",
+    "title": "CCP Prompt Engineering & AI",
+    "provider": "COSMO",
+    "type": "short-course",
+    "area": "artificial-intelligence",
+    "awardingBody": "COSMO",
+    "level": null,
+    "bdqf": null,
+    "bdqfSource": null,
+    "nextCourse": null,
+    "url": "https://cosmo.edu.bn/ccp-prompt-engineering-ai/",
+    "careerLinks": [
+      {
+        "role": "ai-engineer",
+        "fit": "builds-skills",
+        "years": null,
+        "route": null,
+        "why": "An introduction to working with AI systems before deeper ML and NLP study."
+      },
+      {
+        "role": "marketing-manager",
+        "fit": "builds-skills",
+        "years": null,
+        "route": null,
+        "why": "This role plans campaigns using AI-powered marketing tools."
+      }
+    ]
+  },
+  {
+    "id": "ai-board-understanding-ai",
+    "title": "The AI Board Award in Understanding AI",
+    "provider": "COSMO",
+    "type": "short-course",
+    "area": "ai-board",
+    "awardingBody": "The AI Board",
+    "level": null,
+    "bdqf": null,
+    "bdqfSource": null,
+    "nextCourse": null,
+    "url": "https://cosmo.edu.bn/the-ai-board-in-understanding-ai/",
+    "careerLinks": [
+      {
+        "role": "ai-engineer",
+        "fit": "builds-skills",
+        "years": null,
+        "route": null,
+        "why": "Foundation knowledge of AI concepts."
+      },
+      {
+        "role": "data-analyst",
+        "fit": "builds-skills",
+        "years": null,
+        "route": null,
+        "why": "Background for the AI Engineer branch that starts from this role."
+      }
+    ]
+  },
+  {
+    "id": "ai-board-ai-for-teaching-professionals",
+    "title": "The AI Board Award in AI for Teaching Professionals",
+    "provider": "COSMO",
+    "type": "short-course",
+    "area": "ai-board",
+    "awardingBody": "The AI Board",
+    "level": null,
+    "bdqf": null,
+    "bdqfSource": null,
+    "nextCourse": null,
+    "url": "https://cosmo.edu.bn/the-ai-board-in-ai-for-teaching-professionals/",
     "careerLinks": [],
-    "note": "No BIICF ICT role accepts this qualification on its own. It is a stepping stone: see nextCourse."
+    "note": "For teachers; not linked to a BIICF ICT role."
+  },
+  {
+    "id": "ai-board-applied-ai",
+    "title": "The AI Board Award in Applied AI",
+    "provider": "COSMO",
+    "type": "short-course",
+    "area": "ai-board",
+    "awardingBody": "The AI Board",
+    "level": null,
+    "bdqf": null,
+    "bdqfSource": null,
+    "nextCourse": null,
+    "url": "https://cosmo.edu.bn/the-ai-board-in-applied-ai/",
+    "careerLinks": [
+      {
+        "role": "ai-engineer",
+        "fit": "builds-skills",
+        "years": null,
+        "route": null,
+        "why": "Applying AI builds toward Computational Modelling and Intelligent Reasoning."
+      },
+      {
+        "role": "data-scientist",
+        "fit": "builds-skills",
+        "years": null,
+        "route": null,
+        "why": "Supports Machine Learning and Business Innovation skills."
+      }
+    ]
+  },
+  {
+    "id": "ai-board-ai-business",
+    "title": "The AI Board Award in AI Business",
+    "provider": "COSMO",
+    "type": "short-course",
+    "area": "ai-board",
+    "awardingBody": "The AI Board",
+    "level": null,
+    "bdqf": null,
+    "bdqfSource": null,
+    "nextCourse": null,
+    "url": "https://cosmo.edu.bn/the-ai-board-award-in-ai-business/",
+    "careerLinks": [
+      {
+        "role": "cio",
+        "fit": "builds-skills",
+        "years": null,
+        "route": null,
+        "why": "Supports IT Strategy for AI adoption."
+      },
+      {
+        "role": "marketing-manager",
+        "fit": "builds-skills",
+        "years": null,
+        "route": null,
+        "why": "This role uses AI-powered marketing tools."
+      },
+      {
+        "role": "bi-director",
+        "fit": "builds-skills",
+        "years": null,
+        "route": null,
+        "why": "Supports BI strategy and data-driven decisions."
+      }
+    ]
+  },
+  {
+    "id": "ccp-team-building-and-teamwork",
+    "title": "CCP Team Building and Teamwork",
+    "provider": "COSMO",
+    "type": "short-course",
+    "area": "team-building",
+    "awardingBody": "COSMO",
+    "level": null,
+    "bdqf": null,
+    "bdqfSource": null,
+    "nextCourse": null,
+    "url": "https://cosmo.edu.bn/ccp-team-building-and-teamwork/",
+    "careerLinks": [],
+    "note": "Builds Team Work, a soft skill BIICF assesses for every role, so it is not tied to one role."
+  },
+  {
+    "id": "ccp-smart-budgeting-business-finance",
+    "title": "CCP Smart Budgeting & Business Finance",
+    "provider": "COSMO",
+    "type": "short-course",
+    "area": "business",
+    "awardingBody": "COSMO",
+    "level": null,
+    "bdqf": null,
+    "bdqfSource": null,
+    "nextCourse": null,
+    "url": "https://cosmo.edu.bn/ccp-smart-budgeting-business-finance/",
+    "careerLinks": [
+      {
+        "role": "it-administrator-manager",
+        "fit": "builds-skills",
+        "years": null,
+        "route": null,
+        "why": "Budgeting is a key skill of this role."
+      },
+      {
+        "role": "market-analyst",
+        "fit": "builds-skills",
+        "years": null,
+        "route": null,
+        "why": "Budgeting is a key skill of this role."
+      }
+    ]
+  },
+  {
+    "id": "ccp-customer-experience-excellence",
+    "title": "CCP Customer Experience Excellence",
+    "provider": "COSMO",
+    "type": "short-course",
+    "area": "business",
+    "awardingBody": "COSMO",
+    "level": null,
+    "bdqf": null,
+    "bdqfSource": null,
+    "nextCourse": null,
+    "url": "https://cosmo.edu.bn/ccp-customer-experience-excellence/",
+    "careerLinks": [
+      {
+        "role": "customer-experience-manager",
+        "fit": "builds-skills",
+        "years": null,
+        "route": null,
+        "why": "Builds Customer Experience Management, the main skill of this role."
+      },
+      {
+        "role": "business-development-manager",
+        "fit": "builds-skills",
+        "years": null,
+        "route": null,
+        "why": "Customer Experience Management is a key skill of this role."
+      }
+    ]
+  },
+  {
+    "id": "versant-english",
+    "title": "Versant English by Pearson",
+    "provider": "COSMO",
+    "type": "language",
+    "area": "english",
+    "awardingBody": "Pearson",
+    "level": null,
+    "bdqf": null,
+    "bdqfSource": null,
+    "nextCourse": null,
+    "url": "https://cosmo.edu.bn/versant-english/",
+    "careerLinks": [],
+    "note": "Builds Communication, a soft skill BIICF assesses for every role."
   }
 ]

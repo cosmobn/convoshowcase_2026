@@ -248,6 +248,27 @@
 .flow-empty-copy { min-width: 0; padding-bottom: 34px; }
 .flow-empty-portrait { align-self: stretch; min-height: 290px; margin-top: -9px; }
 .flow-empty-portrait .flow-field-photo { min-height: 290px; }
+.business-guide { display: grid; gap: 34px; max-width: 1180px; margin: 0 auto; }
+.business-section-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 18px; }
+.business-kicker { display: block; margin-bottom: 7px; color: #887019; font-size: 10px; font-weight: 800; letter-spacing: 1.3px; text-transform: uppercase; }
+.business-guide h2 { margin: 0; color: var(--flow-blue); font-size: clamp(24px, 3vw, 36px); line-height: 1.15; letter-spacing: -1px; }
+.business-source, .business-level a { display: inline-flex; align-items: center; gap: 7px; color: var(--flow-blue); font-size: 12px; font-weight: 750; text-decoration: none; }
+.business-source:hover, .business-level a:hover { text-decoration: underline; }
+.business-source svg, .business-level a svg { width: 15px; height: 15px; }
+.business-levels { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.business-level { display: flex; min-width: 0; flex-direction: column; border: 1px solid #DEE4F0; border-radius: 16px; padding: 20px; background: linear-gradient(145deg, white, #F7F8FC); box-shadow: 0 8px 28px #1E285908; }
+.business-level > span { align-self: flex-start; border-radius: 99px; padding: 5px 9px; background: var(--brand-yellow); color: var(--flow-blue); font-size: 10px; font-weight: 850; letter-spacing: .7px; text-transform: uppercase; }
+.business-level h3 { margin: 14px 0 10px; color: var(--flow-blue); font-size: 16px; line-height: 1.35; }
+.business-level p { margin: 0 0 9px; color: var(--flow-muted); font-size: 12px; line-height: 1.65; }
+.business-level a { margin-top: auto; padding-top: 8px; }
+.business-guide-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.business-guide-grid > div { border: 1px solid #DEE4F0; border-radius: 18px; padding: 24px; background: white; }
+.business-tags, .business-topics { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 0; padding: 0; list-style: none; }
+.business-tags li, .business-topics li { border: 1px solid #E1E6F0; border-radius: 8px; padding: 7px 10px; background: #F3F5FA; color: #4D5B78; font-size: 11px; line-height: 1.4; }
+.business-topics li { border-color: #E9D77D; background: #FFF8D8; color: #65551C; }
+.business-disclaimer { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 10px; border-left: 3px solid var(--brand-yellow); padding: 13px 15px; background: #FFF9E8; color: #65551C; }
+.business-disclaimer p { margin: 0; font-size: 12px; line-height: 1.7; }
+.business-disclaimer svg { margin-top: 1px; }
 
 .flow-profile { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.15fr); align-items: center; gap: 55px; }
 .flow-profile-scene { position: relative; isolation: isolate; display: flex; align-items: center; justify-content: center; flex-direction: column; min-height: 418px; overflow: hidden; border: 1px solid #354174; border-radius: 26px; padding: 32px 25px 25px; background: radial-gradient(ellipse at 50% 55%, #FCD00F17, transparent 59%), linear-gradient(150deg, #1E2859, #293767); }
@@ -608,6 +629,8 @@ html.motion-paused :is(.cs-thumb, .cs-roster-track > span) { transition: none; }
   .cs-skill { width: 50px; height: 50px; }
   .cs-choose { width: 100%; }
   .cs-thumb { width: 58px; height: 58px; }
+  .business-section-heading { align-items: start; flex-direction: column; }
+  .business-levels, .business-guide-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 440px) {
   .cs-art { --art-h: 340px; }
@@ -745,3 +768,80 @@ html.motion-paused .mission-brief { animation: none; }
   .flow-mission .mission-objectives p { margin-top: 4px; }
   .flow-mission .mission-unlock { margin-top: 12px; padding: 8px 12px; }
 }
+
+/* OHS has no field portrait yet: the illustrated character stands in, centred at full height. */
+.flow-field-sprite { display: flex; justify-content: center; }
+.flow-field-sprite > .character-sprite { width: auto; height: 100%; aspect-ratio: 1 / 2; }
+.cs-thumb .flow-field-sprite { position: absolute; inset: 0; }
+.cs-best { margin-left: 6px; background: var(--cs-yellow); color: var(--brand-blue); }
+.cs-quiz-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; border: 0; padding: 0; background: none; color: #D5DDF3; font-size: 13px; font-weight: 650; text-decoration: underline; text-underline-offset: 3px; }
+.cs-quiz-link:hover { color: var(--cs-yellow); }
+.cs-quiz-link svg { width: 16px; height: 16px; }
+
+/* "What do you like?" and the quick field quiz: one question per glass card. */
+.quiz-card, .match-card { border: 1px solid var(--glass-border); border-radius: 18px; padding: 26px; background: var(--glass); color: white; box-shadow: 0 14px 34px #0710301F; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.quiz-card { max-width: 720px; }
+.quiz-progress { display: flex; align-items: center; gap: 14px; color: #CFD7F1; font-size: 11px; font-weight: 750; letter-spacing: 1.2px; text-transform: uppercase; }
+.quiz-track { flex: 1; height: 4px; overflow: hidden; border-radius: 4px; background: #FFFFFF1F; }
+.quiz-track > i { display: block; height: 100%; border-radius: 4px; background: var(--brand-yellow); }
+.quiz-card h2 { margin: 18px 0 18px; color: white; font-size: clamp(22px, 2.6vw, 30px); line-height: 1.2; letter-spacing: -.5px; }
+.quiz-answers { display: grid; gap: 10px; }
+.quiz-answer { width: 100%; border: 1px solid #FFFFFF2E; border-radius: 12px; padding: 14px 16px; background: #FFFFFF0A; color: #F0F3FF; font-size: 15px; font-weight: 600; line-height: 1.45; text-align: left; transition: border-color 160ms ease, background-color 160ms ease; }
+.quiz-answer:hover { border-color: var(--brand-yellow); background: #FCD00F14; }
+.quiz-none { border-style: dashed; color: #B9C4E4; font-weight: 500; }
+.quiz-screen > .flow-body > .flow-actions:first-child { margin-top: 0; }
+
+/* Your match: answers pie beside the best jobs, then the rest of the field. */
+.match-grid { display: grid; grid-template-columns: minmax(280px, 380px) minmax(0, 1fr); align-items: start; gap: 18px; }
+.match-card h2 { margin: 0 0 16px; color: white; font-size: 22px; line-height: 1.25; }
+.match-card > p { margin: 0; color: #D5DDF3; font-size: 14px; line-height: 1.7; }
+.match-kicker { display: block; margin-bottom: 8px; color: var(--brand-yellow); font-size: 10px; font-weight: 800; letter-spacing: 1.3px; text-transform: uppercase; }
+.match-others { margin-top: 18px; }
+.match-columns { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 6px 22px; }
+.match-group + .match-group { margin-top: 18px; }
+.match-columns > .match-group { margin-top: 0; }
+.match-group h3 { margin: 4px 0 10px; color: #E2E7FA; font-size: 13px; font-weight: 750; letter-spacing: .4px; }
+.match-jobs { display: grid; gap: 8px; margin: 0 0 12px; padding: 0; list-style: none; }
+.match-job { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 12px; width: 100%; min-height: 58px; border: 1px solid #FFFFFF24; border-radius: 12px; padding: 8px 14px 8px 10px; background: #FFFFFF0A; color: white; text-align: left; transition: border-color 160ms ease, background-color 160ms ease; }
+.match-job:hover { border-color: var(--brand-yellow); background: #FCD00F14; }
+.match-job > svg { width: 17px; height: 17px; color: var(--brand-yellow); }
+.match-job-portrait { position: relative; width: 42px; height: 42px; overflow: hidden; border-radius: 10px; background: #FFFFFF12; }
+.match-job-portrait > .character-sprite { position: absolute; top: 2px; left: 50%; width: 52px; height: 104px; transform: translateX(-50%); }
+.match-job-copy { grid-column: span 1; min-width: 0; }
+.match-job:not(:has(.match-job-portrait)) .match-job-copy { grid-column: 1 / 3; padding-left: 4px; }
+.match-job-copy strong { display: block; font-size: 14px; line-height: 1.35; }
+.match-job-copy small { display: block; margin-top: 2px; overflow: hidden; color: #B9C4E4; font-size: 12px; line-height: 1.45; text-overflow: ellipsis; white-space: nowrap; }
+.match-card > .match-also { margin: 22px 0 10px; color: #D5DDF3; font-size: 13px; }
+.match-fields { display: flex; flex-wrap: wrap; gap: 8px; }
+.match-fields .flow-secondary { min-height: 40px; }
+
+/* Pie chart. Slices keep a 2px surface gap; the legend always carries names and numbers. */
+.pie-chart { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
+.pie-chart .pie-svg { width: 168px; height: 168px; flex-shrink: 0; }
+.pie-slice { transition: opacity 160ms ease; }
+.pie-legend { display: grid; gap: 7px; min-width: 0; margin: 0; padding: 0; list-style: none; font-size: 13px; }
+.pie-legend li { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 8px; transition: opacity 160ms ease; }
+.pie-legend i { width: 12px; height: 12px; border-radius: 3px; align-self: center; }
+.pie-legend strong { color: white; font-weight: 700; }
+.pie-legend span { color: #B9C4E4; font-size: 12px; }
+.pie-chart.is-focused [data-pie-key]:not(.is-active) { opacity: .35; }
+html.motion-paused :is(.pie-slice, .pie-legend li, .quiz-answer, .match-job) { transition: none; }
+
+.business-levels.is-single { grid-template-columns: minmax(0, 420px); }
+.business-guide-grid.is-single { grid-template-columns: minmax(0, 1fr); }
+.business-tags li.is-match { border-color: var(--brand-yellow); }
+.business-tags li small { margin-left: 4px; color: var(--brand-yellow); font-size: 10px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; }
+
+@media (max-width: 960px) {
+  .match-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 700px) {
+  .quiz-card, .match-card { padding: 20px 16px; }
+  .quiz-answer { font-size: 14px; }
+  .match-columns { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pie-slice, .pie-legend li, .quiz-answer, .match-job { transition: none; }
+}
+.mission-study { display: grid; grid-template-columns: 70px minmax(0, 1fr); gap: 10px; }
+.mission-study b { color: var(--cs-yellow); font-size: 10px; font-weight: 750; letter-spacing: 1.2px; line-height: 2.2; text-transform: uppercase; }

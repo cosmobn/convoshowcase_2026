@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "PathFinder ICT — Static Data & Deep-Link API",
-    "version": "1.0.0",
+    "version": "1.3.0",
     "summary": "Career-path data and shareable URLs for the PathFinder ICT student site.",
     "description": "PathFinder ICT is a **static website** with no backend. This document describes everything a static host serves for it:\n\n1. **Data** — read-only JSON files: the 39 ICT job roles, the 6 sectors, the 38 COSMO courses linked to those roles, and a role → courses index. These are the only machine-readable resources.\n2. **Pages** — the single-page app and its deep-link query parameters. Every roadmap is a URL, e.g. `/?goal=ciso&from=hnd`.\n3. **Share redirects** — `/r/{sectorId}/` pages that give link previews a sector image, then redirect to the app with the same query string.\n4. **Assets** — Open Graph images, fonts, CSS and JavaScript modules.\n\n**Read-only.** Only `GET` (and implicitly `HEAD`) is supported. There is no authentication, no cookies, no tracking and no rate limiting beyond what the host applies.\n\n**Computed results are client-side.** The roadmap (path, study step, status badges, header numbers) is computed in the browser by `js/path.js` from `roles.json`. No endpoint returns a roadmap. The `Roadmap` and `StepStatus` schemas below document that computed shape for integrators who reimplement the logic.\n\n**Courses and career paths.** Every COSMO course carries `careerLinks` to BIICF roles, and `/data/role-courses.json` gives the reverse view. Each link has a `fit`:\n\n| fit | Meaning | How it is decided |\n|---|---|---|\n| `qualifies` | The course meets an entry route for the role with no experience needed. | Rule: route BDQF ≤ course BDQF, and the route's subject (e.g. \"in IT, IS or Computer Science\") matches the course subject. |\n| `needs-experience-or-portfolio` | Qualification met; BIICF also expects some unspecified experience or a portfolio. | Same rule; the route's `years` is null. |\n| `with-experience` | Qualification met; `years` of experience are also needed. | Same rule; the route needs `years` > 0. Experience is cumulative across a career. |\n| `builds-skills` | A short course that builds skills, certifications or job titles listed for the role. It is not an entry qualification. | Curated by hand; `why` explains the link. |\n\nQualification links use the same entry routes and BDQF rules as the website's roadmap, so the two always agree. BDQF levels for BTEC Levels 1–3 and City & Guilds are **estimated** from the UK RQF level (`bdqfSource: \"estimated\"`); confirm with COSMO before relying on them.\n\n**Source and disclaimer.** Data is based on the Brunei ICT Industry Competency Framework (https://www.biicf.bn). PathFinder ICT is an unofficial student guide and is not affiliated with AITI, MISC or BIICF. Always check the official site for the latest requirements. Course data is from cosmo.edu.bn (October 2026); fees, intakes and entry requirements are on each course page.",
     "contact": {
@@ -15,6 +15,48 @@
   "externalDocs": {
     "description": "Official BIICF website (data source)",
     "url": "https://www.biicf.bn"
+  },
+  "x-business-leadership-resources": {
+    "description": "Official Brunei references that supplement the COSMO course-based Business & Leadership guide. They support occupation naming, leadership development, further study and salary benchmarking; they do not define a single guaranteed career-progression ladder.",
+    "checkedAt": "2026-10-27",
+    "resources": [
+      {
+        "id": "deps-bdsoc",
+        "provider": "Department of Economic Planning and Statistics (DEPS)",
+        "title": "Brunei Darussalam Standard Occupational Classification (BDSOC)",
+        "url": "https://deps.mofe.gov.bn/wp-content/uploads/2025/10/BDSOccupationalC2011_BDSOC.pdf",
+        "resourceType": "occupation-classification",
+        "useFor": "Standard business and management occupation titles and categories, including administration, finance, human resources, policy, sales and marketing management.",
+        "limitation": "Classifies occupations but does not prescribe entry requirements or an ordered career path."
+      },
+      {
+        "id": "ubd-ilia",
+        "provider": "Universiti Brunei Darussalam — Institute for Leadership, Innovation and Advancement (ILIA)",
+        "title": "Leadership Capabilities Programme for Young Executives",
+        "url": "https://ilia.ubd.edu.bn/programmes/leadership-capabilities-programme-for-young-executives/",
+        "resourceType": "leadership-development",
+        "useFor": "Leadership competencies, team development, communication, collaboration, decision-making and leading through change.",
+        "limitation": "A professional-development programme, not a qualification-to-job progression framework."
+      },
+      {
+        "id": "utb-triced",
+        "provider": "Universiti Teknologi Brunei — Tri-CEd",
+        "title": "Postgraduate Microcredentials",
+        "url": "https://utb.edu.bn/triced/microcredential.html",
+        "resourceType": "continuing-education",
+        "useFor": "Further study in leadership, team management, strategic management and decision-making through postgraduate microcredentials.",
+        "limitation": "Describes study opportunities and learning outcomes rather than specific career stages."
+      },
+      {
+        "id": "mpec-salary-guideline",
+        "provider": "Manpower Planning and Employment Council (MPEC)",
+        "title": "Salary Guideline",
+        "url": "https://www.mpec.gov.bn/Pages/SalaryGuideline.aspx",
+        "resourceType": "salary-guideline",
+        "useFor": "Recommended private-sector job levels and salary benchmarks when contextualising Business & Leadership roles.",
+        "limitation": "Salary guidance is indicative and does not guarantee compensation, seniority or progression."
+      }
+    ]
   },
   "servers": [
     {
@@ -148,6 +190,382 @@
                       }
                     ]
                   },
+                  "digitalMedia": {
+                    "summary": "Current BIICF Digital Media career path (checked 27 October 2026)",
+                    "value": [
+                      {
+                        "id": "market-analyst",
+                        "title": "Market Analyst",
+                        "sector": "digital-media",
+                        "stage": "entry",
+                        "aka": [
+                          "Marketing Assistant",
+                          "Marketing Associate",
+                          "Marketing Coordinator"
+                        ],
+                        "summary": "Researches market trends and campaign data to guide marketing decisions.",
+                        "next": [
+                          "digital-marketing-executive"
+                        ],
+                        "routes": [
+                          {
+                            "bdqf": 5,
+                            "years": 5,
+                            "note": "BDQF 5 in Marketing, Communications, Economics or a related field + 5 years' experience"
+                          },
+                          {
+                            "bdqf": 4,
+                            "years": 3,
+                            "note": "BDQF 4 in Marketing, Communications, Economics or a related field + 3 years' experience"
+                          }
+                        ],
+                        "skills": [
+                          [
+                            "Business Analysis",
+                            "4"
+                          ],
+                          [
+                            "Customer Intelligence Analysis",
+                            "4"
+                          ],
+                          [
+                            "Customer Behaviour Analysis",
+                            "4"
+                          ],
+                          [
+                            "Data And Trend Analytics",
+                            "4"
+                          ],
+                          [
+                            "Market Research",
+                            "4"
+                          ]
+                        ],
+                        "soft": "Intermediate → Advanced",
+                        "certs": [
+                          "Digital Marketing Pro – Digital Marketing Institute",
+                          "Google Analytics Certification",
+                          "Meta Blueprint Certification",
+                          "Fundamentals of Digital Marketing (Google)",
+                          "Search Certification (Google)",
+                          "Display Certification (Google)"
+                        ],
+                        "url": "https://www.biicf.bn/sub-sectors/digital-media/job-roles/market-analyst/"
+                      },
+                      {
+                        "id": "digital-marketing-executive",
+                        "title": "Digital Marketing Executive",
+                        "sector": "digital-media",
+                        "stage": "mid",
+                        "aka": [
+                          "Digital Marketing Assistant",
+                          "Digital Marketing Coordinator",
+                          "Digital Marketing Associate",
+                          "Digital Marketing Analyst",
+                          "Internet Marketing Specialist",
+                          "Web Marketing Specialist",
+                          "SEO Specialist",
+                          "Paid Search Specialist",
+                          "Social Media Specialist"
+                        ],
+                        "summary": "Plans and manages digital campaigns, channels and performance measurement.",
+                        "next": [
+                          "business-development-manager",
+                          "customer-experience-manager"
+                        ],
+                        "routes": [
+                          {
+                            "bdqf": 5,
+                            "years": 5,
+                            "note": "BDQF 5 in Marketing, Communications, Economics or a related field + 5 years' experience"
+                          }
+                        ],
+                        "skills": [
+                          [
+                            "Business Analysis",
+                            "4"
+                          ],
+                          [
+                            "Customer Intelligence Analysis",
+                            "4"
+                          ],
+                          [
+                            "Customer Behaviour Analysis",
+                            "4"
+                          ],
+                          [
+                            "Data And Trend Analytics",
+                            "4"
+                          ],
+                          [
+                            "Market Research",
+                            "4"
+                          ]
+                        ],
+                        "soft": "Advanced",
+                        "certs": [
+                          "American Marketing Association Digital Marketing Certification",
+                          "Digital Marketing Institute Certifications",
+                          "Bing Ads Certification",
+                          "BrainStation Digital Marketing Certificate",
+                          "HubSpot Content Marketing Certification",
+                          "Copyblogger Certified Content Marketer"
+                        ],
+                        "url": "https://www.biicf.bn/sub-sectors/digital-media/job-roles/digital-marketing-executive/"
+                      },
+                      {
+                        "id": "business-development-manager",
+                        "title": "Business Development Manager",
+                        "sector": "digital-media",
+                        "stage": "senior",
+                        "aka": [
+                          "Business Acquisition Manager",
+                          "Client Acquisition Manager",
+                          "Sales Manager"
+                        ],
+                        "summary": "Uses digital tools and market insight to build pipelines, partnerships and revenue.",
+                        "next": [
+                          "marketing-manager"
+                        ],
+                        "routes": [
+                          {
+                            "bdqf": 6,
+                            "years": 5,
+                            "note": "BDQF 6 in Marketing, Business Administration, Creative Multimedia or a related field + 5 years' experience"
+                          },
+                          {
+                            "bdqf": 6,
+                            "years": 5,
+                            "note": "BDQF 6 in Information Systems, Computer Science or a related field + Marketing or Creative Multimedia certification or portfolio + 5 years' experience"
+                          },
+                          {
+                            "bdqf": 5,
+                            "years": 8,
+                            "note": "BDQF 5 in Marketing, Business Administration, Creative Multimedia or a related field + certification or portfolio + 8 years' experience"
+                          }
+                        ],
+                        "skills": [
+                          [
+                            "Business Development",
+                            "4"
+                          ],
+                          [
+                            "Contract Management",
+                            "4"
+                          ],
+                          [
+                            "Business Negotiation",
+                            "4"
+                          ],
+                          [
+                            "Customer Experience Management (CXM)",
+                            "4"
+                          ],
+                          [
+                            "Data Analytics",
+                            "4"
+                          ]
+                        ],
+                        "soft": "Advanced",
+                        "certs": [
+                          "Certified Digital Marketing Professional (CDMP)",
+                          "Certified Business Development Manager (CBDM)",
+                          "Zoho CRM Academy",
+                          "Certified Inside Sales Professional (CISP)",
+                          "Certified Sales Executive (CSE)",
+                          "Certified Business Development Expert (CBDE)"
+                        ],
+                        "url": "https://www.biicf.bn/sub-sectors/digital-media/job-roles/business-development-manager/"
+                      },
+                      {
+                        "id": "customer-experience-manager",
+                        "title": "Customer Experience Manager",
+                        "sector": "digital-media",
+                        "stage": "senior",
+                        "aka": [
+                          "Head of Customer Experience",
+                          "Head of Customer Success",
+                          "Customer Experience Lead"
+                        ],
+                        "summary": "Designs customer journeys that improve satisfaction, retention and long-term value.",
+                        "next": [
+                          "marketing-manager"
+                        ],
+                        "routes": [
+                          {
+                            "bdqf": 6,
+                            "years": 5,
+                            "note": "BDQF 6 in Marketing, Business Administration, Creative Multimedia or a related field + 5 years' experience"
+                          },
+                          {
+                            "bdqf": 6,
+                            "years": 5,
+                            "note": "BDQF 6 in Information Systems, Computer Science or a related field + Marketing or Creative Multimedia certification or portfolio + 5 years' experience"
+                          },
+                          {
+                            "bdqf": 5,
+                            "years": 8,
+                            "note": "BDQF 5 in Marketing, Business Administration, Creative Multimedia or a related field + certification or portfolio + 8 years' experience"
+                          }
+                        ],
+                        "skills": [
+                          [
+                            "Account Management",
+                            "4"
+                          ],
+                          [
+                            "Budgeting",
+                            "4"
+                          ],
+                          [
+                            "Business Needs Analysis",
+                            "4"
+                          ],
+                          [
+                            "Business Performance Management",
+                            "4"
+                          ],
+                          [
+                            "Customer Experience Management (CXM)",
+                            "4"
+                          ]
+                        ],
+                        "soft": "Intermediate → Advanced",
+                        "certs": [
+                          "Certified Customer Experience Professional (CCXP)",
+                          "Certified Customer Success Manager (CCSM)",
+                          "Professional Certified Marketer – Customer Value Management",
+                          "Customer Success Manager Certification",
+                          "Salesforce Service Cloud Consultant / Administrator",
+                          "Adobe Experience Manager Certification"
+                        ],
+                        "url": "https://www.biicf.bn/sub-sectors/digital-media/job-roles/customer-experience-manager/"
+                      },
+                      {
+                        "id": "marketing-manager",
+                        "title": "Marketing Manager",
+                        "sector": "digital-media",
+                        "stage": "senior",
+                        "aka": [
+                          "Promotion Manager",
+                          "Marketing Strategist",
+                          "Advertising Manager",
+                          "Strategic Marketing Manager",
+                          "Digital Marketing Manager",
+                          "Marketing Director"
+                        ],
+                        "summary": "Leads integrated marketing plans, campaigns, partnerships and brand activity.",
+                        "next": [
+                          "cmo"
+                        ],
+                        "routes": [
+                          {
+                            "bdqf": 6,
+                            "years": 5,
+                            "note": "BDQF 6 in Marketing, Business Administration, Creative Multimedia or a related field, or relevant marketing experience + 5 years' experience"
+                          },
+                          {
+                            "bdqf": 6,
+                            "years": 5,
+                            "note": "BDQF 6 in Information Systems, Computer Science or a related field + Marketing or Creative Multimedia certification or portfolio + 5 years' experience"
+                          },
+                          {
+                            "bdqf": 5,
+                            "years": 8,
+                            "note": "BDQF 5 in Marketing, Business Administration, Creative Multimedia or a related field + certification or portfolio + 8 years' experience"
+                          }
+                        ],
+                        "skills": [
+                          [
+                            "Brand Management",
+                            "3"
+                          ],
+                          [
+                            "Business Environment Analysis",
+                            "3"
+                          ],
+                          [
+                            "Customer Intelligence Analysis",
+                            "3"
+                          ],
+                          [
+                            "Content Management",
+                            "3"
+                          ],
+                          [
+                            "Contract Management",
+                            "3"
+                          ]
+                        ],
+                        "soft": "Advanced",
+                        "certs": [
+                          "Professional Certified Marketer (PCM), AMA",
+                          "Certified Marketing Management Professional (CMMP), IIMP",
+                          "HubSpot Digital Marketing Certification",
+                          "Certified Digital Marketing Professional (CDMP), DMI",
+                          "Google Digital Marketing and E-commerce Professional Certificate",
+                          "Meta Certified Digital Marketing Associate"
+                        ],
+                        "url": "https://www.biicf.bn/sub-sectors/digital-media/job-roles/marketing-manager/"
+                      },
+                      {
+                        "id": "cmo",
+                        "title": "Chief Marketing Officer",
+                        "sector": "digital-media",
+                        "stage": "top",
+                        "aka": [
+                          "Head of Marketing",
+                          "Marketing Director"
+                        ],
+                        "summary": "Sets organisation-wide marketing, brand and digital growth strategy.",
+                        "next": [],
+                        "routes": [
+                          {
+                            "bdqf": 6,
+                            "years": 10,
+                            "note": "BDQF 6 in a relevant business, computing or marketing field + industry certification + 10 years at senior level"
+                          },
+                          {
+                            "bdqf": 5,
+                            "years": 12,
+                            "note": "BDQF 5 in a relevant business, computing or marketing field + industry certification + 12 years at senior level"
+                          }
+                        ],
+                        "skills": [
+                          [
+                            "Business Needs Analysis",
+                            "5"
+                          ],
+                          [
+                            "Business Development",
+                            "5"
+                          ],
+                          [
+                            "Contract Management",
+                            "5"
+                          ],
+                          [
+                            "Business Negotiation",
+                            "5"
+                          ],
+                          [
+                            "Customer Experience Management (CXM)",
+                            "5"
+                          ]
+                        ],
+                        "soft": "Advanced",
+                        "certs": [
+                          "Certified Marketing Management Professional (CMMP)",
+                          "Chartered Marketer (CM)",
+                          "Certified Digital Marketing Professional (CDMP)",
+                          "MBA: Marketing Management",
+                          "Certified Product Marketing Manager (CPMM)",
+                          "Professional Certified Marketer (PCM)"
+                        ],
+                        "url": "https://www.biicf.bn/sub-sectors/digital-media/job-roles/chief-marketing-officer/"
+                      }
+                    ]
+                  },
                   "unavailable": {
                     "summary": "A role whose official details are not yet published",
                     "value": [
@@ -256,6 +674,96 @@
                       }
                     ]
                   }
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/data/business-leadership.json": {
+      "get": {
+        "tags": [
+          "Courses",
+          "Data"
+        ],
+        "operationId": "getBusinessLeadershipGuide",
+        "summary": "Get the COSMO Business & Leadership study guide",
+        "description": "Returns a course-based Business study progression, potential careers published by COSMO, and leadership topics from the HND in Business. This resource is not a BIICF competency framework and does not represent an ordered or guaranteed career ladder.",
+        "responses": {
+          "200": {
+            "description": "Business & Leadership guide.",
+            "headers": {
+              "Cache-Control": {
+                "$ref": "#/components/headers/CacheControlShort"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessLeadershipGuide"
+                },
+                "example": {
+                  "id": "business-leadership",
+                  "title": "Business & Leadership",
+                  "description": "Build practical foundations in business, management and entrepreneurship, then progress toward higher-level leadership study.",
+                  "source": "https://cosmo.edu.bn/business/",
+                  "sourceCheckedAt": "2026-10-27",
+                  "disclaimer": "This is a COSMO course-based study guide, not a BIICF competency framework or an ordered career ladder. Career possibilities are published by COSMO and do not guarantee employment or progression.",
+                  "studyPath": [
+                    {
+                      "level": 1,
+                      "title": "Pearson BTEC Level 1 Introductory Diploma in Business",
+                      "duration": "12 months full-time or 18 months part-time",
+                      "entry": "Age 16 or above with 2 O Level passes, 1 O Level credit in English medium, or another accepted qualification.",
+                      "url": "https://cosmo.edu.bn/introductory-diploma-in-business/"
+                    },
+                    {
+                      "level": 2,
+                      "title": "Pearson BTEC International Level 2 Certificate in Business",
+                      "duration": "12 months full-time or 18 months part-time",
+                      "entry": "4 O Level passes, a Pearson BTEC International Level 1 Certificate, or another accepted qualification.",
+                      "url": "https://cosmo.edu.bn/international-certificate-in-business/"
+                    },
+                    {
+                      "level": 3,
+                      "title": "Pearson BTEC International Level 3 Diploma in Business",
+                      "duration": "18 months full-time or 24 months part-time",
+                      "entry": "4 O Level credits, a Pearson BTEC Level 2 Certificate in Business, or another accepted business qualification.",
+                      "url": "https://cosmo.edu.bn/diploma-in-business/"
+                    },
+                    {
+                      "level": 5,
+                      "title": "Pearson BTEC Level 5 Higher National Diploma in Business",
+                      "duration": "24 months full-time or 30 months part-time",
+                      "entry": "An accepted Level 3, A Level, diploma or equivalent qualification. Confirm the current subject requirements with COSMO.",
+                      "url": "https://cosmo.edu.bn/hnd-in-business/"
+                    }
+                  ],
+                  "potentialCareers": [
+                    "Marketing Assistant",
+                    "Sales Executive",
+                    "Human Resources Assistant",
+                    "Business Analyst",
+                    "Customer Service Manager",
+                    "Retail Manager",
+                    "Project Coordinator",
+                    "Administrative Assistant",
+                    "Entrepreneur",
+                    "Finance Assistant"
+                  ],
+                  "leadershipTopics": [
+                    "Leadership and Management",
+                    "Business Strategy",
+                    "Organisational Behaviour Management",
+                    "Managing and Running a Small Business",
+                    "Management of Human Resources",
+                    "Managing a Successful Business Project",
+                    "Business Intelligence"
+                  ]
                 }
               }
             }
@@ -1555,6 +2063,104 @@
             "type": "boolean",
             "description": "True when the official page has no details yet (Data Architect). Show \"Details coming soon\".",
             "default": false
+          }
+        }
+      },
+      "BusinessStudyLevel": {
+        "type": "object",
+        "required": [
+          "level",
+          "title",
+          "duration",
+          "entry",
+          "url"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "level": {
+            "type": "integer",
+            "enum": [
+              1,
+              2,
+              3,
+              5
+            ],
+            "description": "Published Pearson BTEC level."
+          },
+          "title": {
+            "type": "string"
+          },
+          "duration": {
+            "type": "string",
+            "description": "Published full-time and part-time duration."
+          },
+          "entry": {
+            "type": "string",
+            "description": "Concise summary of the published entry route; confirm current requirements with COSMO."
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      },
+      "BusinessLeadershipGuide": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "description",
+          "source",
+          "sourceCheckedAt",
+          "disclaimer",
+          "studyPath",
+          "potentialCareers",
+          "leadershipTopics"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "const": "business-leadership"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string",
+            "format": "uri",
+            "description": "Official COSMO Business programme page."
+          },
+          "sourceCheckedAt": {
+            "type": "string",
+            "format": "date"
+          },
+          "disclaimer": {
+            "type": "string"
+          },
+          "studyPath": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/components/schemas/BusinessStudyLevel"
+            }
+          },
+          "potentialCareers": {
+            "type": "array",
+            "description": "Career possibilities listed by COSMO; not an ordered progression.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "leadershipTopics": {
+            "type": "array",
+            "description": "Leadership-related modules published for the HND in Business.",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },

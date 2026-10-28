@@ -1,0 +1,59 @@
+{
+  "id": "business-leadership",
+  "title": "Business & Leadership",
+  "description": "Build practical foundations in business, management and entrepreneurship, then progress toward higher-level leadership study.",
+  "source": "https://cosmo.edu.bn/business/",
+  "sourceCheckedAt": "2026-10-27",
+  "disclaimer": "This is a COSMO course-based study guide, not a BIICF competency framework or an ordered career ladder. Career possibilities are published by COSMO and do not guarantee employment or progression.",
+  "studyPath": [
+    {
+      "level": 1,
+      "title": "Pearson BTEC Level 1 Introductory Diploma in Business",
+      "duration": "12 months full-time or 18 months part-time",
+      "entry": "Age 16 or above with 2 O Level passes, 1 O Level credit in English medium, or another accepted qualification.",
+      "url": "https://cosmo.edu.bn/introductory-diploma-in-business/"
+    },
+    {
+      "level": 2,
+      "title": "Pearson BTEC International Level 2 Certificate in Business",
+      "duration": "12 months full-time or 18 months part-time",
+      "entry": "4 O Level passes, a Pearson BTEC International Level 1 Certificate, or another accepted qualification.",
+      "url": "https://cosmo.edu.bn/international-certificate-in-business/"
+    },
+    {
+      "level": 3,
+      "title": "Pearson BTEC International Level 3 Diploma in Business",
+      "duration": "18 months full-time or 24 months part-time",
+      "entry": "4 O Level credits, a Pearson BTEC Level 2 Certificate in Business, or another accepted business qualification.",
+      "url": "https://cosmo.edu.bn/diploma-in-business/"
+    },
+    {
+      "level": 5,
+      "title": "Pearson BTEC Level 5 Higher National Diploma in Business",
+      "duration": "24 months full-time or 30 months part-time",
+      "entry": "An accepted Level 3, A Level, diploma or equivalent qualification. Confirm the current subject requirements with COSMO.",
+      "url": "https://cosmo.edu.bn/hnd-in-business/"
+    }
+  ],
+  "potentialCareers": [
+    "Marketing Assistant",
+    "Sales Executive",
+    "Human Resources Assistant",
+    "Business Analyst",
+    "Customer Service Manager",
+    "Retail Manager",
+    "Project Coordinator",
+    "Administrative Assistant",
+    "Entrepreneur",
+    "Finance Assistant"
+  ],
+  "leadershipTopics": [
+    "Leadership and Management",
+    "Business Strategy",
+    "Organisational Behaviour Management",
+    "Managing and Running a Small Business",
+    "Management of Human Resources",
+    "Managing a Successful Business Project",
+    "Business Intelligence"
+  ]
+}
